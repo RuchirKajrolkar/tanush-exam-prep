@@ -187,7 +187,7 @@ Mark the $x$-values of the stationary points of $f$ (these are zeros of $f'$) an
 \nextcol[0.445]
 \centering
 \begin{tikzpicture}
-\begin{axis}[mygraph, width=6.4cm, height=4.4cm, xmin=-2.3, xmax=2.5, ymin=-3.2, ymax=3.2, xtick={-1,1}, ytick=\empty, cornertitle, title={$y=f(x)=x^3-3x$}]
+\begin{axis}[mygraph, width=6.4cm, height=4.4cm, xmin=-2.3, xmax=2.5, ymin=-3.2, ymax=3.2, xtick={-1,1}, ytick=\empty, cornertitle, title={$f(x)=x^3-3x$}]
   \addplot[plotA, domain=-2.1:2.1] {x^3-3*x};
   \node[pt] at (axis cs:-1,2) {}; \node[lab, above] at (axis cs:-1,2) {max};
   \node[pt] at (axis cs:1,-2) {}; \node[lab, below] at (axis cs:1,-2) {min};
@@ -198,7 +198,7 @@ Mark the $x$-values of the stationary points of $f$ (these are zeros of $f'$) an
 \end{tikzpicture}
 
 \begin{tikzpicture}
-\begin{axis}[mygraph, width=6.4cm, height=4.4cm, xmin=-2.3, xmax=2.5, ymin=-3.8, ymax=6.5, xtick={-1,1}, ytick=\empty, cornertitle, title={$y=f'(x)=3x^2-3$}]
+\begin{axis}[mygraph, width=6.4cm, height=4.4cm, xmin=-2.3, xmax=2.5, ymin=-3.8, ymax=6.5, xtick={-1,1}, ytick=\empty, cornertitle, title={$f'(x)=3x^2-3$}]
   \addplot[plotB, domain=-2.1:2.1] {3*x^2-3};
   \node[pt] at (axis cs:-1,0) {}; \node[pt] at (axis cs:1,0) {};
   \node[pt] at (axis cs:0,-3) {}; \node[lab, right] at (axis cs:0,-3) {$(0,-3)$ min of $f'$};
