@@ -1,0 +1,567 @@
+% =================================================================
+\section{Functions, relations and graphs (Area of Study 1)}
+\label{sec:functions}
+% =================================================================
+
+\begin{sdbox}
+\textbf{This area of study includes:}
+\begin{itemize}
+  \item graphs of polynomial functions and their key features
+  \item graphs of power functions $y=x^n$, $n\in\Q$; exponential functions $y=a^x$, $a\in\R^+$, in particular $y=e^x$; logarithmic functions $y=\loge(x)$ and $y=\log_{10}(x)$; and circular functions $y=\sin(x)$, $y=\cos(x)$ and $y=\tan(x)$, and their key features
+  \item transformation from $y=f(x)$ to $y=Af(n(x+b))+c$, where $A,n,b,c\in\R$, $A,n\ne0$, and $f$ is one of the functions above, and the inverse transformation
+  \item the relation between the graph of an original function and the graph of a transformed function (including \emph{families} of transformed functions for a single transformation parameter)
+  \item graphs of sum, difference, product and composite functions of the types above (not composites that give reciprocal or quotient functions)
+  \item modelling of practical situations using polynomial, power, circular, exponential and logarithmic functions, simple transformations and combinations of these, including simple piecewise (hybrid) functions
+\end{itemize}
+\textbf{Key skill:} \byhand\ sketch graphs of polynomials up to degree 4; $y=x^n$, $n\in\N$; $y=a^x$ (using key points $\left(-1,\frac1a\right)$, $(0,1)$, $(1,a)$); $\loge(x)$; $\log_{10}(x)$; and simple transformations of these, \emph{clearly identifying key features including any vertical or horizontal asymptotes}. Also: domain, maximal domain, co-domain, range, asymptotic behaviour, symmetry, and recognising possible models from graphs or tables.
+\end{sdbox}
+
+\subsection{Functions, domain and range}
+\label{sec:domain}
+
+\begin{defn}{Definitions}
+\begin{itemize}
+  \item A \textbf{relation} is a set of ordered pairs. A \textbf{function} is a relation where each $x$-value maps to \emph{exactly one} $y$-value (passes the \emph{vertical line test}).
+  \item \textbf{One-to-one}: each $y$-value comes from exactly one $x$-value (passes the \emph{horizontal line test}). Otherwise \textbf{many-to-one} (e.g.\ $y=x^2$ on $\R$). A function has an inverse \emph{function} only if it is one-to-one.
+  \item $f:D\to\R,\ f(x)=\text{rule}$. The \textbf{domain} $D$ is the set of allowed inputs; the \textbf{co-domain} ($\R$ in Methods) contains all outputs; the \textbf{range} is the set of outputs actually produced.
+  \item The \textbf{maximal} (implied or natural) domain is the largest subset of $\R$ for which the rule is defined. When a function is given by a rule only, assume the maximal domain.
+  \item \textbf{Even}: $f(-x)=f(x)$, so the graph is symmetric about the $y$-axis ($x^2$, $x^4$, $\cos x$, $\frac{1}{x^2}$). \textbf{Odd}: $f(-x)=-f(x)$, so the graph has rotational symmetry about the origin ($x^3$, $\frac1x$, $\sin x$, $\tan x$, $x^{1/3}$).
+\end{itemize}
+\end{defn}
+
+\begin{cols}
+\begin{keyres}{Finding the maximal domain}
+\begin{itemize}
+  \item Denominator $\ne0$.
+  \item Even root $\sqrt{\ \ }$: inside $\ge0$.
+  \item $\loge(\ \ )$: inside $>0$.
+  \item $\tan(\theta)$: $\theta\ne\frac{\pi}{2}+k\pi$, $k\in\Z$.
+  \item Sum, difference, product: \emph{intersection} of the domains, $d_{f\pm g}=d_{fg}=d_f\cap d_g$.
+\end{itemize}
+\end{keyres}
+\nextcol
+\begin{keyres}{Finding the range}
+\begin{itemize}
+  \item Sketch it. Read off from the lowest to the highest $y$-value, using endpoints, turning points and asymptotes.
+  \item Check endpoints: closed ($\bullet$, included) or open ($\circ$, excluded).
+  \item Asymptotes are \emph{never} included in the range ($y=e^x$ has range $(0,\infty)$).
+\end{itemize}
+\end{keyres}
+\end{cols}
+
+\begin{example}{maximal domain and range \byhand}
+\begin{tabularx}{\linewidth}{@{}p{3.8cm}L@{}}
+$f(x)=\sqrt{4-2x}+1$ & Need $4-2x\ge0\Rightarrow x\le2$. Domain $(-\infty,2]$; range $[1,\infty)$ (endpoint $(2,1)$). \\
+$g(x)=\loge(3-x)-2$ & Need $3-x>0\Rightarrow x<3$. Domain $(-\infty,3)$; range $\R$; vertical asymptote $x=3$; $x$-intercept $3-e^2$; $y$-intercept $\loge3-2$. \\
+$h(x)=\dfrac{2}{(x-1)^2}-3$ & Domain $\R\setminus\{1\}$; asymptotes $x=1$, $y=-3$; range $(-3,\infty)$. \\
+\end{tabularx}
+\end{example}
+
+\begin{tip}[Key features checklist for any sketch]
+Axis intercepts (as coordinates) \textbullet\ stationary points and their nature \textbullet\ points of inflection (if asked) \textbullet\ asymptotes as dashed lines \emph{with equations} \textbullet\ endpoints shown closed $\bullet$ or open $\circ$ with coordinates \textbullet\ correct behaviour near asymptotes and as $x\to\pm\infty$ \textbullet\ correct curvature (don't draw a parabola-shaped log graph) \textbullet\ symmetry used where possible.
+\end{tip}
+
+% -----------------------------------------------------------------
+\subsection{Polynomial functions}
+\label{sec:poly}
+
+\begin{keyres}{Shape rules for polynomials of degree $n$}
+\begin{itemize}
+  \item At most $n$ $x$-intercepts and at most $n-1$ turning points. The $y$-intercept is the constant term.
+  \item \textbf{Behaviour at a root} $x=a$ from a factor $(x-a)^k$: $k=1$ the graph \emph{crosses}; $k=2$ it \emph{touches} (turning point on the axis); $k=3$ it crosses with a \emph{stationary point of inflection} (flattens).
+  \item \textbf{End behaviour} (leading term $ax^n$ dominates): $n$ even, $a>0$: up at both ends; $n$ even, $a<0$: down at both ends; $n$ odd, $a>0$: bottom left to top right; $n$ odd, $a<0$: top left to bottom right.
+  \item Turning-point (stationary-point) forms: $y=a(x-h)^2+k$ and $y=a(x-h)^4+k$ have a turning point at $(h,k)$; $y=a(x-h)^3+k$ has a stationary point of inflection at $(h,k)$.
+  \item Comparing powers: for $|x|<1$, $x^4<x^2$ (flatter near $0$); for $|x|>1$, $x^4>x^2$. All of $x^2,x^4$ pass through $(-1,1),(0,0),(1,1)$; $x^3,x^5$ through $(-1,-1),(0,0),(1,1)$.
+\end{itemize}
+\end{keyres}
+
+\begin{cols}
+\begin{example}{a cubic \byhand}
+Sketch $y=(x+1)^2(x-2)$.\par
+\textbf{Intercepts:} touches at $x=-1$, crosses at $x=2$; $y$-intercept $(1)^2(-2)=-2$.\par
+\textbf{Stationary points:} $\dydx=2(x+1)(x-2)+(x+1)^2=3(x+1)(x-1)$, so local max $(-1,0)$ and local min $(1,-4)$.\par
+\textbf{Ends:} degree 3, positive leading coefficient: bottom left to top right.
+\end{example}
+\nextcol
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.4cm, height=5.0cm, xmin=-2.3, xmax=3.0, ymin=-5.3, ymax=3.4, xtick=\empty, ytick=\empty]
+  \addplot[plotA, domain=-1.95:2.45] {(x+1)^2*(x-2)};
+  \node[pt] at (axis cs:-1,0) {}; \node[lab, above left] at (axis cs:-1,0) {$(-1,0)$};
+  \node[pt] at (axis cs:1,-4) {}; \node[lab, below] at (axis cs:1,-4) {$(1,-4)$};
+  \node[pt] at (axis cs:2,0) {};  \node[lab, below right] at (axis cs:2,0) {$(2,0)$};
+  \node[pt] at (axis cs:0,-2) {}; \node[lab, left] at (axis cs:0,-2) {$(0,-2)$};
+\end{axis}
+\end{tikzpicture}
+\end{cols}
+
+\begin{cols}
+\begin{example}{a quartic \byhand}
+Sketch $y=x(x-2)^3$.\par
+\textbf{Intercepts:} crosses at $(0,0)$; at $x=2$ (triple root) a stationary point of inflection.\par
+\textbf{Stationary points:} $\dydx=(x-2)^3+3x(x-2)^2=(x-2)^2(4x-2)$: $x=\frac12$ gives the local min $\left(\frac12,-\frac{27}{16}\right)$; $x=2$ gives the stationary inflection $(2,0)$.\par
+\textbf{Ends:} degree 4, $a>0$: up at both ends.
+\end{example}
+\nextcol
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.4cm, height=5.0cm, xmin=-0.9, xmax=3.0, ymin=-2.4, ymax=4.2, xtick=\empty, ytick=\empty]
+  \addplot[plotB, domain=-0.42:2.9] {x*(x-2)^3};
+  \node[pt] at (axis cs:0,0) {}; \node[lab, above left] at (axis cs:0,0) {$(0,0)$};
+  \node[pt] at (axis cs:0.5,-1.6875) {}; \node[lab, below] at (axis cs:0.5,-1.6875) {$\left(\frac12,-\frac{27}{16}\right)$};
+  \node[pt] at (axis cs:2,0) {}; \node[lab, below right] at (axis cs:2,0) {$(2,0)$ stat.\ inflection};
+\end{axis}
+\end{tikzpicture}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{Power functions $y=x^n$, $n\in\Q$}
+\label{sec:power}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[smallgraph, title={\small $n\in\N$ even: $x^2$, $x^4$}, xmin=-1.6, xmax=1.6, ymin=-0.5, ymax=2.2, xtick=\empty, ytick=\empty]
+  \addplot[plotA, domain=-1.45:1.45] {x^2};
+  \addplot[plotB, domain=-1.2:1.2] {x^4};
+  \node[pt] at (axis cs:1,1) {}; \node[lab, right] at (axis cs:1,1) {$(1,1)$};
+  \node[pt] at (axis cs:-1,1) {}; \node[lab, left] at (axis cs:-1,1) {$(-1,1)$};
+\end{axis}
+\end{tikzpicture}\hfill
+\begin{tikzpicture}
+\begin{axis}[smallgraph, title={\small $n\in\N$ odd: $x^3$, $x^5$}, xmin=-1.6, xmax=1.6, ymin=-2, ymax=2, xtick=\empty, ytick=\empty]
+  \addplot[plotA, domain=-1.25:1.25] {x^3};
+  \addplot[plotB, domain=-1.14:1.14] {x^5};
+  \node[pt] at (axis cs:1,1) {}; \node[lab, right] at (axis cs:1,1) {$(1,1)$};
+  \node[pt] at (axis cs:-1,-1) {}; \node[lab, left] at (axis cs:-1,-1) {$(-1,-1)$};
+\end{axis}
+\end{tikzpicture}\hfill
+\begin{tikzpicture}
+\begin{axis}[smallgraph, title={\small $n=-1$: $y=\frac1x$}, xmin=-3, xmax=3, ymin=-3, ymax=3, xtick=\empty, ytick=\empty]
+  \addplot[plotA, domain=-3:-0.34] {1/x};
+  \addplot[plotA, domain=0.34:3] {1/x};
+  \node[pt] at (axis cs:1,1) {}; \node[lab, above right] at (axis cs:1,1) {$(1,1)$};
+  \node[pt] at (axis cs:-1,-1) {}; \node[lab, below left] at (axis cs:-1,-1) {$(-1,-1)$};
+\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\begin{axis}[smallgraph, title={\small $n=-2$: $y=\frac{1}{x^2}$}, xmin=-3, xmax=3, ymin=-0.6, ymax=3.2, xtick=\empty, ytick=\empty]
+  \addplot[plotA, domain=-3:-0.57] {1/x^2};
+  \addplot[plotA, domain=0.57:3] {1/x^2};
+  \node[pt] at (axis cs:1,1) {}; \node[lab, above right] at (axis cs:1,1) {$(1,1)$};
+  \node[pt] at (axis cs:-1,1) {}; \node[lab, above left] at (axis cs:-1,1) {$(-1,1)$};
+\end{axis}
+\end{tikzpicture}\hfill
+\begin{tikzpicture}
+\begin{axis}[smallgraph, title={\small $x^{1/2}=\sqrt{x}$,\ \ $x^{1/3}=\sqrt[3]{x}$}, xmin=-2.6, xmax=2.6, ymin=-1.6, ymax=1.8, xtick=\empty, ytick=\empty]
+  \addplot[plotA, domain=0:2.5, samples=300] {sqrt(x)};
+  \addplot[plotB, dashed, domain=-2.5:2.5] {sign(x)*abs(x)^(1/3)};
+  \node[pt] at (axis cs:1,1) {}; \node[lab, above] at (axis cs:1,1) {$(1,1)$};
+  \node[pt] at (axis cs:-1,-1) {}; \node[lab, below] at (axis cs:-1,-1) {$(-1,-1)$};
+\end{axis}
+\end{tikzpicture}\hfill
+\begin{tikzpicture}
+\begin{axis}[smallgraph, title={\small $x^{2/3}$ (cusp at $O$)}, xmin=-2.6, xmax=2.6, ymin=-0.4, ymax=2.0, xtick=\empty, ytick=\empty]
+  \addplot[plotA, domain=-2.5:2.5] {abs(x)^(2/3)};
+  \node[pt] at (axis cs:1,1) {}; \node[lab, above] at (axis cs:1,1) {$(1,1)$};
+  \node[pt] at (axis cs:-1,1) {}; \node[lab, above] at (axis cs:-1,1) {$(-1,1)$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}lllL@{}}
+\toprule
+$y=x^n$ & Maximal domain & Range & Notes \\
+\midrule
+$n\in\N$ even ($x^2,x^4$) & $\R$ & $[0,\infty)$ & even; turning point at $O$ \\
+$n\in\N$ odd ($x^3,x^5$) & $\R$ & $\R$ & odd; stationary inflection at $O$ ($n\ge3$) \\
+$n=-1$, $\frac1x$ (hyperbola) & $\R\setminus\{0\}$ & $\R\setminus\{0\}$ & odd; asymptotes $x=0$, $y=0$ \\
+$n=-2$, $\frac{1}{x^2}$ (truncus) & $\R\setminus\{0\}$ & $(0,\infty)$ & even; asymptotes $x=0$, $y=0$ \\
+$n=\frac12$, $\sqrt{x}$ & $[0,\infty)$ & $[0,\infty)$ & starts at $(0,0)$; vertical tangent there \\
+$n=\frac13$, $\sqrt[3]{x}$ & $\R$ & $\R$ & odd; vertical tangent at $O$ (not differentiable at $0$) \\
+$n=\frac23$, $\left(\sqrt[3]{x}\right)^2$ & $\R$ & $[0,\infty)$ & even; cusp at $O$ \\
+$n=-\frac12$, $\frac{1}{\sqrt{x}}$ & $(0,\infty)$ & $(0,\infty)$ & asymptotes $x=0$, $y=0$ \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{keyres}{General rational powers and transformed power functions}
+For $n=\frac{p}{q}$ in simplest form ($q>0$): $x^{p/q}=\left(\sqrt[q]{x}\right)^p$. If $q$ is \textbf{odd}, negative $x$ is allowed; if $q$ is \textbf{even}, need $x\ge0$. If $p<0$, also exclude $x=0$. Every $y=x^n$ passes through $(1,1)$.
+\begin{itemize}
+  \item $y=\dfrac{a}{x-h}+k$ and $y=\dfrac{a}{(x-h)^2}+k$: asymptotes $x=h$ and $y=k$.
+  \item $y=a\sqrt{x-h}+k$: starts at $(h,k)$, domain $[h,\infty)$; $y=a\sqrt{h-x}+k$ has domain $(-\infty,h]$.
+\end{itemize}
+\end{keyres}
+
+% -----------------------------------------------------------------
+\subsection{Exponential and logarithmic functions}
+\label{sec:explog}
+
+\begin{cols}
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.4cm, height=5.2cm, xmin=-2.6, xmax=2.6, ymin=-0.6, ymax=5.2, xtick=\empty, ytick=\empty]
+  \addplot[plotA, domain=-2.5:2.3] {2^x};
+  \addplot[plotC, domain=-2.5:1.62] {exp(x)};
+  \addplot[plotB, domain=-2.3:2.5] {0.5^x};
+  \node[pt] at (axis cs:0,1) {}; \node[lab, above left] at (axis cs:0,1) {$(0,1)$};
+  \node[pt] at (axis cs:1,2) {}; \node[lab, right] at (axis cs:1,2) {$(1,2)$};
+  \node[pt] at (axis cs:-1,0.5) {}; \node[lab, below] at (axis cs:-1,0.5) {$\left(-1,\frac12\right)$};
+  \node[lab, plotA] at (axis cs:2.05,4.7) {$2^x$};
+  \node[lab, plotC] at (axis cs:1.05,4.4) {$e^x$};
+  \node[lab, plotB] at (axis cs:-2.0,4.6) {$\left(\frac12\right)^x$};
+  \node[lab] at (axis cs:2.1,0.25) {$y=0$};
+\end{axis}
+\end{tikzpicture}
+\nextcol
+\begin{keyres}{$y=a^x$, $a>0$, $a\ne1$}
+\begin{itemize}
+  \item Domain $\R$; range $(0,\infty)$; horizontal asymptote $y=0$.
+  \item Key points $\left(-1,\frac1a\right)$, $(0,1)$, $(1,a)$.
+  \item $a>1$: strictly increasing (growth). $0<a<1$: strictly decreasing (decay). $\left(\frac1a\right)^x=a^{-x}$ is the reflection in the $y$-axis.
+  \item $e\approx2.718$. $y=e^x$ has gradient $1$ at $(0,1)$ and $\ddx e^x=e^x$.
+  \item $y=Ae^{n(x-h)}+k$: asymptote $y=k$; range $(k,\infty)$ if $A>0$, $(-\infty,k)$ if $A<0$.
+\end{itemize}
+\end{keyres}
+\end{cols}
+
+\begin{cols}
+\begin{keyres}{$y=\log_a(x)$: the inverse of $y=a^x$}
+\begin{itemize}
+  \item $y=\log_a(x)\iff a^y=x$ (for $x>0$).
+  \item Domain $(0,\infty)$; range $\R$; vertical asymptote $x=0$.
+  \item Key points $\left(\frac1a,-1\right)$, $(1,0)$, $(a,1)$; reflection of $y=a^x$ in $y=x$.
+  \item $\loge(x)=\ln(x)$ passes through $(e,1)$; $\log_{10}(x)$ through $(10,1)$, flatter than $\loge$ for $x>1$.
+  \item $y=A\loge(n(x-h))+k$: asymptote $x=h$; domain $x>h$ if $n>0$, $x<h$ if $n<0$.
+\end{itemize}
+\end{keyres}
+\nextcol
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.4cm, height=5.6cm, xmin=-2.6, xmax=3.6, ymin=-2.6, ymax=3.6, xtick=\empty, ytick=\empty]
+  \addplot[black!40, dashed, thin, domain=-2.5:3.5] {x};
+  \addplot[plotC, domain=-2.5:1.2] {exp(x)};
+  \addplot[plotA, domain=0.07:3.5, samples=300] {ln(x)};
+  \addplot[plotB, domain=0.06:3.5, samples=300] {log10(x)};
+  \node[pt] at (axis cs:1,0) {}; \node[lab, below right] at (axis cs:1,0) {$(1,0)$};
+  \node[pt] at (axis cs:2.71828,1) {}; \node[lab, above left] at (axis cs:2.71828,1) {$(e,1)$};
+  \node[pt] at (axis cs:0,1) {}; \node[lab, left] at (axis cs:0,1) {$(0,1)$};
+  \node[lab, plotC] at (axis cs:1.35,3.3) {$e^x$};
+  \node[lab, plotA] at (axis cs:3.2,1.45) {$\loge x$};
+  \node[lab, plotB] at (axis cs:3.2,0.25) {$\log_{10}x$};
+  \node[lab, black!60] at (axis cs:2.9,3.35) {$y=x$};
+\end{axis}
+\end{tikzpicture}
+\end{cols}
+
+\begin{keyres}{Index laws and logarithm laws (memorise)}
+\begin{cols}
+\textbf{Index laws} ($a,b>0$)
+\begin{itemize}
+  \item $a^ma^n=a^{m+n}$, \ $\dfrac{a^m}{a^n}=a^{m-n}$, \ $(a^m)^n=a^{mn}$
+  \item $(ab)^n=a^nb^n$, \ $a^0=1$, \ $a^{-n}=\dfrac{1}{a^n}$
+  \item $a^{p/q}=\sqrt[q]{a^p}=\left(\sqrt[q]{a}\right)^p$
+  \item $a^{x}=e^{x\loge a}$ (useful for calculus)
+\end{itemize}
+\nextcol
+\textbf{Logarithm laws} ($a>0$, $a\ne1$, $m,n>0$)
+\begin{itemize}
+  \item $\log_a(mn)=\log_a m+\log_a n$; \ $\log_a\!\left(\frac{m}{n}\right)=\log_a m-\log_a n$
+  \item $\log_a(m^p)=p\log_a m$; \ $\log_a\!\left(\frac1m\right)=-\log_a m$
+  \item $\log_a1=0$, \ $\log_a a=1$, \ $a^{\log_a x}=x$, \ $\log_a(a^x)=x$
+  \item Change of base: $\log_a x=\dfrac{\loge x}{\loge a}$
+\end{itemize}
+\end{cols}
+\end{keyres}
+
+\begin{warn}
+$\log_a(m+n)\ne\log_a m+\log_a n$ \textbullet\ $\dfrac{\log m}{\log n}\ne\log\!\left(\dfrac mn\right)$ \textbullet\ $(\loge x)^2\ne2\loge x$ \textbullet\ $\loge(x^2)=2\loge|x|$, so $\loge(x^2)$ and $2\loge x$ have \emph{different domains} \textbullet\ $e^{a+b}=e^ae^b$, not $e^a+e^b$.
+\end{warn}
+
+\begin{example}{sketching transformed exponential and log graphs \byhand}
+\textbf{(a)} $y=3-e^{2x}$: asymptote $y=3$ (as $x\to-\infty$); $y$-intercept $3-1=2$; $x$-intercept $e^{2x}=3\Rightarrow x=\frac12\loge3$; range $(-\infty,3)$; strictly decreasing.\par
+\textbf{(b)} $y=\loge(3-x)-2$ (from the earlier domain example): reflect $y=\loge x$ in the $y$-axis, translate 3 right, 2 down. Asymptote $x=3$; $x$-intercept $3-e^2\approx-4.39$; $y$-intercept $\loge3-2\approx-0.90$; domain $(-\infty,3)$; strictly decreasing.
+\end{example}
+
+% -----------------------------------------------------------------
+\subsection{Circular functions}
+\label{sec:circ}
+
+\begin{cols}
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.6cm, height=4.3cm, xmin=-0.4, xmax=7.1, ymin=-1.5, ymax=1.6,
+  xtick={1.5708,3.14159,4.71239,6.28319}, xticklabels={$\frac{\pi}{2}$,$\pi$,$\frac{3\pi}{2}$,$2\pi$},
+  ytick={-1,1}, every tick label/.append style={font=\scriptsize}]
+  \addplot[plotA, domain=0:6.28319] {sin(deg(x))};
+  \addplot[plotB, dashed, domain=0:6.28319] {cos(deg(x))};
+  \node[lab, plotA] at (axis cs:1.0,1.25) {$\sin x$};
+  \node[lab, plotB] at (axis cs:5.6,1.25) {$\cos x$};
+\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.6cm, height=4.6cm, xmin=-3.4, xmax=3.6, ymin=-4, ymax=4,
+  xtick={-3.14159,-1.5708,1.5708,3.14159}, xticklabels={$-\pi$,$-\frac{\pi}{2}$,$\frac{\pi}{2}$,$\pi$}, ytick=\empty,
+  restrict y to domain=-6:6, unbounded coords=jump]
+  \addplot[plotA, domain=-3.14159:3.14159, samples=401] {tan(deg(x))};
+  \asym (axis cs:-1.5708,-4) -- (axis cs:-1.5708,4);
+  \asym (axis cs:1.5708,-4) -- (axis cs:1.5708,4);
+  \node[lab, plotA] at (axis cs:2.6,2.6) {$\tan x$};
+\end{axis}
+\end{tikzpicture}
+\nextcol
+\begin{keyres}{Key features}
+\begin{itemize}
+  \item $\sin$, $\cos$: domain $\R$, range $[-1,1]$, period $2\pi$. $\cos x=\sin\!\left(x+\frac{\pi}{2}\right)$.
+  \item $\tan$: period $\pi$; asymptotes $x=\frac{\pi}{2}+k\pi$; zeros at $x=k\pi$; range $\R$.
+  \item $y=a\sin(n(x-b))+c$ or $a\cos(n(x-b))+c$:\\
+   amplitude $|a|$; \ period $\dfrac{2\pi}{|n|}$; \ mean line $y=c$; \ range $[c-|a|,\,c+|a|]$; \ horizontal shift $b$.
+  \item $y=a\tan(n(x-b))+c$: period $\dfrac{\pi}{|n|}$; asymptotes where $n(x-b)=\frac{\pi}{2}+k\pi$, i.e.\ $x=b+\dfrac{\pi}{2n}+\dfrac{k\pi}{n}$, $k\in\Z$.
+\end{itemize}
+\end{keyres}
+\begin{method}{Sketching $y=a\sin(n(x-b))+c$ \byhand}
+\begin{enumerate}
+  \item Factorise the inside: $\sin(2x-\frac{\pi}{2})=\sin\!\left(2\left(x-\frac{\pi}{4}\right)\right)$.
+  \item Period, amplitude, mean line, range.
+  \item Mark a cycle starting at $x=b$ and split it into quarters. The key points are mean, max, mean, min, mean (sin) or max, mean, min, mean, max (cos), flipped if $a<0$.
+  \item Find the intercepts by solving; plot the endpoints of the domain.
+\end{enumerate}
+\end{method}
+\end{cols}
+
+\begin{cols}[0.52]
+\begin{example}{a transformed circular graph \byhand}
+Sketch $y=2\sin\!\left(2x-\frac{\pi}{2}\right)+1$ for $x\in[0,2\pi]$.\par
+$y=2\sin\!\left(2\left(x-\frac{\pi}{4}\right)\right)+1$: amplitude $2$, period $\pi$, mean line $y=1$, range $[-1,3]$. It simplifies to $y=1-2\cos(2x)$.\par
+$y$-intercept: $2\sin\!\left(-\frac{\pi}{2}\right)+1=-1$.\par
+$x$-intercepts: $\cos(2x)=\frac12$, $2x\in[0,4\pi]$, so $2x=\frac{\pi}{3},\frac{5\pi}{3},\frac{7\pi}{3},\frac{11\pi}{3}$, giving $x=\frac{\pi}{6},\frac{5\pi}{6},\frac{7\pi}{6},\frac{11\pi}{6}$.\par
+Maxima $\left(\frac{\pi}{2},3\right)$, $\left(\frac{3\pi}{2},3\right)$; minima $(0,-1)$, $(\pi,-1)$, $(2\pi,-1)$.
+\end{example}
+\nextcol[0.455]
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=7.0cm, height=5.0cm, xmin=-0.3, xmax=6.9, ymin=-1.6, ymax=3.6,
+  xtick={0.5236,1.5708,3.14159,4.71239,6.28319}, xticklabels={$\frac{\pi}{6}$,$\frac{\pi}{2}$,$\pi$,$\frac{3\pi}{2}$,$2\pi$},
+  ytick={-1,1,3}, every tick label/.append style={font=\scriptsize}]
+  \addplot[black!40, dashed, thin, domain=0:6.28319] {1};
+  \addplot[plotA, domain=0:6.28319] {1-2*cos(deg(2*x))};
+  \node[pt] at (axis cs:0,-1) {}; \node[pt] at (axis cs:6.28319,-1) {};
+  \node[pt] at (axis cs:1.5708,3) {}; \node[lab, above] at (axis cs:1.5708,3) {$\left(\frac{\pi}{2},3\right)$};
+  \node[pt] at (axis cs:4.71239,3) {}; \node[lab, above] at (axis cs:4.71239,3) {$\left(\frac{3\pi}{2},3\right)$};
+  \node[pt] at (axis cs:3.14159,-1) {}; \node[lab, below] at (axis cs:3.14159,-1) {$(\pi,-1)$};
+  \node[pt] at (axis cs:0.5236,0) {}; \node[pt] at (axis cs:2.618,0) {};
+  \node[pt] at (axis cs:3.6652,0) {}; \node[pt] at (axis cs:5.7596,0) {};
+  \node[lab, black!60] at (axis cs:6.55,1.25) {$y=1$};
+\end{axis}
+\end{tikzpicture}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{Transformations of graphs}
+\label{sec:trans}
+
+\begin{keyres}{The study design form $y=Af\big(n(x+b)\big)+c$, \ $A,n\ne0$}
+\begin{center}
+\begin{tabularx}{\linewidth}{@{}lL@{}}
+\toprule
+Parameter & Effect on the graph of $y=f(x)$ \\
+\midrule
+$|A|$ & Dilation by factor $|A|$ \textbf{from the $x$-axis} (parallel to the $y$-axis). If $A<0$: also a \textbf{reflection in the $x$-axis}. \\
+$|n|$ & Dilation by factor $\dfrac{1}{|n|}$ \textbf{from the $y$-axis} (parallel to the $x$-axis). If $n<0$: also a \textbf{reflection in the $y$-axis}. \\
+$b$ & Translation of $b$ units in the \textbf{negative} $x$-direction ($x+3$: 3 units \emph{left}; $x-3$: 3 units \emph{right}). \\
+$c$ & Translation of $c$ units in the positive $y$-direction (up if $c>0$). \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\textbf{Mapping of points:} \quad $(x,\,y)\ \longrightarrow\ \left(\dfrac{x}{n}-b,\ \ Ay+c\right)$. \quad For this form apply \textbf{dilations and reflections first, then translations}.\par
+\textbf{Effect on features:} the image of a point is found with the mapping. A vertical asymptote $x=h$ becomes $x=\frac{h}{n}-b$; a horizontal asymptote $y=k$ becomes $y=Ak+c$; maxima become minima under a reflection in the $x$-axis; domain and range transform with the $x$- and $y$-rules respectively.
+\end{keyres}
+
+\begin{method}{Finding the transformations between two rules}
+\textbf{Method 1 (read off):} rewrite the image rule as $y=Af(n(x+b))+c$, \emph{taking out the factor $n$ inside the brackets first}, then read off $A$, $n$, $b$, $c$.\par
+\textbf{Method 2 (dash method):} let the image of $(x,y)$ be $(x',y')$. Write $x'$ and $y'$ in terms of $x$ and $y$, make $x$ and $y$ the subjects, and substitute into $y=f(x)$. Then drop the dashes. This works for \emph{any} described sequence of transformations, in any order.
+\end{method}
+
+\begin{cols}[0.6]
+\begin{example}{describe the transformations \byhand}
+Find a sequence of transformations that maps $y=\sqrt{x}$ onto $y=3-2\sqrt{4-x}$.\par
+Write it as $y=-2\sqrt{-(x-4)}+3$: $A=-2$, $n=-1$, $b=-4$, $c=3$.
+\begin{enumerate}
+  \item dilation by factor 2 from the $x$-axis;
+  \item reflection in the $x$-axis;
+  \item reflection in the $y$-axis;
+  \item translation 4 units right and 3 units up.
+\end{enumerate}
+Mapping: $(x,y)\to(4-x,\ 3-2y)$.\par
+\textbf{Check (dash method):} $x'=4-x\Rightarrow x=4-x'$, \ $y'=3-2y\Rightarrow y=\frac{3-y'}{2}$. Substitute into $y=\sqrt x$: $\frac{3-y'}{2}=\sqrt{4-x'}$, so $y'=3-2\sqrt{4-x'}$. \tick
+\end{example}
+\nextcol[0.37]
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=5.6cm, height=5.6cm, xmin=-1.2, xmax=5.4, ymin=-2.2, ymax=3.8, xtick=\empty, ytick=\empty]
+  \addplot[plotA, domain=0:5, samples=300] {sqrt(x)};
+  \addplot[plotB, domain=-1:4, samples=300] {3-2*sqrt(4-x)};
+  \node[pt] at (axis cs:0,0) {};
+  \node[pt] at (axis cs:4,3) {}; \node[lab, above] at (axis cs:4,3) {$(4,3)$};
+  \node[pt] at (axis cs:1.75,0) {}; \node[lab, below right] at (axis cs:1.75,0) {$\left(\frac74,0\right)$};
+  \node[pt] at (axis cs:0,-1) {}; \node[lab, left] at (axis cs:0,-1) {$(0,-1)$};
+  \node[lab, plotA] at (axis cs:4.8,1.75) {$\sqrt{x}$};
+  \node[lab, plotB] at (axis cs:2.2,1.6) {image};
+\end{axis}
+\end{tikzpicture}
+
+{\scriptsize The image starts at $(4,3)$ (the image of $(0,0)$) and has domain $(-\infty,4]$ and range $(-\infty,3]$.}
+\end{cols}
+
+\begin{example}{image under a mapping; non-uniqueness}
+Find the image of $y=\loge(x)$ under $T(x,y)=\left(\frac{x}{3}+2,\ 2y+1\right)$.\par
+$x'=\frac x3+2\Rightarrow x=3(x'-2)$; \ $y'=2y+1\Rightarrow y=\frac{y'-1}{2}$. So $\frac{y'-1}{2}=\loge(3(x'-2))$, giving $y=2\loge(3x-6)+1$.\par
+\textbf{Non-uniqueness:} by the log laws, $2\loge(3(x-2))+1=2\loge(x-2)+(1+2\loge3)$. So the same graph is obtained \emph{without} any dilation from the $y$-axis: dilate by factor 2 from the $x$-axis, then translate 2 units right and $1+2\loge3$ units up. Exam questions may have several correct answers.\par
+\textbf{Inverse transformation:} undo in reverse order. $T^{-1}(x,y)=\left(3(x-2),\ \frac{y-1}{2}\right)$ maps $y=2\loge(3x-6)+1$ back onto $y=\loge x$.
+\end{example}
+
+\begin{warn}
+\begin{itemize}
+  \item \textbf{Order matters.} For $y=x^2$: ``dilate by factor 2 from the $y$-axis, then translate 3 right'' gives $y=\left(\frac{x-3}{2}\right)^2$; ``translate 3 right, then dilate by factor 2 from the $y$-axis'' gives $y=\left(\frac{x}{2}-3\right)^2$. These are different graphs.
+  \item $y=f(2x)$ is a dilation by factor $\frac12$ (not 2) from the $y$-axis. In $y=\sin(2x+\pi)=\sin\!\big(2\left(x+\frac{\pi}{2}\right)\big)$ the translation is $\frac{\pi}{2}$ left, not $\pi$.
+  \item ``From the $x$-axis'' means vertical stretching. ``Parallel to the $x$-axis'' means horizontal. Read carefully.
+\end{itemize}
+\end{warn}
+
+\begin{cas}[Transformations seen in other forms]
+Exams sometimes write a transformation as a matrix equation:
+$T\!\left(\begin{bmatrix}x\\y\end{bmatrix}\right)=\begin{bmatrix}\frac1n&0\\0&A\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}+\begin{bmatrix}-b\\c\end{bmatrix}$, which is the same mapping $(x,y)\to\left(\frac xn-b,\ Ay+c\right)$. Read it as ``$x'=\frac{x}{n}-b$, $y'=Ay+c$'' and use the dash method.
+\end{cas}
+
+\begin{cols}[0.58]
+\begin{keyres}{Families of functions (one parameter)}\label{sec:families}
+A \textbf{family} is a set of graphs given by one rule with a parameter, e.g.\ $y=e^{kx}$, $y=kx(x-2)$, $y=x^3-kx$, $y=(x-k)^2+k$.
+\begin{itemize}
+  \item \textbf{Common points:} find points that do not depend on the parameter. $y=kx(x-2)$ always passes through $(0,0)$ and $(2,0)$; $y=e^{kx}$ through $(0,1)$; $y=k(x-1)+2$ through $(1,2)$.
+  \item \textbf{Locus of a feature:} $y=(x-k)^2+k$ has turning point $(k,k)$, which always lies on $y=x$ (see the figure).
+  \item \textbf{Conditions on the parameter:} e.g.\ $y=x^3-kx$ has two stationary points only if $k>0$ (they are at $x=\pm\sqrt{k/3}$).
+  \item Use CAS to graph several members (Exam 2), then prove the result algebraically.
+\end{itemize}
+\end{keyres}
+\nextcol[0.39]
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.0cm, height=5.5cm, xmin=-2.6, xmax=3.6, ymin=-1.8, ymax=4.2, xtick=\empty, ytick=\empty]
+  \addplot[black!40, dashed, thin, domain=-2.5:3.5] {x};
+  \addplot[plotA, domain=-2.9:0.9] {(x+1)^2-1};
+  \addplot[plotB, domain=-1.9:1.9] {x^2};
+  \addplot[plotC, domain=-0.9:2.9] {(x-1)^2+1};
+  \addplot[plotD, domain=0.1:3.9] {(x-2)^2+2};
+  \node[pt] at (axis cs:-1,-1) {}; \node[pt] at (axis cs:0,0) {};
+  \node[pt] at (axis cs:1,1) {};   \node[pt] at (axis cs:2,2) {};
+  \node[lab, black!60] at (axis cs:3.15,3.0) {$y=x$};
+\end{axis}
+\end{tikzpicture}
+
+{\scriptsize $y=(x-k)^2+k$ for $k=-1,0,1,2$.}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{Sums, differences, products and composites of functions}
+\label{sec:combo}
+
+\begin{keyres}{Combining functions}
+\begin{itemize}
+  \item $(f\pm g)(x)=f(x)\pm g(x)$ and $(fg)(x)=f(x)\,g(x)$, each with domain $d_f\cap d_g$.
+  \item \textbf{Addition of ordinates} (sketching $f+g$): sketch $f$ and $g$ on the same axes, then add $y$-values at key $x$-values: where either is $0$, where they are equal or opposite, and near asymptotes. Near a vertical asymptote of one function, the sum follows that asymptote; for large $|x|$ the dominant term decides the behaviour.
+  \item \textbf{Products:} $y=f(x)g(x)$ is $0$ wherever either factor is $0$. The sign of the product follows from the signs of the factors. $e^{-x}\sin x$ oscillates between the curves $\pm e^{-x}$. (See \S\ref{sec:sketch} for a full sketch of $y=xe^{-x}$.)
+  \item \textbf{Composites} $y=f(g(x))$: work out the range of the inner function, then apply the outer one. E.g.\ $y=e^{\sin x}$ has range $\left[e^{-1},e\right]$; $y=\loge(x^2+1)$ is even with range $[0,\infty)$. (Reciprocal or quotient composites such as $\frac{1}{\sin x}$ are \emph{not} required.)
+\end{itemize}
+\end{keyres}
+
+\begin{cols}
+\begin{example}{addition of ordinates \byhand}
+Sketch $y=x^2+\dfrac{2}{x}$.\par
+Domain $\R\setminus\{0\}$; vertical asymptote $x=0$. For large $|x|$ the graph follows $y=x^2$.\par
+$x$-intercept: $x^3=-2\Rightarrow x=-\sqrt[3]{2}\approx-1.26$.\par
+Stationary point: $2x-\frac{2}{x^2}=0\Rightarrow x^3=1$, so $(1,3)$, a local minimum.
+\end{example}
+\nextcol
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.3cm, height=5.0cm, xmin=-2.6, xmax=2.6, ymin=-4.5, ymax=6.5, xtick=\empty, ytick=\empty]
+  \addplot[black!45, dashed, thin, domain=-2.5:2.5] {x^2};
+  \addplot[black!45, dotted, thick, domain=-2.5:-0.31] {2/x};
+  \addplot[black!45, dotted, thick, domain=0.31:2.5] {2/x};
+  \addplot[plotA, domain=-2.5:-0.36, samples=300] {x^2+2/x};
+  \addplot[plotA, domain=0.33:2.5, samples=300] {x^2+2/x};
+  \node[pt] at (axis cs:1,3) {}; \node[lab, below right] at (axis cs:1,3) {$(1,3)$};
+  \node[pt] at (axis cs:-1.26,0) {}; \node[lab, below left] at (axis cs:-1.26,0) {$\left(-\sqrt[3]{2},0\right)$};
+\end{axis}
+\end{tikzpicture}
+
+{\scriptsize Dashed: $y=x^2$; dotted: $y=\frac2x$; solid: the sum.}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{Piecewise (hybrid) functions}
+\label{sec:hybrid}
+
+\begin{cols}
+\begin{defn}{Hybrid functions}
+A hybrid function uses different rules on different parts of its domain, e.g.
+\[f(x)=\begin{cases} x^2+1, & x<1\\ 3-x, & x\ge1.\end{cases}\]
+\begin{itemize}
+  \item Sketch each rule \emph{only} over its own interval; show endpoints as open or closed.
+  \item \textbf{Continuous} at a join $x=a$ if both pieces give the same value there (here both give $2$ at $x=1$).
+  \item \textbf{Smooth} (differentiable) at the join if the gradients also match. Here the left gradient is $2x=2$ and the right gradient is $-1$, so there is a corner and $f$ is not differentiable at $x=1$ (see \S\ref{sec:cont}).
+\end{itemize}
+\end{defn}
+\nextcol
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.2cm, height=4.8cm, xmin=-2.1, xmax=3.6, ymin=-0.8, ymax=5.2, xtick={1}, ytick={2}]
+  \addplot[plotA, domain=-2:1] {x^2+1};
+  \addplot[plotB, domain=1:3.4] {3-x};
+  \node[pt] at (axis cs:1,2) {}; \node[lab, above right] at (axis cs:1,2) {$(1,2)$ corner};
+  \node[pt] at (axis cs:0,1) {}; \node[lab, right] at (axis cs:0,1) {$(0,1)$};
+  \node[pt] at (axis cs:3,0) {}; \node[lab, above right] at (axis cs:3,0) {$(3,0)$};
+\end{axis}
+\end{tikzpicture}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{Modelling with functions}
+\label{sec:model}
+
+\begin{keyres}{Recognising a model from a graph or a table}
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}lL@{}}
+\toprule
+Feature of the data or graph & Possible model \\
+\midrule
+Constant rate of change (equal differences in $y$ for equal steps in $x$) & Linear $y=mx+c$ \\
+Single maximum or minimum, symmetric & Quadratic $y=a(x-h)^2+k$ \\
+Constant \emph{ratio} for equal steps (equal percentage growth or decay) & Exponential $y=Ae^{kt}$ ($k>0$ growth, $k<0$ decay) \\
+Rises or falls towards a limiting value (asymptote) & $y=c-Ae^{-kt}$ (e.g.\ heating, learning curves), $y=c+Ae^{-kt}$ (cooling) \\
+Fast initial increase that keeps slowing (no asymptote) & $y=a\loge(x)+b$ or $y=ax^n$ with $0<n<1$ \\
+Repeating pattern (tides, temperature, daylight) & $y=a\sin(n(t-b))+c$: $c$ = mean, $a$ = (max $-$ min)/2, period $=\frac{2\pi}{n}$ \\
+Different behaviour over different intervals & Hybrid function (check continuity at the joins) \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\textbf{Finding parameters:} substitute known points (simultaneous equations), use features (max, min, period, asymptote), or use CAS regression. \textbf{In context}, always state a sensible domain (e.g.\ $t\ge0$), include units and comment on whether the model is valid outside the data.
+\end{keyres}
+
+\begin{cols}
+\begin{example}{circular model}
+A day's temperature has a maximum of $28^\circ$C at 3 pm ($t=15$) and a minimum of $12^\circ$C at 3 am ($t=3$). Model $T=A\sin\!\left(\frac{\pi}{12}(t-b)\right)+c$.\par
+Mean $c=\frac{28+12}{2}=20$, amplitude $A=\frac{28-12}{2}=8$, period 24 h so $n=\frac{2\pi}{24}=\frac{\pi}{12}$.\par
+The maximum occurs when $\frac{\pi}{12}(15-b)=\frac{\pi}{2}$, so $b=9$.\par
+$T(t)=8\sin\!\left(\frac{\pi}{12}(t-9)\right)+20$. Check: $T(3)=8\sin\!\left(-\frac{\pi}{2}\right)+20=12$. \tick
+\end{example}
+\nextcol
+\begin{example}{exponential model}
+A population is $500$ at $t=0$ and $2000$ at $t=3$. Model $N=Ae^{kt}$.\par
+$N(0)=A=500$. \ $500e^{3k}=2000\Rightarrow e^{3k}=4\Rightarrow k=\frac{\loge4}{3}=\frac{2\loge2}{3}$.\par
+So $N(t)=500e^{\frac{2\loge2}{3}t}=500\cdot4^{t/3}$.\par
+The population doubles every $\frac{\loge2}{k}=1.5$ time units.
+\end{example}
+\end{cols}

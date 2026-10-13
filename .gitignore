@@ -1,0 +1,7 @@
+methods-content-sheet/build/
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.out
+*.toc

@@ -1,0 +1,84 @@
+\documentclass[10pt,a4paper]{article}
+\input{preamble}
+
+\begin{document}
+
+% =================================================================
+%  COVER
+% =================================================================
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[navy] (current page.north west) rectangle ([yshift=-6.2cm]current page.north east);
+  \fill[keycol] ([yshift=-6.2cm]current page.north west) rectangle ([yshift=-6.45cm]current page.north east);
+  \node[anchor=north west, text=white, font=\sffamily\bfseries\fontsize{30}{34}\selectfont, align=left]
+    at ([xshift=1.65cm,yshift=-1.35cm]current page.north west) {Mathematical Methods\\[2pt] Units 3 \& 4};
+  \node[anchor=north west, text=white!85!keycol, font=\sffamily\Large, align=left]
+    at ([xshift=1.68cm,yshift=-4.25cm]current page.north west) {Exam content sheet\enspace\textbar\enspace VCE 2023--2027 Study Design};
+  \node[anchor=north east, text=white!80, font=\sffamily\small, align=right]
+    at ([xshift=-1.65cm,yshift=-5.25cm]current page.north east) {Exam 1 (technology-free)\enspace\textbullet\enspace Exam 2 (CAS + bound reference)};
+\end{tikzpicture}
+\vspace*{5.2cm}
+
+\begin{tcolorbox}[basebox, colback=sdbg, colframe=sdcol, title={\faCompass\enspace What this sheet is}]
+A complete, exam-focused summary of \textbf{every} item listed in the VCAA \emph{VCE Mathematics Study Design 2023--2027, Units 3 and 4: Mathematical Methods}: all four Areas of Study, the key knowledge and key skills for Outcomes 1, 2 and 3, and the conditions of the two end-of-year examinations. Each section opens with the study-design dot points it covers (quoted from the study design), then gives the definitions, rules, methods, worked examples and exam traps you need. The last section is a tick-box checklist that maps every dot point to the page that covers it.
+\end{tcolorbox}
+
+\begin{multicols}{2}
+\textbf{\sffamily\color{navy}How to use it}
+\begin{enumerate}
+  \item Work through one section at a time. Cover the worked examples and try them first, then check.
+  \item Learn everything marked \byhand{}: Exam 1 tests these skills with no calculator.
+  \item Exam 2 allows one bound reference. This sheet is designed to be printed and bound (or added to your bound reference). Use the \examtwo{} boxes for calculator steps.
+  \item Before each exam, go through the checklist in Section~\ref{sec:checklist} and revisit anything you can't tick off yet.
+\end{enumerate}
+
+\columnbreak
+\textbf{\sffamily\color{navy}Box legend}\par\smallskip
+{\small
+\begin{tabular}{@{}l@{\enspace}l@{}}
+\textcolor{sdcol}{\faClipboardList} & Study design dot points (what is examinable)\\
+\textcolor{defcol}{\faBook} & Definitions \& notation\\
+\textcolor{keycol}{\faKey} & Key results \& formulas to know\\
+\textcolor{navy}{\faListOl} & Step-by-step methods\\
+\textcolor{excol}{\faPencil*} & Worked examples (all answers checked)\\
+\textcolor{tipcol}{\faLightbulb} & Exam tips\\
+\textcolor{errcol}{\faExclamationTriangle} & Common errors (examiners' reports)\\
+\textcolor{cascol}{\faCalculator} & CAS / technology (Exam 2)\\
+\end{tabular}\par\smallskip
+Badges: \byhand\ \ \examtwo\ \ \newsd\ \ \mcq}
+\end{multicols}
+
+\vfill
+{\footnotesize\color{sdcol}
+\textbf{Source of the syllabus:} VCAA, \emph{VCE Mathematics Study Design} (accreditation period 2023--2027, version 1.1). All content in Units 3 and 4, together with the key knowledge and key skills behind the outcomes, is examinable, and assumed knowledge from Mathematical Methods Units 1 and 2 is drawn on throughout. Exam formats were current at the time of writing. Always check the latest VCAA examination specifications, sample material and formula sheet on the VCAA website.\par}
+
+% =================================================================
+%  CONTENTS
+% =================================================================
+\clearpage
+\pagestyle{plain}
+{\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{2}
+{\sffamily\bfseries\LARGE\color{navy}Contents}\par\vspace{2pt}{\color{navy}\hrule height 1pt}\vspace{8pt}
+\begingroup
+\small
+\begin{multicols}{2}
+\makeatletter\@starttoc{toc}\makeatother
+\end{multicols}
+\endgroup}
+\clearpage
+\pagestyle{fancy}
+
+\input{sections/01-exam}
+\input{sections/02-assumed}
+\input{sections/03-functions}
+\input{sections/04-algebra}
+\input{sections/05-differentiation}
+\input{sections/06-integration}
+\input{sections/07-random-variables}
+\input{sections/08-inference}
+\input{sections/09-algorithms}
+\input{sections/10-technique}
+\input{sections/11-checklist}
+
+\end{document}

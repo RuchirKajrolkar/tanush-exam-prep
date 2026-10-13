@@ -1,0 +1,405 @@
+% =================================================================
+\section{Calculus I: differentiation and its applications (Area of Study 3)}
+\label{sec:diff}
+% =================================================================
+
+\begin{sdbox}
+\textbf{Calculus covers} \emph{``graphical treatment of limits, continuity and differentiability of functions of a single real variable, and differentiation, anti-differentiation and integration of these functions''}. The differentiation dot points are:
+\begin{itemize}
+  \item deducing the graph of the derivative function from the graph of a given function
+  \item derivatives of $x^n$ for $n\in\Q$, $e^x$, $\loge(x)$, $\sin(x)$, $\cos(x)$ and $\tan(x)$
+  \item derivatives of $f(x)\pm g(x)$, $f(x)\times g(x)$, $\dfrac{f(x)}{g(x)}$ and $(f\circ g)(x)$, where $f$ and $g$ are polynomial, exponential, circular, logarithmic or power functions and transformations or simple combinations of these
+  \item application of differentiation to graph sketching and identification of key features, including stationary points and points of inflection, and intervals over which a function is strictly increasing or strictly decreasing
+  \item identification of local maximum/minimum values over an interval and application to solving optimisation problems in context, including identification of interval endpoint maximum and minimum values
+\end{itemize}
+\textbf{Key knowledge/skills:} the link between the graph of a function and its gradient function; the tangent at a point; how the sign and magnitude of $f'$ describe $f$; the sum, difference, chain, product and quotient rules (\byhand\ for simple combinations); derivatives of $f(ax+b)$ for $f=x^n,\sin,\cos,\tan,e^x,\loge x$ \byhand; \textbf{Newton's method}.
+\end{sdbox}
+
+\subsection{Limits, continuity and differentiability}
+\label{sec:cont}
+
+\begin{defn}{Definitions (graphical treatment)}
+\begin{itemize}
+  \item $\displaystyle\lim_{x\to a}f(x)=L$: $f(x)$ gets arbitrarily close to $L$ as $x$ approaches $a$ from both sides. The left limit $\lim_{x\to a^-}$ and right limit $\lim_{x\to a^+}$ must be equal. Limits at infinity describe asymptotes, e.g.\ $\lim_{x\to\infty}e^{-x}=0$.
+  \item $f$ is \textbf{continuous at $x=a$} if $f(a)$ is defined, $\lim_{x\to a}f(x)$ exists, and they are equal. Informally, you can draw through $x=a$ without lifting your pen.
+  \item $f$ is \textbf{differentiable at $x=a$} if $f'(a)=\lim_{h\to0}\dfrac{f(a+h)-f(a)}{h}$ exists: the graph is \emph{smooth} there (left and right gradients equal and finite).
+  \item Differentiable $\Rightarrow$ continuous, but \textbf{continuous $\not\Rightarrow$ differentiable}.
+  \item \textbf{Not differentiable} at: corners (e.g.\ at hybrid joins), cusps ($x^{2/3}$ at $0$), vertical tangents ($x^{1/3}$ at $0$), any discontinuity, and the \textbf{endpoints} of a closed domain. The domain of $f'$ excludes all of these, so $f'$ is defined on open intervals.
+\end{itemize}
+\end{defn}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[smallgraph, width=4.3cm, height=3.6cm, title={\scriptsize corner}, xmin=-1.3, xmax=3.3, ymin=-0.5, ymax=3.2, xtick=\empty, ytick=\empty]
+  \addplot[plotA, domain=-1.2:1] {x^2+1};
+  \addplot[plotA, domain=1:3.1] {3-x};
+  \node[pt] at (axis cs:1,2) {};
+\end{axis}
+\end{tikzpicture}\hfill
+\begin{tikzpicture}
+\begin{axis}[smallgraph, width=4.3cm, height=3.6cm, title={\scriptsize cusp: $y=x^{2/3}$}, xmin=-2.2, xmax=2.2, ymin=-0.4, ymax=1.9, xtick=\empty, ytick=\empty]
+  \addplot[plotA, domain=-2:2] {abs(x)^(2/3)};
+\end{axis}
+\end{tikzpicture}\hfill
+\begin{tikzpicture}
+\begin{axis}[smallgraph, width=4.3cm, height=3.6cm, title={\scriptsize vertical tangent: $y=x^{1/3}$}, xmin=-2.2, xmax=2.2, ymin=-1.5, ymax=1.5, xtick=\empty, ytick=\empty]
+  \addplot[plotA, domain=-2:2] {sign(x)*abs(x)^(1/3)};
+\end{axis}
+\end{tikzpicture}\hfill
+\begin{tikzpicture}
+\begin{axis}[smallgraph, width=4.3cm, height=3.6cm, title={\scriptsize jump discontinuity}, xmin=-1.3, xmax=2.6, ymin=-1.2, ymax=3.5, xtick=\empty, ytick=\empty]
+  \addplot[plotA, domain=-1.2:1] {x};
+  \addplot[plotA, domain=1:2.4] {x+1};
+  \node[opt] at (axis cs:1,1) {};
+  \node[pt] at (axis cs:1,2) {};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{example}{making a hybrid function smooth}
+Find $a$ and $b$ so that $f(x)=\begin{cases}ax^2+b, & x\le1\\ 4\sqrt{x}, & x>1\end{cases}$ is differentiable at $x=1$.\par
+\textbf{Continuity:} $a(1)^2+b=4\sqrt1\Rightarrow a+b=4$.\quad
+\textbf{Equal gradients:} left $2ax\big|_{x=1}=2a$; right $\ddx\left(4x^{1/2}\right)=2x^{-1/2}\big|_{x=1}=2$. So $2a=2$, giving $a=1$ and $b=3$.
+\end{example}
+
+\begin{keyres}{Rates of change and first principles (assumed from Units 1 \& 2)}
+\begin{itemize}
+  \item \textbf{Average rate of change} of $f$ over $[a,b]$: $\dfrac{f(b)-f(a)}{b-a}$, the gradient of the chord (secant).
+  \item \textbf{Instantaneous rate of change} at $x=a$: $f'(a)$, the gradient of the tangent.
+  \item First principles: $f'(x)=\displaystyle\lim_{h\to0}\frac{f(x+h)-f(x)}{h}$. E.g.\ for $f(x)=x^2$: $\dfrac{(x+h)^2-x^2}{h}=2x+h\to2x$.
+\end{itemize}
+\end{keyres}
+
+% -----------------------------------------------------------------
+\subsection{Standard derivatives and the rules}
+\label{sec:rules}
+
+\begin{cols}[0.47]
+\begin{keyres}{Standard derivatives}
+\renewcommand{\arraystretch}{1.45}
+\begin{tabular}{@{}l@{\quad}l@{}}
+$f(x)$ & $f'(x)$ \\ \hline
+$x^n$, $n\in\Q$ & $nx^{n-1}$ \\
+$(ax+b)^n$ & $an(ax+b)^{n-1}$ \\
+$e^{x}$ & $e^{x}$ \\
+$e^{ax+b}$ & $ae^{ax+b}$ \\
+$\loge(x)$, $x>0$ & $\dfrac1x$ \\
+$\loge(ax+b)$ & $\dfrac{a}{ax+b}$ \\
+$\sin(ax+b)$ & $a\cos(ax+b)$ \\
+$\cos(ax+b)$ & $-a\sin(ax+b)$ \\
+$\tan(ax+b)$ & $\dfrac{a}{\cos^2(ax+b)}=a\sec^2(ax+b)$ \\
+$a^x=e^{x\loge a}$ & $(\loge a)\,a^x$ \\
+\end{tabular}
+\par\smallskip
+{\small Note: $\ddx\loge(kx)=\dfrac1x$, since $\loge(kx)=\loge k+\loge x$.}
+\end{keyres}
+\nextcol[0.505]
+\begin{keyres}{The rules (with $u=u(x)$, $v=v(x)$)}
+\begin{itemize}
+  \item Sum/difference: $(f\pm g)'=f'\pm g'$; \ constant multiple $(kf)'=kf'$.
+  \item \textbf{Product rule:} $\dfrac{d}{dx}(uv)=u\dfrac{dv}{dx}+v\dfrac{du}{dx}$
+  \item \textbf{Quotient rule:} $\dfrac{d}{dx}\!\left(\dfrac uv\right)=\dfrac{v\frac{du}{dx}-u\frac{dv}{dx}}{v^2}$
+  \item \textbf{Chain rule:} $\dfrac{dy}{dx}=\dfrac{dy}{du}\cdot\dfrac{du}{dx}$, i.e.\ $\big(f(g(x))\big)'=f'(g(x))\,g'(x)$
+\end{itemize}
+\textbf{Chain rule patterns} (learn these):
+\begin{itemize}
+  \item $\ddx[f(x)]^n=n\,f'(x)\,[f(x)]^{n-1}$
+  \item $\ddx e^{f(x)}=f'(x)\,e^{f(x)}$
+  \item $\ddx\loge(f(x))=\dfrac{f'(x)}{f(x)}$
+  \item $\ddx\sin(f(x))=f'(x)\cos(f(x))$
+  \item $\ddx\cos(f(x))=-f'(x)\sin(f(x))$
+  \item $\ddx\tan(f(x))=\dfrac{f'(x)}{\cos^2(f(x))}$
+\end{itemize}
+\end{keyres}
+\end{cols}
+
+\begin{example}{differentiation \byhand\ (typical Exam 1)}
+\renewcommand{\arraystretch}{1.95}
+\begin{tabularx}{\linewidth}{@{}>{$}l<{$}L@{}}
+y=(2x-1)^5 & $\dydx=5(2x-1)^4\times2=10(2x-1)^4$ \hfill (chain) \\
+y=\sqrt{3x^2+1}=(3x^2+1)^{1/2} & $\dydx=\frac12(3x^2+1)^{-1/2}\times6x=\dfrac{3x}{\sqrt{3x^2+1}}$ \hfill (chain) \\
+y=x^2e^{3x} & $\dydx=2x\,e^{3x}+x^2\cdot3e^{3x}=xe^{3x}(3x+2)$ \hfill (product) \\
+y=\dfrac{\loge x}{x} & $\dydx=\dfrac{x\cdot\frac1x-\loge x\cdot1}{x^2}=\dfrac{1-\loge x}{x^2}$ \hfill (quotient) \\
+y=\dfrac{x}{x^2+1} & $\dydx=\dfrac{(x^2+1)-x(2x)}{(x^2+1)^2}=\dfrac{1-x^2}{(x^2+1)^2}$ \hfill (quotient) \\
+y=\cos(x^2) & $\dydx=-2x\sin(x^2)$ \hfill (chain) \\
+y=\loge(\cos x) & $\dydx=\dfrac{-\sin x}{\cos x}=-\tan x$ \hfill (chain, log pattern) \\
+y=e^{\sin x} & $\dydx=\cos x\,e^{\sin x}$ \hfill (chain) \\
+y=\tan(2x) & $\dydx=\dfrac{2}{\cos^2(2x)}$ \\
+f(x)=x\sin(2x) & $f'(x)=\sin(2x)+2x\cos(2x)$, so $f'\!\left(\frac{\pi}{4}\right)=\sin\frac{\pi}{2}+\frac{\pi}{2}\cos\frac{\pi}{2}=1$ \\
+\end{tabularx}
+\end{example}
+
+\begin{tip}[Make differentiation easier]
+\begin{itemize}
+  \item Rewrite roots and fractions as powers first: $\dfrac{3}{\sqrt x}=3x^{-1/2}$, \ $\dfrac{2}{(1-x)^3}=2(1-x)^{-3}$.
+  \item Simplify logs first: $\loge\!\left(\dfrac{x^2}{\sqrt{x+1}}\right)=2\loge x-\frac12\loge(x+1)$, so the derivative is $\dfrac2x-\dfrac{1}{2(x+1)}$.
+  \item Factorise the answer (e.g.\ $xe^{3x}(3x+2)$). You will usually need $f'(x)=0$ next, and the factor form makes that easy.
+  \item ``Show that $f'(x)=\dots$'': show the rule you used and at least one intermediate line.
+\end{itemize}
+\end{tip}
+
+% -----------------------------------------------------------------
+\subsection{Tangents and normals}
+\label{sec:tangent}
+
+\begin{cols}
+\begin{keyres}{Equations}
+At the point $(a,f(a))$:
+\begin{itemize}
+  \item \textbf{Tangent:} $y-f(a)=f'(a)(x-a)$.
+  \item \textbf{Normal} (perpendicular to the tangent): $y-f(a)=-\dfrac{1}{f'(a)}(x-a)$ if $f'(a)\ne0$; if $f'(a)=0$ the normal is the vertical line $x=a$.
+  \item Angle of the tangent with the positive $x$-axis: $\tan\theta=f'(a)$.
+  \item ``Parallel to $y=mx+c$'': solve $f'(x)=m$.
+  \item Linear approximation: $f(a+h)\approx f(a)+hf'(a)$ (the tangent line near $x=a$).
+\end{itemize}
+\end{keyres}
+\nextcol
+\begin{example}{tangent, normal, external point \byhand}
+\textbf{(a)} $y=x^3-2x$ at $x=1$: $y=-1$, $\dydx=3x^2-2=1$.\\ Tangent $y=x-2$; normal $y=-x$.\par
+\textbf{(b)} Tangents to $y=x^2$ that pass through $(1,-3)$. The tangent at $(a,a^2)$ is $y=2ax-a^2$. Substitute $(1,-3)$: $-3=2a-a^2\Rightarrow a^2-2a-3=0\Rightarrow a=3$ or $a=-1$. The tangents are $y=6x-9$ and $y=-2x-1$.
+\end{example}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{The graph of $f'$ from the graph of $f$}
+\label{sec:gradgraph}
+
+\begin{cols}[0.53]
+\begin{keyres}{Reading the gradient}
+\small
+\begin{tabular}{@{}p{3.75cm}p{4.45cm}@{}}
+\textbf{On the graph of $f$} & \textbf{On the graph of $f'$} \\ \hline
+stationary point & $x$-intercept \\
+$f$ increasing & above the $x$-axis ($f'>0$) \\
+$f$ decreasing & below the $x$-axis ($f'<0$) \\
+point of inflection & turning point of $f'$ \\
+stationary inflection & touches the $x$-axis \\
+steeper & larger $|f'(x)|$ \\
+vertical asymptote $x=a$ & vertical asymptote $x=a$ (usually) \\
+horizontal asymptote $y=c$ & $f'\to0$ (asymptote $y=0$) \\
+polynomial of degree $n$ & polynomial of degree $n-1$ \\
+corner, cusp, endpoint & $f'$ undefined there (open circles) \\
+\end{tabular}
+\end{keyres}
+\begin{tip}[Sketching $f'$ from $f$]
+Mark the $x$-values of the stationary points of $f$ (these are zeros of $f'$) and of any points of inflection (turning points of $f'$). Decide the sign of $f'$ on each interval, then join up smoothly. Exam questions often give the graph of $f'$ and ask about $f$: then read the same table from right to left.
+\end{tip}
+\nextcol[0.445]
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.4cm, height=4.4cm, xmin=-2.3, xmax=2.5, ymin=-3.2, ymax=3.2, xtick={-1,1}, ytick=\empty, cornertitle, title={$y=f(x)=x^3-3x$}]
+  \addplot[plotA, domain=-2.1:2.1] {x^3-3*x};
+  \node[pt] at (axis cs:-1,2) {}; \node[lab, above] at (axis cs:-1,2) {max};
+  \node[pt] at (axis cs:1,-2) {}; \node[lab, below] at (axis cs:1,-2) {min};
+  \node[pt] at (axis cs:0,0) {}; \node[lab, right] at (axis cs:0.1,0.35) {inflection};
+  \draw[dashed, black!40] (axis cs:-1,-3.2) -- (axis cs:-1,3.2);
+  \draw[dashed, black!40] (axis cs:1,-3.2) -- (axis cs:1,3.2);
+\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.4cm, height=4.4cm, xmin=-2.3, xmax=2.5, ymin=-3.8, ymax=6.5, xtick={-1,1}, ytick=\empty, cornertitle, title={$y=f'(x)=3x^2-3$}]
+  \addplot[plotB, domain=-2.1:2.1] {3*x^2-3};
+  \node[pt] at (axis cs:-1,0) {}; \node[pt] at (axis cs:1,0) {};
+  \node[pt] at (axis cs:0,-3) {}; \node[lab, right] at (axis cs:0,-3) {$(0,-3)$ min of $f'$};
+  \draw[dashed, black!40] (axis cs:-1,-3.8) -- (axis cs:-1,6.5);
+  \draw[dashed, black!40] (axis cs:1,-3.8) -- (axis cs:1,6.5);
+  \node[lab] at (axis cs:-1.75,1.4) {$+$};
+  \node[lab] at (axis cs:1.75,1.4) {$+$};
+  \node[lab] at (axis cs:0.5,-1.2) {$-$};
+\end{axis}
+\end{tikzpicture}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{Stationary points, points of inflection, increasing and decreasing}
+\label{sec:sp}
+
+\begin{keyres}{Classifying stationary points ($f'(a)=0$)}
+\begin{cols}
+\textbf{Sign (gradient) test:} check $f'$ just either side of $a$.
+\begin{itemize}
+  \item $+\ \to\ 0\ \to\ -$: local \textbf{maximum}
+  \item $-\ \to\ 0\ \to\ +$: local \textbf{minimum}
+  \item $+\to0\to+$ or $-\to0\to-$: \textbf{stationary point of inflection}
+\end{itemize}
+\nextcol
+\textbf{Second derivative test:}
+\begin{itemize}
+  \item $f''(a)<0$: local maximum (concave down)
+  \item $f''(a)>0$: local minimum (concave up)
+  \item $f''(a)=0$: \textbf{inconclusive}; use the sign test (e.g.\ $x^4$ has $f''(0)=0$ but a minimum at $0$)
+\end{itemize}
+\end{cols}
+\textbf{Concavity:} $f''(x)>0$ concave up (gradient increasing); $f''(x)<0$ concave down. A \textbf{point of inflection} is where the concavity changes ($f''$ changes sign). There the gradient is a local max or min, so it is the \emph{steepest} point (``the rate of change is greatest/least''). It is a \emph{stationary} point of inflection if also $f'=0$.
+\end{keyres}
+
+\begin{defn}{Strictly increasing / decreasing}
+$f$ is \textbf{strictly increasing} on an interval $I$ if $x_1<x_2\Rightarrow f(x_1)<f(x_2)$ for all $x_1,x_2\in I$ (strictly decreasing: $f(x_1)>f(x_2)$).
+\begin{itemize}
+  \item $f'(x)>0$ on an interval $\Rightarrow$ strictly increasing there. The converse fails: $x^3$ is strictly increasing on $\R$ although $f'(0)=0$.
+  \item Using the definition, endpoints where $f'=0$ may be included: give the largest intervals, e.g.\ $f(x)=x^2$ is strictly increasing on $[0,\infty)$.
+  \item Do \textbf{not} join intervals across an asymptote: $f(x)=\frac1x$ is strictly decreasing on $(-\infty,0)$ and on $(0,\infty)$, but not on $\R\setminus\{0\}$ (since $f(-1)<f(1)$).
+\end{itemize}
+\end{defn}
+
+\begin{example}{full analysis of a cubic \byhand}
+$f(x)=x^3-3x^2-9x+5$. \ $f'(x)=3x^2-6x-9=3(x-3)(x+1)$, \ $f''(x)=6x-6$.\par
+\begin{tabular}{@{}l|ccccc@{}}
+$x$ & $x<-1$ & $-1$ & $-1<x<3$ & $3$ & $x>3$\\ \hline
+sign of $f'(x)$ & $+$ & $0$ & $-$ & $0$ & $+$\\
+shape of $f$ & $\nearrow$ & max & $\searrow$ & min & $\nearrow$
+\end{tabular}\par
+Local maximum $(-1,10)$ [$f''(-1)=-12<0$]; local minimum $(3,-22)$ [$f''(3)=12>0$].\par
+Point of inflection: $f''(x)=0\Rightarrow x=1$, and $f''$ changes sign, so $(1,-6)$, with gradient $f'(1)=-12$ (a non-stationary point of inflection).\par
+Strictly increasing on $(-\infty,-1]$ and $[3,\infty)$; strictly decreasing on $[-1,3]$.
+\end{example}
+
+\begin{example}{a quartic with a stationary point of inflection}
+$f(x)=x^4-4x^3$: \ $f'(x)=4x^2(x-3)$. At $x=0$: $f'$ is negative on both sides, so $(0,0)$ is a \textbf{stationary point of inflection}. At $x=3$: local minimum $(3,-27)$.\par
+$f''(x)=12x(x-2)=0$ at $x=0$ and $x=2$. Both are points of inflection (sign changes): $(0,0)$ is stationary and $(2,-16)$ is non-stationary.
+\end{example}
+
+% -----------------------------------------------------------------
+\subsection{Curve sketching with calculus}
+\label{sec:sketch}
+
+\begin{cols}[0.53]
+\begin{method}{Checklist}
+\begin{enumerate}
+  \item Domain (maximal or given), endpoints.
+  \item Axis intercepts.
+  \item $f'(x)=0$ $\to$ stationary points, and their nature.
+  \item $f''(x)=0$ with sign change $\to$ points of inflection (if asked).
+  \item Asymptotes and behaviour as $x\to\pm\infty$ or near excluded points.
+  \item Plot and label everything with coordinates. Use exact values unless told otherwise.
+\end{enumerate}
+\end{method}
+\begin{example}{$f(x)=xe^{-x}$}
+Intercept $(0,0)$. \ $f'(x)=e^{-x}-xe^{-x}=e^{-x}(1-x)$, so there is a maximum at $\left(1,\frac1e\right)$.\par
+$f''(x)=e^{-x}(x-2)$, so there is a point of inflection at $\left(2,\frac{2}{e^2}\right)$.\par
+As $x\to\infty$, $f(x)\to0^+$ (asymptote $y=0$); as $x\to-\infty$, $f(x)\to-\infty$. Range $\left(-\infty,\frac1e\right]$.
+\end{example}
+\nextcol[0.445]
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.6cm, height=5.6cm, xmin=-1.0, xmax=6.3, ymin=-1.6, ymax=0.75, xtick=\empty, ytick=\empty]
+  \addplot[plotA, domain=-0.65:6.1] {x*exp(-x)};
+  \node[pt] at (axis cs:1,0.3679) {}; \node[lab, above] at (axis cs:1,0.3679) {$\left(1,\frac1e\right)$ max};
+  \node[pt] at (axis cs:2,0.2707) {}; \node[lab, above right] at (axis cs:2,0.2707) {$\left(2,\frac{2}{e^2}\right)$ inflection};
+  \node[pt] at (axis cs:0,0) {};
+  \node[lab] at (axis cs:5.4,-0.12) {$y=0$};
+\end{axis}
+\end{tikzpicture}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{Absolute maximum and minimum; optimisation}
+\label{sec:opt}
+
+\begin{keyres}{Absolute (global) extrema on an interval}
+On a closed interval $[a,b]$, the absolute maximum and minimum occur either at stationary points inside the interval \textbf{or at the endpoints}. Evaluate $f$ at all of them and compare. On an open interval, or with asymptotes, an absolute max/min may not exist. A \emph{local} max is not necessarily the absolute max.
+\end{keyres}
+
+\begin{example}{endpoint extrema \byhand}
+$f(x)=x^3-3x$ on $[-2,3]$. Stationary points: $f'(x)=3x^2-3=0\Rightarrow x=\pm1$, giving $f(-1)=2$, $f(1)=-2$. Endpoints: $f(-2)=-2$, $f(3)=18$.\par
+Absolute maximum $18$ (at the endpoint $x=3$); absolute minimum $-2$ (at $x=-2$ and $x=1$). Range $[-2,18]$.
+\end{example}
+
+\begin{method}{Optimisation problems}
+\begin{enumerate}
+  \item Draw a diagram and define the variables (with units).
+  \item Write the quantity to optimise. Use the constraint to reduce it to \textbf{one variable}.
+  \item State the \textbf{feasible domain} from the context (lengths $>0$, etc.).
+  \item Differentiate and solve $=0$. Check the nature (sign test or $f''$) \textbf{and compare with the endpoints}.
+  \item Answer the question asked, in context, with units.
+\end{enumerate}
+\end{method}
+
+\begin{cols}
+\begin{example}{open box \byhand}
+Squares of side $x$ cm are cut from the corners of a $12\times12$ cm sheet, which is folded into an open box.\par
+$V=x(12-2x)^2$, \ $0<x<6$.\par
+$V'(x)=(12-2x)^2-4x(12-2x)=(12-2x)(12-6x)$.\par
+$V'=0\Rightarrow x=2$ ($x=6$ is outside the domain). $V'$ changes from $+$ to $-$, so this is a maximum: $V(2)=2(8)^2=128$ cm$^3$.
+\end{example}
+\nextcol
+\begin{example}{distance to a curve \examtwo}
+Find the minimum distance from the origin to $y=e^x$.\par
+$D(x)=\sqrt{x^2+e^{2x}}$. Minimise $D^2$ instead (same $x$): $\frac{d}{dx}(x^2+e^{2x})=2x+2e^{2x}=0$.\par
+This has no exact solution; CAS gives $x\approx-0.4263$, so $D_{\min}\approx0.7798$.\par
+\textbf{Trick:} minimising $D^2$ avoids the square root.
+\end{example}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{Rates of change in context}
+\label{sec:rates}
+
+\begin{cols}
+\begin{keyres}{Interpreting derivatives}
+\begin{itemize}
+  \item $\frac{dV}{dt}$ is the rate of change of $V$ with respect to $t$, in units of ($V$ units) per ($t$ unit), e.g.\ L/min.
+  \item The sign says increasing or decreasing; the size says how fast.
+  \item ``When is it increasing fastest?'' means maximise the rate: solve $\frac{d^2V}{dt^2}=0$ (a point of inflection of $V$).
+  \item Chain rule for linked rates: $\frac{dy}{dt}=\frac{dy}{dx}\cdot\frac{dx}{dt}$.
+  \item Motion: velocity $v=\frac{dx}{dt}$, acceleration $a=\frac{dv}{dt}$.
+\end{itemize}
+\end{keyres}
+\nextcol
+\begin{example}{rate of filling}
+$V(t)=1000\left(1-e^{-0.1t}\right)$ litres after $t$ minutes.\par
+$V'(t)=100e^{-0.1t}$ L/min, so the initial rate is $V'(0)=100$ L/min.\par
+When is the rate $50$ L/min? $e^{-0.1t}=\frac12\Rightarrow t=10\loge2\approx6.93$ min.\par
+$V'(t)>0$ always, and $V\to1000$: the tank approaches 1000 L but never reaches it.
+\end{example}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{Newton's method \newsd}
+\label{sec:newton}
+
+\begin{cols}[0.53]
+\begin{keyres}{The algorithm (on the formula sheet)}
+\[x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}\]
+Start with an estimate $x_0$ of a solution of $f(x)=0$. Each new estimate $x_{n+1}$ is the \textbf{$x$-intercept of the tangent} to $y=f(x)$ at $x=x_n$. Repeat until successive estimates agree to the required accuracy (e.g.\ $|x_{n+1}-x_n|<0.0001$).
+\end{keyres}
+\begin{warn}[When Newton's method fails or misbehaves]
+\begin{itemize}
+  \item $f'(x_n)=0$: the tangent is horizontal and never meets the axis (division by zero). E.g.\ $f(x)=x^3-3x+1$ with $x_0=1$.
+  \item $f'(x_n)$ near $0$: the next estimate jumps far away, possibly converging to a different root.
+  \item The estimates can oscillate (cycle) or diverge. A poor $x_0$ (near a turning point) is the usual cause. Choose $x_0$ close to the root, e.g.\ where $f$ changes sign.
+\end{itemize}
+\end{warn}
+\nextcol[0.445]
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.4cm, height=5.6cm, xmin=-0.3, xmax=3.4, ymin=-2.6, ymax=8, xtick={1.4621,1.8333,3}, xticklabels={$x_2$,$x_1$,$x_0$}, ytick=\empty]
+  \addplot[plotA, domain=0:3.25] {x^2-2};
+  \addplot[plotB, thin, domain=1.55:3.15] {7+6*(x-3)};
+  \addplot[plotC, thin, domain=1.25:2.15] {1.3611+3.6667*(x-1.8333)};
+  \draw[dashed, black!45] (axis cs:3,0) -- (axis cs:3,7);
+  \draw[dashed, black!45] (axis cs:1.8333,0) -- (axis cs:1.8333,1.3611);
+  \node[pt] at (axis cs:3,7) {};
+  \node[pt] at (axis cs:1.8333,1.3611) {};
+  \node[pt] at (axis cs:1.4142,0) {};
+  \node[lab, above left] at (axis cs:1.40,0.05) {root};
+  \node[lab, plotA] at (axis cs:0.55,-1.25) {$y=x^2-2$};
+\end{axis}
+\end{tikzpicture}
+
+{\scriptsize Each tangent's $x$-intercept is the next estimate: $3\to1.8333\to1.4621\to\dots\to\sqrt2$.}
+\end{cols}
+
+\begin{example}{Newton's method}
+\textbf{(a) \byhand} Use $x_0=2$ to estimate $\sqrt5$ (a root of $f(x)=x^2-5$, $f'(x)=2x$):\par
+$x_1=2-\frac{4-5}{4}=\frac94=2.25$; \quad $x_2=\frac94-\frac{\frac{81}{16}-5}{\frac92}=\frac94-\frac{1}{72}=\frac{161}{72}\approx2.23611$ (compare $\sqrt5\approx2.23607$).\par
+\textbf{(b) \examtwo} Solve $x^3-2x-5=0$ with $x_0=2$, where $f'(x)=3x^2-2$:\par
+\begin{tabular}{@{}cccc@{}}
+$n$ & $x_n$ & $f(x_n)$ & $f'(x_n)$\\ \hline
+0 & 2 & $-1$ & 10\\
+1 & 2.1 & 0.061 & 11.23\\
+2 & 2.094568 & 0.000186 & 11.1616\\
+3 & 2.094551 & & \\
+\end{tabular}\quad The root is $2.0946$ (4 d.p.); successive estimates now agree.
+\end{example}

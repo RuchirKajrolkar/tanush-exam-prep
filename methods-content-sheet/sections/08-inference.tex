@@ -1,0 +1,177 @@
+% =================================================================
+\section{Statistical inference: sample proportions and confidence intervals}
+\label{sec:inference}
+% =================================================================
+
+\begin{sdbox}
+\textbf{Statistical inference, including the definition and distribution of sample proportions, simulations and confidence intervals:}
+\begin{itemize}
+  \item the distinction between a population parameter and a sample statistic, and the use of the sample statistic to estimate the population parameter
+  \item simulation of random sampling, for a variety of values of $p$ and a range of sample sizes, to illustrate the distribution of $\Phat$ and variations in confidence intervals between samples
+  \item the concept of the sample proportion $\Phat=\frac{X}{n}$ as a random variable whose value varies between samples, where $X$ is a binomial random variable (the number of items with a particular characteristic) and $n$ is the sample size
+  \item approximate normality of the distribution of $\Phat$ for large samples and, in that case, the mean $p$ (the population proportion) and standard deviation $\sqrt{\frac{p(1-p)}{n}}$
+  \item determination and interpretation of, from a large sample, an approximate confidence interval $\left(\phat-z\sqrt{\frac{\phat(1-\phat)}{n}},\ \phat+z\sqrt{\frac{\phat(1-\phat)}{n}}\right)$ for a population proportion, where $z$ is the appropriate standard normal quantile, in particular the 95\% interval with $z\approx1.96$ (the term \emph{standard error} may be used but is not required)
+\end{itemize}
+\end{sdbox}
+
+\subsection{Populations, samples, parameters and statistics}
+\label{sec:popsamp}
+
+\begin{cols}
+\begin{defn}{Key terms}
+\begin{itemize}
+  \item \textbf{Population:} the whole group of interest. A \textbf{parameter} is a number describing the population, e.g.\ the population proportion $p$. It is fixed but usually \emph{unknown}.
+  \item \textbf{Sample:} the subset actually observed. A \textbf{statistic} is a number calculated from the sample, e.g.\ the sample proportion $\phat$. It is known, but \emph{varies from sample to sample}.
+  \item A statistic is used to \textbf{estimate} a parameter: $\phat$ is a (point) estimate of $p$.
+  \item A \textbf{random sample} gives every member the same chance of selection, independently. Convenience, voluntary-response and non-response samples can be \textbf{biased}.
+\end{itemize}
+\end{defn}
+\nextcol
+\begin{keyres}{Notation}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}ll@{}}
+$p$ & population proportion (parameter)\\
+$n$ & sample size\\
+$X$ & number in the sample with the\\ & characteristic, $X\sim\Bi(n,p)$\\
+$\Phat=\dfrac Xn$ & sample proportion (a random\\ & variable)\\
+$\phat=\dfrac xn$ & an observed value of $\Phat$\\
+\end{tabular}
+\end{keyres}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{The sample proportion $\Phat$ as a random variable}
+\label{sec:phat}
+
+\begin{keyres}{Distribution of $\Phat$}
+\begin{itemize}
+  \item $\Phat$ takes the values $0,\frac1n,\frac2n,\dots,1$, with $\Pr\!\left(\Phat=\frac xn\right)=\Pr(X=x)$ where $X\sim\Bi(n,p)$. \textbf{For small $n$, use the binomial distribution exactly.}
+  \item $\E(\Phat)=p$ \quad and \quad $\sd(\Phat)=\sqrt{\dfrac{p(1-p)}{n}}$ (since $\Var\!\left(\frac Xn\right)=\frac{np(1-p)}{n^2}$).
+  \item \textbf{For large $n$}, $\Phat$ is approximately normal: $\Phat\approx\Nd\!\left(p,\ \frac{p(1-p)}{n}\right)$. A common rule of thumb is $np\ge10$ and $n(1-p)\ge10$ (some texts use $5$).
+  \item The spread of $\Phat$ \textbf{decreases as $n$ increases} ($\sd\propto\frac{1}{\sqrt n}$): quadrupling $n$ halves the standard deviation.
+\end{itemize}
+\end{keyres}
+
+\begin{cols}
+\begin{example}{exact distribution for a small sample \byhand}
+$p=\frac14$ and $n=4$, so $X\sim\Bi\!\left(4,\frac14\right)$:\par
+\begin{tabular}{@{}l|ccccc@{}}
+$\phat$ & $0$ & $0.25$ & $0.5$ & $0.75$ & $1$\\ \hline
+$\Pr$ & $\frac{81}{256}$ & $\frac{108}{256}$ & $\frac{54}{256}$ & $\frac{12}{256}$ & $\frac{1}{256}$
+\end{tabular}\par\smallskip
+$\Pr(\Phat\ge0.5)=\Pr(X\ge2)=1-\frac{81+108}{256}=\frac{67}{256}$.\par
+$\E(\Phat)=\frac14$, \ $\sd(\Phat)=\sqrt{\frac{\frac14\cdot\frac34}{4}}=\frac{\sqrt3}{8}$.
+\end{example}
+\begin{example}{large sample: normal approximation vs exact}
+$p=0.3$, $n=100$: \ $\sd(\Phat)=\sqrt{\frac{0.3\times0.7}{100}}\approx0.0458$.\par
+\textbf{Normal approximation:} $\Pr(\Phat>0.35)\approx\Pr\!\left(Z>\frac{0.35-0.3}{0.0458}\right)=\Pr(Z>1.091)\approx0.138$.\par
+\textbf{Exact (binomial):} $\Pr(\Phat>0.35)=\Pr(X>35)=\Pr(X\ge36)\approx0.116$.\par
+Use whichever method the question asks for.
+\end{example}
+\nextcol
+\centering
+\begin{tikzpicture}[declare function={npdf(\x,\m,\s)=1/(\s*sqrt(2*pi))*exp(-((\x-\m)^2)/(2*\s^2));}]
+\begin{axis}[mygraph, width=7.4cm, height=6.0cm, xmin=0.05, xmax=0.78, ymin=0, ymax=18, xtick={0.2,0.3,0.4,0.5,0.6,0.7}, ytick=\empty, axis y line=none, xlabel={$\phat$},
+  every tick label/.append style={font=\scriptsize}]
+  \addplot[plotA, domain=0.08:0.72, samples=200] {npdf(x,0.4,0.0980)};
+  \addplot[plotC, domain=0.08:0.72, samples=200] {npdf(x,0.4,0.0490)};
+  \addplot[plotB, domain=0.25:0.55, samples=200] {npdf(x,0.4,0.0245)};
+  \draw[dashed, black!45] (axis cs:0.4,0) -- (axis cs:0.4,17.2);
+  \node[lab, plotA] at (axis cs:0.6,3.4) {$n=25$};
+  \node[lab, plotC] at (axis cs:0.53,7.6) {$n=100$};
+  \node[lab, plotB] at (axis cs:0.48,15.0) {$n=400$};
+  \node[lab] at (axis cs:0.4,17.6) {$p=0.4$};
+\end{axis}
+\end{tikzpicture}
+
+{\scriptsize Approximate distributions of $\Phat$ when $p=0.4$. Every curve is centred at $p$, and the spread halves each time $n$ is multiplied by 4.}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{Simulation}
+\label{sec:sim}
+
+\begin{keyres}{What simulating many random samples shows}
+\begin{cols}
+\begin{enumerate}
+  \item $\phat$ \textbf{varies from sample to sample} (sampling variability).
+  \item The values of $\phat$ are \textbf{centred on $p$}.
+  \item The spread \textbf{shrinks as $n$ grows}, like $\frac{1}{\sqrt n}$.
+\end{enumerate}
+\nextcol
+\begin{enumerate}\setcounter{enumi}{3}
+  \item For large $n$ the histogram of $\phat$ is \textbf{bell-shaped} (approximately normal). For small $n$, or $p$ near $0$ or $1$, it is discrete and skewed.
+  \item \textbf{Confidence intervals vary} between samples. About 95\% of 95\% intervals contain $p$.
+\end{enumerate}
+\end{cols}
+\textbf{How:} on CAS, generate many binomial counts and divide by $n$ (e.g.\ on TI-Nspire, \texttt{randBin(n,p,k)/n} gives $k$ sample proportions), then plot a histogram. Repeat for different $n$ and $p$. Pseudocode for a simulation is in \S\ref{sec:pseudo-sim}.
+\end{keyres}
+
+% -----------------------------------------------------------------
+\subsection{Confidence intervals for $p$}
+\label{sec:ci}
+
+\begin{keyres}{Approximate confidence interval (large sample)}
+\[\left(\phat-z\sqrt{\frac{\phat(1-\phat)}{n}},\ \ \phat+z\sqrt{\frac{\phat(1-\phat)}{n}}\right)=(\phat-M,\ \phat+M)\]
+\begin{cols}
+\begin{itemize}
+  \item $z$ is chosen so that $\Pr(-z<Z<z)$ is the confidence level: $90\%:\ 1.645$, \ $95\%:\ 1.96$, \ $99\%:\ 2.576$.
+  \item $\sqrt{\frac{\phat(1-\phat)}{n}}$ is the (estimated) \textbf{standard error}; $M=z\sqrt{\frac{\phat(1-\phat)}{n}}$ is the \textbf{margin of error}. The width is $2M$.
+  \item From an interval $(a,b)$: $\phat=\dfrac{a+b}{2}$ and $M=\dfrac{b-a}{2}$.
+\end{itemize}
+\nextcol
+\begin{itemize}
+  \item \textbf{Sample size} for a margin of error $M$: $n=\left(\frac zM\right)^2\phat(1-\phat)$, \textbf{always rounded up}. With no prior estimate, use $\phat=0.5$ (this gives the largest $n$).
+  \item A \textbf{wider} interval comes from a higher confidence level or a smaller $n$. To halve the width, multiply $n$ by 4.
+  \item \textbf{Claims:} a claimed value of $p$ \emph{outside} the 95\% interval is evidence against the claim; one \emph{inside} is plausible (but not proven).
+\end{itemize}
+\end{cols}
+\end{keyres}
+
+\begin{cols}[0.5]
+\begin{warn}[Interpreting a 95\% confidence interval]
+\textbf{Correct:} ``If many random samples of size $n$ were taken and a 95\% confidence interval were calculated from each, about 95\% of these intervals would contain the true population proportion $p$.''\par
+\textbf{Wrong:} ``There is a 95\% probability that $p$ lies in $(0.352,0.448)$.'' Once an interval is calculated it either contains $p$ or it doesn't; $p$ is fixed, and it is the \emph{interval} that varies.\par
+\textbf{Also wrong:} ``95\% of the sample lies in the interval''; ``$\phat$ lies in the interval with probability 0.95''. ($\phat$ is always the centre.)
+\end{warn}
+\nextcol[0.475]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=7.2cm, height=6.2cm, xmin=0.18, xmax=0.65, ymin=0, ymax=21, ytick=\empty, xtick={0.2,0.3,0.4,0.5,0.6},
+  axis x line=bottom, axis y line=none, tick label style={font=\scriptsize}, xlabel={\scriptsize 95\% CIs from 20 samples ($n=100$, $p=0.4$)}, xlabel style={font=\scriptsize}]
+  \draw[dashed, black!55] (axis cs:0.4,0) -- (axis cs:0.4,21);
+  \draw[plotA, line width=1pt] (axis cs:0.314,1) -- (axis cs:0.506,1);
+  \draw[plotA, line width=1pt] (axis cs:0.372,2) -- (axis cs:0.568,2);
+  \draw[plotA, line width=1pt] (axis cs:0.343,3) -- (axis cs:0.537,3);
+  \draw[plotA, line width=1pt] (axis cs:0.219,4) -- (axis cs:0.401,4);
+  \draw[plotA, line width=1pt] (axis cs:0.323,5) -- (axis cs:0.517,5);
+  \draw[plotA, line width=1pt] (axis cs:0.304,6) -- (axis cs:0.496,6);
+  \draw[plotA, line width=1pt] (axis cs:0.275,7) -- (axis cs:0.465,7);
+  \draw[plotA, line width=1pt] (axis cs:0.275,8) -- (axis cs:0.465,8);
+  \draw[errcol, line width=1.4pt] (axis cs:0.412,9) -- (axis cs:0.608,9);
+  \draw[plotA, line width=1pt] (axis cs:0.314,10) -- (axis cs:0.506,10);
+  \draw[plotA, line width=1pt] (axis cs:0.304,11) -- (axis cs:0.496,11);
+  \draw[plotA, line width=1pt] (axis cs:0.257,12) -- (axis cs:0.443,12);
+  \draw[plotA, line width=1pt] (axis cs:0.362,13) -- (axis cs:0.558,13);
+  \draw[plotA, line width=1pt] (axis cs:0.352,14) -- (axis cs:0.548,14);
+  \draw[plotA, line width=1pt] (axis cs:0.343,15) -- (axis cs:0.537,15);
+  \draw[plotA, line width=1pt] (axis cs:0.362,16) -- (axis cs:0.558,16);
+  \draw[plotA, line width=1pt] (axis cs:0.275,17) -- (axis cs:0.465,17);
+  \draw[plotA, line width=1pt] (axis cs:0.304,18) -- (axis cs:0.496,18);
+  \draw[plotA, line width=1pt] (axis cs:0.275,19) -- (axis cs:0.465,19);
+  \draw[plotA, line width=1pt] (axis cs:0.362,20) -- (axis cs:0.558,20);
+  \node[lab, errcol, right] at (axis cs:0.608,9) {misses $p$};
+  \node[lab, above] at (axis cs:0.4,20.2) {$p$};
+\end{axis}
+\end{tikzpicture}
+
+{\scriptsize One simulated run: 19 of the 20 intervals contain $p$.}
+\end{cols}
+
+\begin{example}{confidence intervals}
+\textbf{(a) \examtwo} In a random sample of 400 voters, 160 support a proposal. Then $\phat=\frac{160}{400}=0.4$ and the 95\% CI is $0.4\pm1.96\sqrt{\frac{0.4\times0.6}{400}}=0.4\pm0.0480$, i.e.\ $(0.352,\ 0.448)$. A claim that ``half of all voters support it'' is not supported, since $0.5$ is outside the interval.\par
+\textbf{(b) \byhand} (Exam 1 style, with $z\approx2$.) $n=100$, $\phat=0.5$: \ $M\approx2\sqrt{\frac{0.5\times0.5}{100}}=2\times\frac{0.5}{10}=0.1$, so the approximate 95\% CI is $(0.4,\ 0.6)$.\par
+\textbf{(c) Sample size.} For a margin of error of at most $0.03$ at 95\% confidence with $\phat\approx0.4$: $n\ge\left(\frac{1.96}{0.03}\right)^2(0.4)(0.6)\approx1024.4$, so $n=1025$. With no estimate ($\phat=0.5$): $n\ge1067.1$, so $n=1068$.\par
+\textbf{(d) Working backwards.} A 95\% CI is $(0.62,\ 0.70)$. Then $\phat=0.66$, $M=0.04$ and $n\approx\left(\frac{1.96}{0.04}\right)^2(0.66)(0.34)\approx538.8$, so $n\approx539$.\par
+\textbf{(e) Many intervals.} If 20 independent 95\% CIs are calculated, the number containing $p$ is $Y\sim\Bi(20,0.95)$, so $\Pr(Y\ge19)=\Pr(Y=19)+\Pr(Y=20)\approx0.736$.
+\end{example}

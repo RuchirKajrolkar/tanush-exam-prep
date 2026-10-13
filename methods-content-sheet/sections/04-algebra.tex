@@ -1,0 +1,273 @@
+% =================================================================
+\section{Algebra, number and structure (Area of Study 2)}
+\label{sec:algebra}
+% =================================================================
+
+\begin{sdbox}
+\textbf{This area of study includes:}
+\begin{itemize}
+  \item solution of polynomial equations with real coefficients of degree $n$ having up to $n$ real solutions, including numerical solutions
+  \item functions and their inverses, including conditions for the existence of an inverse function, and use of inverse functions to solve equations involving exponential, logarithmic, circular and power functions
+  \item composition of functions, where $f$ composite $g$, $f\circ g$, is defined by $(f\circ g)(x)=f(g(x))$ given $r_g\subseteq d_f$
+  \item solution of equations of the form $f(x)=g(x)$ over a specified interval, by graphical, numerical and algebraic methods, as applicable
+  \item solution of literal equations and general solution of equations involving a single parameter
+  \item solution of simple systems of simultaneous linear equations, including cases where no solution or an infinite number of solutions exist (geometric interpretation only required for two equations in two variables)
+\end{itemize}
+\textbf{Key skills:} find the rule, domain and range of inverse and composite functions; apply analytical, graphical and numerical processes (including \textbf{Newton's method}, \S\ref{sec:newton}) to obtain exact or approximate, general or specific solutions and verify them; \byhand\ solve $\sin(ax+b)=c$, $\cos(ax+b)=c$, $\tan(ax+b)=c$ with exact solutions over a given interval; use algebraic, logarithmic and circular function properties to simplify expressions and solve equations. This content is \emph{``incorporated as applicable to the other areas of study''}, so expect it inside calculus and probability questions.
+\end{sdbox}
+
+\subsection{Polynomial equations}
+\label{sec:polyeq}
+
+\begin{keyres}{Theorems and techniques}
+\begin{itemize}
+  \item A polynomial equation of degree $n$ (real coefficients) has \textbf{at most $n$ real solutions}.
+  \item \textbf{Remainder theorem:} the remainder when $P(x)$ is divided by $(x-a)$ is $P(a)$; for $(ax-b)$ it is $P\!\left(\frac ba\right)$.
+  \item \textbf{Factor theorem:} $(x-a)$ is a factor of $P(x)\iff P(a)=0$.
+  \item \textbf{Rational root test:} any rational root of $a_nx^n+\dots+a_0$ is $\pm\dfrac{\text{factor of }a_0}{\text{factor of }a_n}$. Try $\pm1,\pm2,\dots$ first.
+  \item Divide by long division or by \textbf{equating coefficients}; factorise the quotient.
+  \item \textbf{Substitution} for ``quadratic-type'' equations: $u=x^2$, $u=e^x$, $u=2^x$, $u=\sin x$, $u=\sqrt{x}$.
+  \item No exact method? Solve \textbf{numerically}: CAS, graph intersections, Newton's method (\S\ref{sec:newton}) or bisection (\S\ref{sec:algorithms}).
+\end{itemize}
+\end{keyres}
+
+\begin{cols}
+\begin{example}{a cubic by the factor theorem \byhand}
+Solve $x^3-4x^2+x+6=0$.\par
+Try $x=-1$: $-1-4-1+6=0$, so $(x+1)$ is a factor.\par
+Equate coefficients: $x^3-4x^2+x+6=(x+1)(x^2+bx+c)$ gives $c=6$, $b+1=-4\Rightarrow b=-5$.\par
+$(x+1)(x^2-5x+6)=(x+1)(x-2)(x-3)=0$, so $x=-1,2,3$.
+\end{example}
+\nextcol
+\begin{example}{unknown coefficient \byhand}
+$(x-2)$ is a factor of $P(x)=x^3+kx^2-4x+12$. Find $k$ and solve $P(x)=0$.\par
+$P(2)=8+4k-8+12=0\Rightarrow k=-3$.\par
+$P(x)=x^3-3x^2-4x+12=x^2(x-3)-4(x-3)$\\ $=(x-3)(x-2)(x+2)$, so $x=-2,2,3$.
+\end{example}
+\end{cols}
+
+\begin{example}{substitution and the discriminant \byhand}
+\textbf{(a)} $x^4-5x^2+4=0$: let $u=x^2$. Then $u^2-5u+4=(u-1)(u-4)=0$, so $x^2=1$ or $4$, giving $x=\pm1,\pm2$.\par
+\textbf{(b)} $2^{2x}-3\cdot2^x-4=0$: let $u=2^x$. Then $(u-4)(u+1)=0$; $2^x=-1$ is impossible, so $2^x=4$ and $x=2$.\par
+\textbf{(c)} For which $m$ does the line $y=mx-1$ meet the parabola $y=x^2+3$? Equating gives $x^2-mx+4=0$, with $\Delta=m^2-16$. There are two intersections if $|m|>4$, the line is a \textbf{tangent} if $m=\pm4$, and there are no intersections if $-4<m<4$.
+\end{example}
+
+% -----------------------------------------------------------------
+\subsection{Inverse functions}
+\label{sec:inverse}
+
+\begin{keyres}{Inverse functions}
+\begin{itemize}
+  \item $f^{-1}$ exists \textbf{if and only if $f$ is one-to-one} (horizontal line test). Many-to-one functions need a \emph{restricted domain} first.
+  \item \boldmath$d_{f^{-1}}=r_f$ \textbf{and} $r_{f^{-1}}=d_f$.\unboldmath
+  \item $f\!\left(f^{-1}(x)\right)=x$ for $x\in d_{f^{-1}}$, and $f^{-1}(f(x))=x$ for $x\in d_f$.
+  \item The graph of $y=f^{-1}(x)$ is the \textbf{reflection of $y=f(x)$ in the line $y=x$}: $(a,b)\to(b,a)$, and asymptote $x=h\leftrightarrow y=h$.
+  \item Inverse pairs: $e^x\leftrightarrow\loge x$; \ $a^x\leftrightarrow\log_ax$; \ $x^2\ (x\ge0)\leftrightarrow\sqrt{x}$; \ $x^3\leftrightarrow\sqrt[3]{x}$; \ $\frac1x$ is its own inverse.
+  \item Circular functions are many-to-one, but CAS uses $\sin^{-1}$, $\cos^{-1}$, $\tan^{-1}$ (principal values in $\left[-\frac\pi2,\frac\pi2\right]$, $[0,\pi]$, $\left(-\frac\pi2,\frac\pi2\right)$) to solve equations; you then find the other solutions by symmetry.
+\end{itemize}
+\end{keyres}
+
+\begin{method}{Finding $f^{-1}$}
+\begin{enumerate}
+  \item State the domain and range of $f$, and check $f$ is one-to-one.
+  \item Swap $x$ and $y$: \ $x=f(y)$.
+  \item Solve for $y$. If there is a $\pm$, choose the sign that matches $r_{f^{-1}}=d_f$.
+  \item Write the answer in full: $f^{-1}:r_f\to\R,\ f^{-1}(x)=\dots$
+\end{enumerate}
+\end{method}
+
+\begin{example}{finding inverse functions \byhand}
+\begin{tabularx}{\linewidth}{@{}p{4.4cm}L@{}}
+$f:[1,\infty)\to\R,\ f(x)=(x-1)^2+2$ & $r_f=[2,\infty)$. Swap: $x=(y-1)^2+2\Rightarrow y=1\pm\sqrt{x-2}$. We need $y\ge1$, so take $+$:\par $f^{-1}:[2,\infty)\to\R,\ f^{-1}(x)=1+\sqrt{x-2}$. \\[3pt]
+$g:\R\to\R,\ g(x)=3e^{2x}-1$ & $r_g=(-1,\infty)$. Swap: $x=3e^{2y}-1\Rightarrow e^{2y}=\frac{x+1}{3}$:\par $g^{-1}:(-1,\infty)\to\R,\ g^{-1}(x)=\frac12\loge\!\left(\frac{x+1}{3}\right)$. \\[3pt]
+$h:(2,\infty)\to\R,\ h(x)=\loge(x-2)+1$ & $r_h=\R$. Swap: $x=\loge(y-2)+1\Rightarrow y=e^{x-1}+2$:\par $h^{-1}:\R\to\R,\ h^{-1}(x)=e^{x-1}+2$. \\
+\end{tabularx}
+\end{example}
+
+\begin{cols}
+\begin{keyres}{Restricting the domain; intersections with the inverse}
+\begin{itemize}
+  \item \textbf{Largest domain for an inverse:} cut the graph at turning points. E.g.\ $f(x)=x^2-4x+1=(x-2)^2-3$ is one-to-one on $[2,\infty)$ or $(-\infty,2]$.
+  \item If $f$ is \textbf{strictly increasing}, every intersection of $y=f(x)$ and $y=f^{-1}(x)$ lies on $y=x$, so solve the easier equation $f(x)=x$.
+  \item If $f$ is \textbf{decreasing}, there can be intersections \emph{off} the line $y=x$. Solve $f(x)=f^{-1}(x)$ (or use CAS). Example: $f(x)=-x^3$, $f^{-1}(x)=-\sqrt[3]{x}$ meet at $(0,0)$, $(1,-1)$ and $(-1,1)$. Only $(0,0)$ is on $y=x$.
+\end{itemize}
+\end{keyres}
+\nextcol
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=5.4cm, height=5.4cm, xmin=-1.0, xmax=5.3, ymin=-1.0, ymax=5.3, xtick=\empty, ytick=\empty]
+  \addplot[black!40, dashed, thin, domain=-0.8:5.1] {x};
+  \addplot[plotA, domain=1:2.95] {(x-1)^2+2};
+  \addplot[plotB, domain=2:5.1, samples=300] {1+sqrt(x-2)};
+  \node[pt] at (axis cs:1,2) {}; \node[lab, left] at (axis cs:1,2) {$(1,2)$};
+  \node[pt] at (axis cs:2,1) {}; \node[lab, below] at (axis cs:2,1) {$(2,1)$};
+  \node[lab, plotA] at (axis cs:2.2,4.3) {$f$};
+  \node[lab, plotB] at (axis cs:4.6,2.25) {$f^{-1}$};
+\end{axis}
+\end{tikzpicture}\hfill
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=4.4cm, height=5.4cm, xmin=-1.7, xmax=1.7, ymin=-2.0, ymax=2.0, xtick=\empty, ytick=\empty]
+  \addplot[black!40, dashed, thin, domain=-1.6:1.6] {x};
+  \addplot[plotA, domain=-1.25:1.25] {-x^3};
+  \addplot[plotB, domain=-1.6:1.6] {-sign(x)*abs(x)^(1/3)};
+  \node[pt] at (axis cs:1,-1) {}; \node[lab, below] at (axis cs:1,-1) {$(1,-1)$};
+  \node[pt] at (axis cs:-1,1) {}; \node[lab, above] at (axis cs:-1,1) {$(-1,1)$};
+  \node[pt] at (axis cs:0,0) {};
+\end{axis}
+\end{tikzpicture}
+
+{\scriptsize Left: $f(x)=(x-1)^2+2$, $x\ge1$, and its inverse (no intersection). Right: $y=-x^3$ and its inverse meet off the line $y=x$.}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{Composite functions}
+\label{sec:composite}
+
+\begin{keyres}{Composite functions $f\circ g$}
+\begin{itemize}
+  \item $(f\circ g)(x)=f(g(x))$: apply $g$ first, then $f$.
+  \item \textbf{Exists if and only if} $r_g\subseteq d_f$ (the outputs of $g$ must be allowed inputs of $f$).
+  \item Then \boldmath$d_{f\circ g}=d_g$\unboldmath. This is the domain of the \emph{inner} function, \emph{not} the implied domain of the simplified rule.
+  \item \textbf{Range:} find the set of values $f$ takes when its inputs are restricted to $r_g$.
+  \item If $r_g\not\subseteq d_f$, restrict the domain of $g$ until its range fits inside $d_f$.
+  \item In general $f\circ g\ne g\circ f$. Note $f^{-1}\circ f$ is the identity on $d_f$.
+\end{itemize}
+\end{keyres}
+
+\begin{example}{composite functions \byhand}
+Let $f:[0,\infty)\to\R,\ f(x)=\sqrt{x}$ and $g:\R\to\R,\ g(x)=1-x^2$.\par
+\textbf{$f\circ g$:} $r_g=(-\infty,1]\not\subseteq[0,\infty)=d_f$, so $f\circ g$ \emph{does not exist} with $d_g=\R$. Restrict $g$ to $[-1,1]$: then $r_g=[0,1]\subseteq d_f$ \tick. \ $(f\circ g)(x)=\sqrt{1-x^2}$, domain $[-1,1]$, range $[0,1]$.\par
+\textbf{$g\circ f$:} $r_f=[0,\infty)\subseteq\R=d_g$ \tick. \ $(g\circ f)(x)=1-(\sqrt{x})^2=1-x$ with \textbf{domain $[0,\infty)$} (the domain of $f$), so range $(-\infty,1]$.\par
+\textbf{Maximal domain question:} for $f(x)=\loge(x)$ and $g(x)=4-x^2$, $f\circ g$ needs $4-x^2>0$, so the largest domain of $g$ is $(-2,2)$.
+\end{example}
+
+% -----------------------------------------------------------------
+\subsection{Solving equations $f(x)=g(x)$: exact, graphical and numerical}
+\label{sec:solve}
+
+\begin{method}{General approach}
+\begin{enumerate}
+  \item Note any domain restrictions (logs: argument $>0$; roots; denominators; the given interval).
+  \item Choose a method: \textbf{algebraic/exact} (factorise, inverse operations, log/index laws, substitution); \textbf{graphical} (intersections of $y=f(x)$ and $y=g(x)$, which also shows the \emph{number} of solutions); \textbf{numerical} (CAS solve, Newton's method, bisection) when no exact method exists.
+  \item \textbf{Check} every solution satisfies the original equation and the domain. Reject extraneous solutions, and say why.
+\end{enumerate}
+\end{method}
+
+\begin{example}{exponential, logarithmic and power equations \byhand}
+\begin{tabularx}{\linewidth}{@{}p{5.1cm}L@{}}
+$e^{2x}-5e^x+6=0$ & $(e^x-2)(e^x-3)=0\Rightarrow x=\loge2$ or $\loge3$. \\
+$3e^{2x}=7$ & $e^{2x}=\frac73\Rightarrow x=\frac12\loge\!\left(\frac73\right)$. \\
+$2^{x+1}=5$ & $x+1=\log_25\Rightarrow x=\log_25-1=\frac{\loge5}{\loge2}-1$. \\
+$\loge(2x-1)=3$ & $2x-1=e^3\Rightarrow x=\frac{e^3+1}{2}$. \\
+$\loge x+\loge(x-3)=\loge4$ & Need $x>3$. $\loge(x(x-3))=\loge4\Rightarrow x^2-3x-4=0\Rightarrow(x-4)(x+1)=0$. Reject $x=-1$, so $x=4$. \\
+$\log_{10}x+\log_{10}(x-21)=2$ & Need $x>21$. $x(x-21)=100\Rightarrow(x-25)(x+4)=0\Rightarrow x=25$. \\
+$\log_2x-\log_2(x-1)=3$ & $\frac{x}{x-1}=2^3=8\Rightarrow x=8x-8\Rightarrow x=\frac87$ (valid since $x>1$). \\
+$x^{3/2}=8$; \quad $2x^{-1/2}=6$ & $x=8^{2/3}=4$; \quad $x^{-1/2}=3\Rightarrow x=\frac19$. \\
+\end{tabularx}
+\end{example}
+
+\subsection{Circular equations}
+\label{sec:circeq}
+
+\begin{method}{Solving $\sin(ax+b)=c$, $\cos(ax+b)=c$, $\tan(ax+b)=c$ over an interval \byhand}
+\begin{enumerate}
+  \item Isolate the circular function and let $\theta=ax+b$.
+  \item \textbf{Change the interval:} if $x\in[p,q]$ and $a>0$, then $\theta\in[ap+b,\ aq+b]$.
+  \item Find the \textbf{base angle} from $|c|$ using exact values (e.g.\ $|c|=\frac{\sqrt3}{2}\Rightarrow\frac{\pi}{3}$ for $\sin$).
+  \item Use the sign of $c$ and ASTC to find the quadrants, list all $\theta$ in the new interval by adding $2\pi$ (sin, cos) or $\pi$ (tan) repeatedly, then solve for $x$.
+\end{enumerate}
+\end{method}
+
+\begin{example}{circular equations \byhand}
+\textbf{(a)} $2\sin(3x)=\sqrt3$, $x\in[0,\pi]$. Then $\sin(3x)=\frac{\sqrt3}{2}$ with $3x\in[0,3\pi]$, so $3x=\frac{\pi}{3},\frac{2\pi}{3},\frac{7\pi}{3},\frac{8\pi}{3}$ and $x=\frac{\pi}{9},\frac{2\pi}{9},\frac{7\pi}{9},\frac{8\pi}{9}$.\par
+\textbf{(b)} $\cos\!\left(2x+\frac{\pi}{3}\right)=-\frac12$, $x\in[0,\pi]$. Here $2x+\frac{\pi}{3}\in\left[\frac{\pi}{3},\frac{7\pi}{3}\right]$, and cos is negative in quadrants 2 and 3: $2x+\frac{\pi}{3}=\frac{2\pi}{3},\frac{4\pi}{3}$, so $x=\frac{\pi}{6},\frac{\pi}{2}$.\par
+\textbf{(c)} $\tan\!\left(\frac x2\right)=-1$, $x\in[0,4\pi]$. Here $\frac x2\in[0,2\pi]$: $\frac x2=\frac{3\pi}{4},\frac{7\pi}{4}$, so $x=\frac{3\pi}{2},\frac{7\pi}{2}$.\par
+\textbf{(d)} $\sin x=\sqrt3\cos x$, $x\in[0,2\pi]$. Divide by $\cos x$ (allowed: $\cos x=0$ gives no solutions): $\tan x=\sqrt3$, so $x=\frac{\pi}{3},\frac{4\pi}{3}$.\par
+\textbf{(e)} $2\sin^2x-\sin x-1=0$, $x\in[0,2\pi]$. Factorise: $(2\sin x+1)(\sin x-1)=0$. $\sin x=1\Rightarrow x=\frac{\pi}{2}$; \ $\sin x=-\frac12\Rightarrow x=\frac{7\pi}{6},\frac{11\pi}{6}$.
+\end{example}
+
+\begin{cols}
+\begin{keyres}{General solutions ($k\in\Z$)}
+\begin{itemize}
+  \item $\sin\theta=c$: $\theta=\sin^{-1}(c)+2k\pi$ or $\theta=\pi-\sin^{-1}(c)+2k\pi$
+  \item $\cos\theta=c$: $\theta=\pm\cos^{-1}(c)+2k\pi$
+  \item $\tan\theta=c$: $\theta=\tan^{-1}(c)+k\pi$
+\end{itemize}
+\textbf{Examples:} $\sin(2x)=\frac12\Rightarrow x=\frac{\pi}{12}+k\pi$ or $x=\frac{5\pi}{12}+k\pi$. \ $\tan(3x)=1\Rightarrow x=\frac{\pi}{12}+\frac{k\pi}{3}$. \ $\cos x=\frac{\sqrt2}{2}\Rightarrow x=\pm\frac{\pi}{4}+2k\pi$.
+\end{keyres}
+\nextcol
+\begin{tip}[Counting solutions and non-exact values]
+\begin{itemize}
+  \item $\sin(nx)=c$ with $-1<c<1$, $c\ne0$, has $2n$ solutions in $[0,2\pi]$ (two per cycle, and there are $n$ cycles). Check the endpoints separately when $c=0$ or $c=\pm1$.
+  \item Non-exact: $\sin x=0.3$, $x\in[0,2\pi]$ gives $x=\sin^{-1}(0.3)\approx0.3047$ or $\pi-0.3047\approx2.8369$.
+  \item CAS gives general solutions with an arbitrary integer (e.g.\ \texttt{n1} or \texttt{constn}). Rewrite it as $k\in\Z$.
+\end{itemize}
+\end{tip}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{Literal equations and equations with a parameter}
+\label{sec:literal}
+
+\begin{cols}
+\begin{keyres}{Literal equations}
+A literal equation has letters (parameters) as well as the unknown. Solve for the unknown in terms of the others, \textbf{stating restrictions}.
+\begin{itemize}
+  \item $V=\frac43\pi r^3\Rightarrow r=\sqrt[3]{\dfrac{3V}{4\pi}}$.
+  \item $y=\dfrac{ax+b}{cx+d}\Rightarrow ycx+yd=ax+b\Rightarrow x=\dfrac{b-dy}{cy-a}$, \ $cy\ne a$.
+  \item $e^{kx}=5\Rightarrow x=\dfrac{\loge5}{k}$, \ $k\ne0$.
+\end{itemize}
+\end{keyres}
+\nextcol
+\begin{example}{a single parameter}
+\textbf{(a)} Solve $kx-3=2x+k$ for $x$: $x(k-2)=k+3\Rightarrow x=\frac{k+3}{k-2}$ for $k\ne2$. If $k=2$ the equation is $-3=2$, so there is no solution.\par
+\textbf{(b)} Number of solutions of $kx^2+4x+k=0$. If $k=0$: $4x=0$, one solution (not a quadratic!). If $k\ne0$: $\Delta=16-4k^2$. Two solutions for $-2<k<2$, $k\ne0$; one for $k=\pm2$; none for $|k|>2$.\par
+\textbf{(c)} $x^3-3x=k$ has three solutions when $-2<k<2$: the graph of $y=x^3-3x$ has a local max at $(-1,2)$ and a local min at $(1,-2)$. Two solutions if $k=\pm2$, one if $|k|>2$.
+\end{example}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{Simultaneous linear equations}
+\label{sec:simul}
+
+\begin{keyres}{Two equations, two unknowns: $a_1x+b_1y=c_1$, \ $a_2x+b_2y=c_2$}
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}lLL@{}}
+\toprule
+Number of solutions & Geometry (two lines) & Algebraic condition \\
+\midrule
+Unique solution & Lines intersect at one point (different gradients) & $a_1b_2-a_2b_1\ne0$ \\
+No solution & Parallel, distinct lines (same gradient, different intercepts) & $a_1b_2-a_2b_1=0$ and the equations are inconsistent \\
+Infinitely many & Same line (one equation is a multiple of the other) & $a_1b_2-a_2b_1=0$ and the equations are consistent \\
+\bottomrule
+\end{tabularx}
+\end{center}
+$a_1b_2-a_2b_1$ is the determinant of the coefficient matrix (CAS: \texttt{det}). Comparing gradients and $y$-intercepts always works too. For \textbf{three equations in three unknowns}, use elimination or CAS. There can again be one, none or infinitely many solutions (no geometric interpretation needed).
+\end{keyres}
+
+\begin{example}{systems with a parameter}
+For which $k$ does the system $kx+3y=6$, \ $4x+(k+4)y=k+10$ have (a) a unique solution, (b) no solution, (c) infinitely many solutions?\par
+\textbf{Determinant:} $k(k+4)-3\times4=k^2+4k-12=(k+6)(k-2)$.\par
+\textbf{(a)} Unique solution for $k\in\R\setminus\{-6,2\}$. It is $x=\frac{3}{k+6}$, $y=\frac{k+12}{k+6}$.\par
+\textbf{(b), (c)} Test the two remaining values:
+\begin{itemize}
+  \item $k=2$: $2x+3y=6$ and $4x+6y=12$. The second is twice the first, so it is the same line and there are \textbf{infinitely many} solutions: $\left(3-\frac{3t}{2},\,t\right)$, $t\in\R$.
+  \item $k=-6$: $-6x+3y=6\iff y=2x+2$ and $4x-2y=4\iff y=2x-2$. Parallel, distinct lines, so \textbf{no solution}.
+\end{itemize}
+\textbf{Three unknowns:} $x+y+z=6$, \ $2x-y+z=3$, \ $x+2y-z=2$ has the unique solution $(1,2,3)$ (check by substitution).
+\end{example}
+
+% -----------------------------------------------------------------
+\subsection{Properties of functions (functional equations)}
+\label{sec:funceq}
+
+\begin{tip}[\mcq{} Testing a property]
+Questions like ``Which function satisfies $f(x+y)=f(x)f(y)$?'' are tested by substitution, or by trying simple numbers to eliminate options.
+\begin{itemize}
+  \item $f(x+y)=f(x)f(y)$: \ $f(x)=e^{kx}$ (since $e^{k(x+y)}=e^{kx}e^{ky}$) or $a^x$.
+  \item $f(xy)=f(x)+f(y)$: \ $f(x)=\log_a(x)$. \qquad $f(x+y)=f(x)+f(y)$: \ $f(x)=kx$.
+  \item $f(-x)=f(x)$: even. \ $f(-x)=-f(x)$: odd. \ $f(f(x))=x$: self-inverse (e.g.\ $\frac1x$, $-x$, $a-x$).
+  \item To \emph{disprove} a property, one counter-example is enough (e.g.\ $x=y=1$).
+\end{itemize}
+\end{tip}

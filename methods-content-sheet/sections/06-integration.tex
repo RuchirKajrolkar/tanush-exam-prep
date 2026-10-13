@@ -1,0 +1,335 @@
+% =================================================================
+\section{Calculus II: anti-differentiation and integration (Area of Study 3)}
+\label{sec:int}
+% =================================================================
+
+\begin{sdbox}
+\begin{itemize}
+  \item deducing the graph of an anti-derivative function from the graph of a given function
+  \item anti-derivatives of polynomial functions and functions of the form $f(ax+b)$ where $f$ is $x^n$ for $n\in\Q$, $e^x$, $\sin(x)$, $\cos(x)$, and linear combinations of these
+  \item informal consideration of the definite integral as a limiting value of a sum involving quantities such as area under a curve, and approximation of definite integrals using the \textbf{trapezium rule}
+  \item anti-differentiation by recognition that $F'(x)=f(x)$ implies $\int f(x)\dx=F(x)+c$, and informal treatment of the fundamental theorem of calculus, $\int_a^bf(x)\dx=F(b)-F(a)$
+  \item properties of anti-derivatives and definite integrals
+  \item application of integration to finding a function from a known rate of change given a boundary condition, the area of a region under a curve and simple cases of areas between curves, the average value of a function, and other situations
+\end{itemize}
+\textbf{Key skills:} \byhand\ find anti-derivatives of polynomials, power functions, $f(ax+b)$ for $x^n$, $e^x$, sine and cosine, and linear combinations; evaluate trapezium-rule approximations; find and \emph{verify} anti-derivatives; evaluate definite integrals; find areas under and between curves.
+\end{sdbox}
+
+\subsection{Anti-derivatives (indefinite integrals)}
+\label{sec:antideriv}
+
+\begin{defn}{Definition}
+$F$ is an \textbf{anti-derivative} of $f$ if $F'(x)=f(x)$. Then $\displaystyle\int f(x)\dx=F(x)+c$, where $c$ is an arbitrary constant. Anti-derivatives of $f$ form a \emph{family} of curves that differ by vertical translations. \textbf{Always check an anti-derivative by differentiating it.}
+\end{defn}
+
+\begin{cols}[0.5]
+\begin{keyres}{Standard anti-derivatives}
+\renewcommand{\arraystretch}{1.55}
+\begin{tabular}{@{}l@{\quad}l@{}}
+$f(x)$ & $\int f(x)\dx$ \\ \hline
+$x^n$, $n\ne-1$ & $\dfrac{x^{n+1}}{n+1}+c$ \\
+$(ax+b)^n$, $n\ne-1$ & $\dfrac{(ax+b)^{n+1}}{a(n+1)}+c$ \\
+$\dfrac1x$ & $\loge(x)+c$, \ $x>0$ \\
+$\dfrac{1}{ax+b}$ & $\dfrac1a\loge(ax+b)+c$, \ $ax+b>0$ \\
+$e^{ax+b}$ & $\dfrac1ae^{ax+b}+c$ \\
+$\sin(ax+b)$ & $-\dfrac1a\cos(ax+b)+c$ \\
+$\cos(ax+b)$ & $\dfrac1a\sin(ax+b)+c$ \\
+$\dfrac{1}{\cos^2(ax+b)}$\,$^{*}$ & $\dfrac1a\tan(ax+b)+c$ \\
+\end{tabular}
+\par\smallskip{\small $^{*}$by recognition (from the derivative of $\tan$).}
+\end{keyres}
+\nextcol[0.475]
+\begin{keyres}{Properties of anti-derivatives}
+\begin{itemize}
+  \item $\int k\,f(x)\dx=k\int f(x)\dx$
+  \item $\int\big(f(x)\pm g(x)\big)\dx=\int f(x)\dx\pm\int g(x)\dx$
+  \item There is \textbf{no} product, quotient or chain rule for integrals in Methods: $\int f(x)g(x)\dx\ne\int f\dx\cdot\int g\dx$. Expand, simplify or use recognition instead.
+  \item For $x<0$: $\int\frac1x\dx=\loge(-x)+c$; in general $\loge|x|+c$.
+\end{itemize}
+\end{keyres}
+\begin{tip}[Rewrite first]
+$\dfrac{x^2+1}{x^2}=1+x^{-2}$; \ $\sqrt x(x-1)=x^{3/2}-x^{1/2}$; \ $(e^x+1)^2=e^{2x}+2e^x+1$; \ $\dfrac{4}{\sqrt{2x+1}}=4(2x+1)^{-1/2}$.
+\end{tip}
+\end{cols}
+
+\begin{example}{anti-differentiation \byhand}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}>{$}l<{$}L@{}}
+\int(3x^2-4x+5)\dx & $x^3-2x^2+5x+c$ \\
+\int(2x+1)^4\dx & $\dfrac{(2x+1)^5}{2\times5}+c=\dfrac{(2x+1)^5}{10}+c$ \\
+\int\dfrac{1}{\sqrt x}\dx=\int x^{-1/2}\dx & $\dfrac{x^{1/2}}{1/2}+c=2\sqrt x+c$ \\
+\int\dfrac{4}{(1-2x)^3}\dx=4\int(1-2x)^{-3}\dx & $4\cdot\dfrac{(1-2x)^{-2}}{(-2)(-2)}+c=\dfrac{1}{(1-2x)^2}+c$ \\
+\int e^{3x-1}\dx & $\frac13e^{3x-1}+c$ \\
+\int\dfrac{2}{3x+1}\dx & $\frac23\loge(3x+1)+c$, \ $x>-\frac13$ \\
+\int\sin(2x)\dx; \quad \int\cos\!\left(\frac x3\right)\dx & $-\frac12\cos(2x)+c$; \quad $3\sin\!\left(\frac x3\right)+c$ \\
+\int\dfrac{x^2+1}{x^2}\dx=\int(1+x^{-2})\dx & $x-\dfrac1x+c$ \\
+\end{tabularx}
+\end{example}
+
+\subsection{Anti-differentiation by recognition}
+\label{sec:recog}
+
+\begin{keyres}{The idea}
+If you are told (or can show) that $\ddx\big(F(x)\big)=f(x)$, then $\int f(x)\dx=F(x)+c$. Typical question: ``Differentiate $g(x)$. \textbf{Hence} find an anti-derivative of $h(x)$.'' Rearrange the derivative so the part you need is on its own, then anti-differentiate both sides.
+\end{keyres}
+
+\begin{example}{recognition (very common in Exam 1) \byhand}
+\textbf{(a)} $\ddx(x\loge x)=\loge x+1$. So $\int(\loge x+1)\dx=x\loge x$, which gives $\int\loge x\dx=x\loge x-\int1\dx=x\loge x-x+c$.\par
+\textbf{(b)} $\ddx(x\cos x)=\cos x-x\sin x$. So $x\sin x=\cos x-\ddx(x\cos x)$, which gives $\int x\sin x\dx=\sin x-x\cos x+c$.\par
+\textbf{(c)} $\ddx\left(e^{x^2}\right)=2xe^{x^2}$, so $\int xe^{x^2}\dx=\frac12e^{x^2}+c$.\par
+\textbf{(d)} Using (a): $\int_1^e\loge x\dx=\big[x\loge x-x\big]_1^e=(e-e)-(0-1)=1$.\par
+\textbf{Check} each by differentiating, e.g.\ $\ddx(\sin x-x\cos x)=\cos x-\cos x+x\sin x=x\sin x$. \tick
+\end{example}
+
+\subsection{Finding a function from its rate of change}
+\label{sec:bc}
+
+\begin{example}{boundary (initial) conditions \byhand}
+\textbf{(a)} $f'(x)=6x^2-2x$ and $f(1)=4$: \ $f(x)=2x^3-x^2+c$; \ $2-1+c=4\Rightarrow c=3$, so $f(x)=2x^3-x^2+3$.\par
+\textbf{(b)} $\dydx=\dfrac{1}{2x-1}$, $x>\frac12$, and $y=2$ when $x=1$: \ $y=\frac12\loge(2x-1)+c$; \ $\frac12\loge1+c=2\Rightarrow c=2$, so $y=\frac12\loge(2x-1)+2$.\par
+\textbf{(c)} $f'(x)=\cos(2x)$ and $f\!\left(\frac{\pi}{4}\right)=1$: \ $f(x)=\frac12\sin(2x)+c$; \ $\frac12+c=1\Rightarrow c=\frac12$, so $f(x)=\frac12\sin(2x)+\frac12$.
+\end{example}
+
+\subsection{The graph of an anti-derivative from the graph of $f$}
+\label{sec:antigraph}
+
+\begin{cols}[0.5]
+\begin{keyres}{Reading $F$ from $f=F'$}
+\small
+\begin{tabular}{@{}p{3.4cm}p{3.5cm}@{}}
+\textbf{Graph of $f$} & \textbf{Graph of $F$ (anti-derivative)} \\ \hline
+$x$-intercept with sign change & stationary point (turning point) of $F$ \\
+$f>0$ & $F$ increasing \\
+$f<0$ & $F$ decreasing \\
+turning point of $f$ & point of inflection of $F$ \\
+touches the $x$-axis & stationary point of inflection \\
+degree $n$ polynomial & degree $n+1$ \\
+\end{tabular}
+\par\smallskip
+(Figure: $c=-1,0,1$.) $F$ is only determined up to $+c$: sketch \emph{one} member of the family unless a point is given. The signed area under $f$ from $a$ to $b$ equals $F(b)-F(a)$, the \emph{change} in height of $F$.
+\end{keyres}
+\nextcol[0.475]
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.2cm, height=3.9cm, xmin=-2.4, xmax=2.6, ymin=-1.6, ymax=3.6, xtick={-1,1}, ytick=\empty, cornertitle, title={$y=f(x)=x^2-1$}]
+  \addplot[plotB, domain=-2.2:2.2] {x^2-1};
+  \draw[dashed, black!40] (axis cs:-1,-1.6) -- (axis cs:-1,3.6);
+  \draw[dashed, black!40] (axis cs:1,-1.6) -- (axis cs:1,3.6);
+\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.2cm, height=4.7cm, xmin=-2.4, xmax=2.6, ymin=-2.6, ymax=2.8, xtick={-1,1}, ytick=\empty, cornertitle, title={$y=F(x)=\frac{x^3}{3}-x+c$}]
+  \addplot[plotA!45, domain=-2.2:2.2] {x^3/3-x-1};
+  \addplot[plotA, domain=-2.2:2.2] {x^3/3-x};
+  \addplot[plotA!45, domain=-2.2:2.2] {x^3/3-x+1};
+  \draw[dashed, black!40] (axis cs:-1,-2.6) -- (axis cs:-1,2.8);
+  \draw[dashed, black!40] (axis cs:1,-2.6) -- (axis cs:1,2.8);
+  \node[pt] at (axis cs:-1,0.6667) {}; \node[pt] at (axis cs:1,-0.6667) {};
+  \node[pt] at (axis cs:0,0) {};
+\end{axis}
+\end{tikzpicture}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{Definite integrals and the fundamental theorem of calculus}
+\label{sec:definite}
+
+\begin{keyres}{Fundamental theorem of calculus (informal)}
+If $F'(x)=f(x)$ on $[a,b]$ (with $f$ continuous), then
+\[\int_a^bf(x)\dx=\Big[F(x)\Big]_a^b=F(b)-F(a).\]
+No $+c$ is needed (it cancels). The definite integral is a \textbf{number}: the \textbf{signed area} between $y=f(x)$ and the $x$-axis from $x=a$ to $x=b$. Area above the axis counts as positive, area below as negative. Also $\displaystyle\ddx\int_a^xf(t)\,dt=f(x)$, and $\displaystyle\int_a^bf'(x)\dx=f(b)-f(a)$ (net change).
+\end{keyres}
+
+\begin{cols}
+\begin{keyres}{Properties of definite integrals}
+\begin{itemize}
+  \item $\int_a^af(x)\dx=0$; \ $\int_b^af(x)\dx=-\int_a^bf(x)\dx$
+  \item $\int_a^bkf(x)\dx=k\int_a^bf(x)\dx$; \ $\int_a^bc\dx=c(b-a)$
+  \item $\int_a^b(f\pm g)\dx=\int_a^bf\dx\pm\int_a^bg\dx$
+  \item $\int_a^bf\dx+\int_b^cf\dx=\int_a^cf\dx$
+  \item Translation: $\int_a^bf(x-h)\dx=\int_{a-h}^{b-h}f(x)\dx$
+  \item Dilation: $\int_a^bf(kx)\dx=\frac1k\int_{ka}^{kb}f(x)\dx$
+  \item Odd $f$: $\int_{-a}^af\dx=0$; \ even $f$: $\int_{-a}^af\dx=2\int_0^af\dx$
+\end{itemize}
+\end{keyres}
+\nextcol
+\begin{example}{using properties \mcq}
+Given $\int_1^4f(x)\dx=5$:
+\begin{itemize}
+  \item $\int_1^4\big(2f(x)+3\big)\dx=2(5)+3(4-1)=19$
+  \item $\int_4^1f(x)\dx=-5$
+  \item $\int_1^4\big(f(x)-x\big)\dx=5-\left[\frac{x^2}{2}\right]_1^4=5-7.5=-2.5$
+  \item $\int_0^3f(x+1)\dx=\int_1^4f(x)\dx=5$ (translation)
+  \item $\int_{1/2}^{2}f(2x)\dx=\frac12\int_1^4f(x)\dx=\frac52$ (dilation)
+\end{itemize}
+\end{example}
+\end{cols}
+
+\begin{example}{evaluating definite integrals \byhand}
+$\int_0^{\pi/2}\sin(2x)\dx=\left[-\tfrac12\cos(2x)\right]_0^{\pi/2}=-\tfrac12(\cos\pi-\cos0)=1$ \qquad
+$\int_1^4\sqrt x\dx=\left[\tfrac23x^{3/2}\right]_1^4=\tfrac23(8-1)=\tfrac{14}{3}$\par
+$\int_0^1e^{2x}\dx=\left[\tfrac12e^{2x}\right]_0^1=\tfrac{e^2-1}{2}$ \qquad
+$\int_1^e\tfrac1x\dx=\big[\loge x\big]_1^e=1-0=1$
+\end{example}
+
+% -----------------------------------------------------------------
+\subsection{The definite integral as a limit of sums; the trapezium rule}
+\label{sec:trap}
+
+\begin{cols}[0.55]
+\begin{keyres}{Approximating area}
+Split $[a,b]$ into $n$ strips of width $h=\dfrac{b-a}{n}$, with $x_i=a+ih$.
+\begin{itemize}
+  \item \textbf{Left/right rectangles:} $h\big[f(x_0)+\dots+f(x_{n-1})\big]$ or $h\big[f(x_1)+\dots+f(x_n)\big]$. For an increasing $f$, left rectangles under-estimate and right rectangles over-estimate.
+  \item \textbf{Trapezium rule} (on the formula sheet):
+  \[\int_a^bf(x)\dx\approx\frac{h}{2}\Big[f(x_0)+2f(x_1)+\dots+2f(x_{n-1})+f(x_n)\Big]\]
+  (the formula sheet writes $\frac h2$ as $\frac{b-a}{2n}$). It equals the average of the left and right rectangle sums.
+  \item \textbf{Concave up} ($f''>0$): the trapezium rule \textbf{over-estimates}. \textbf{Concave down}: it \textbf{under-estimates}.
+  \item As $n\to\infty$ (strip width $\to0$), these sums approach the exact value: $\int_a^bf(x)\dx=\lim\sum f(x_i)\,\delta x$.
+\end{itemize}
+\end{keyres}
+\nextcol[0.425]
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.0cm, height=5.6cm, xmin=-0.25, xmax=2.45, ymin=-0.35, ymax=4.6, xtick={0.5,1,1.5,2}, ytick=\empty]
+  \fill[plotA!15] (axis cs:0,0) -- (axis cs:0,0) -- (axis cs:0.5,0.25) -- (axis cs:1,1) -- (axis cs:1.5,2.25) -- (axis cs:2,4) -- (axis cs:2,0) -- cycle;
+  \draw[plotA!70!black, thin] (axis cs:0,0) -- (axis cs:0.5,0.25) -- (axis cs:1,1) -- (axis cs:1.5,2.25) -- (axis cs:2,4);
+  \draw[plotA!70!black, thin] (axis cs:0.5,0) -- (axis cs:0.5,0.25);
+  \draw[plotA!70!black, thin] (axis cs:1,0) -- (axis cs:1,1);
+  \draw[plotA!70!black, thin] (axis cs:1.5,0) -- (axis cs:1.5,2.25);
+  \draw[plotA!70!black, thin] (axis cs:2,0) -- (axis cs:2,4);
+  \addplot[plotB, domain=0:2.2] {x^2};
+  \node[lab, plotB] at (axis cs:1.55,3.6) {$y=x^2$};
+\end{axis}
+\end{tikzpicture}
+
+{\scriptsize Four trapezia under $y=x^2$ on $[0,2]$. The curve is concave up, so the trapezia lie above it: an over-estimate.}
+\end{cols}
+
+\begin{example}{trapezium rule \byhand}
+Estimate $\int_0^2x^2\dx$ using four strips ($h=0.5$).\par
+\begin{tabular}{@{}l|ccccc@{}}
+$x$ & $0$ & $0.5$ & $1$ & $1.5$ & $2$\\ \hline
+$f(x)=x^2$ & $0$ & $0.25$ & $1$ & $2.25$ & $4$
+\end{tabular}\par
+Trapezium: $\frac{0.5}{2}\big[0+2(0.25+1+2.25)+4\big]=0.25\times11=2.75$. Exact value $\frac83\approx2.667$, so this is an over-estimate (concave up) \tick. Left rectangles give $0.5(0+0.25+1+2.25)=1.75$, right rectangles $0.5(0.25+1+2.25+4)=3.75$, and their average is $2.75$.\par
+\textbf{Another:} $\int_1^3\frac1x\dx$ with $h=0.5$ gives $\frac{0.5}{2}\left[1+2\left(\frac23+\frac12+\frac25\right)+\frac13\right]=\frac{67}{60}\approx1.1167$, against the exact $\loge3\approx1.0986$.
+\end{example}
+
+% -----------------------------------------------------------------
+\subsection{Areas under and between curves}
+\label{sec:area}
+
+\begin{method}{Finding an area}
+\begin{enumerate}
+  \item \textbf{Sketch.} Find the $x$-intercepts in the interval, or the intersection points of the curves.
+  \item Area \emph{under} $y=f(x)$: if $f\ge0$, $A=\int_a^bf(x)\dx$; if $f\le0$, $A=-\int_a^bf(x)\dx$. If $f$ changes sign, \textbf{split at the $x$-intercepts} and add the absolute values.
+  \item Area \emph{between} curves, with $f(x)\ge g(x)$ on $[a,b]$: $A=\displaystyle\int_a^b\big(f(x)-g(x)\big)\dx$ (top minus bottom; it does not matter which side of the $x$-axis the curves are on). If the curves cross inside the interval, split at the crossing.
+\end{enumerate}
+\end{method}
+
+\begin{cols}
+\begin{example}{signed area vs area \byhand}
+$y=x^2-2x$ on $[0,3]$ (zeros at $0$ and $2$):\par
+$\int_0^2(x^2-2x)\dx=\left[\frac{x^3}{3}-x^2\right]_0^2=-\frac43$\par
+$\int_2^3(x^2-2x)\dx=0-\left(-\frac43\right)=\frac43$\par
+Total \textbf{area} $=\frac43+\frac43=\frac83$, but $\int_0^3(x^2-2x)\dx=0$. The two regions cancel in the integral.
+\end{example}
+\nextcol
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.0cm, height=4.6cm, xmin=-0.5, xmax=3.5, ymin=-1.6, ymax=3.6, xtick={2,3}, ytick=\empty]
+  \addplot[name path=f, plotA, domain=-0.3:3.25] {x^2-2*x};
+  \path[name path=ax] (axis cs:-0.5,0) -- (axis cs:3.5,0);
+  \addplot[errcol!25] fill between[of=f and ax, soft clip={domain=0:2}];
+  \addplot[excol!30] fill between[of=f and ax, soft clip={domain=2:3}];
+  \node[lab] at (axis cs:1,-0.45) {$-\frac43$};
+  \node[lab] at (axis cs:2.75,0.55) {$+\frac43$};
+\end{axis}
+\end{tikzpicture}
+\end{cols}
+
+\begin{cols}
+\begin{example}{area between curves \byhand}
+Area enclosed by $y=x^2$ and $y=x+2$.\par
+Intersections: $x^2=x+2\Rightarrow(x-2)(x+1)=0$, so $x=-1,2$.\par
+On $[-1,2]$ the line is on top:\par
+$A=\int_{-1}^2(x+2-x^2)\dx=\left[\frac{x^2}{2}+2x-\frac{x^3}{3}\right]_{-1}^2$\par
+$=\frac{10}{3}-\left(-\frac76\right)=\frac92$ square units.
+\end{example}
+\nextcol
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=6.0cm, height=4.8cm, xmin=-1.8, xmax=2.6, ymin=-0.6, ymax=5.0, xtick={-1,2}, ytick=\empty]
+  \addplot[name path=g, plotB, domain=-1.6:2.2] {x^2};
+  \addplot[name path=h, plotA, domain=-1.6:2.5] {x+2};
+  \addplot[keycol!25] fill between[of=h and g, soft clip={domain=-1:2}];
+  \node[pt] at (axis cs:-1,1) {}; \node[pt] at (axis cs:2,4) {};
+  \node[lab, plotA] at (axis cs:2.2,3.7) {$y=x+2$};
+  \node[lab, plotB] at (axis cs:-1.35,2.6) {$y=x^2$};
+\end{axis}
+\end{tikzpicture}
+\end{cols}
+
+\begin{example}{circular functions and areas \byhand}
+Area between $y=\sin x$ and $y=\cos x$ from $x=\frac{\pi}{4}$ to $x=\frac{5\pi}{4}$ (they meet at both ends, and $\sin x\ge\cos x$ in between):\par
+$A=\int_{\pi/4}^{5\pi/4}(\sin x-\cos x)\dx=\big[-\cos x-\sin x\big]_{\pi/4}^{5\pi/4}=\left(\tfrac{\sqrt2}{2}+\tfrac{\sqrt2}{2}\right)-\left(-\tfrac{\sqrt2}{2}-\tfrac{\sqrt2}{2}\right)=2\sqrt2$.
+\end{example}
+
+\begin{tip}[Areas involving inverse functions and the $y$-axis]
+\begin{itemize}
+  \item The area between $f$ and $f^{-1}$ (meeting on $y=x$) is \textbf{twice} the area between $f$ and $y=x$.
+  \item For increasing $f$: $\displaystyle\int_{f(a)}^{f(b)}f^{-1}(x)\dx=bf(b)-af(a)-\int_a^bf(x)\dx$ (rectangle subtraction). For example, $\int_1^e\loge x\dx=1\cdot e-0-\int_0^1e^x\dx=e-(e-1)=1$.
+  \item An area between a curve and the $y$-axis can be found as a rectangle minus an area with respect to $x$. Draw the diagram.
+\end{itemize}
+\end{tip}
+
+% -----------------------------------------------------------------
+\subsection{Average value of a function}
+\label{sec:avg}
+
+\begin{cols}[0.6]
+\begin{keyres}{Average value}
+The average value of $f$ over $[a,b]$ is
+\[\bar f=\frac{1}{b-a}\int_a^bf(x)\dx.\]
+It is the height of the rectangle on $[a,b]$ that has the same (signed) area as the region under the curve.\par
+\textbf{Do not confuse} it with the \emph{average rate of change} $\frac{f(b)-f(a)}{b-a}$. For $f(x)=x^2$ on $[0,2]$: average value $=\frac12\cdot\frac83=\frac43$, but average rate of change $=\frac{4-0}{2}=2$.
+\end{keyres}
+\begin{example}{average value \byhand}
+Average value of $\sin x$ over $[0,\pi]$: $\frac{1}{\pi}\int_0^\pi\sin x\dx=\frac1\pi\big[-\cos x\big]_0^\pi=\frac{2}{\pi}$.
+\end{example}
+\nextcol[0.37]
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=5.6cm, height=4.4cm, xmin=-0.3, xmax=3.6, ymin=-0.2, ymax=1.3, xtick={3.14159}, xticklabels={$\pi$}, ytick={0.6366}, yticklabels={$\frac{2}{\pi}$}]
+  \fill[tipcol!18] (axis cs:0,0) rectangle (axis cs:3.14159,0.6366);
+  \draw[tipcol, thin] (axis cs:0,0.6366) -- (axis cs:3.14159,0.6366);
+  \addplot[plotA, domain=0:3.14159] {sin(deg(x))};
+\end{axis}
+\end{tikzpicture}
+
+{\scriptsize The rectangle of height $\frac2\pi$ has the same area ($2$) as the region under $\sin x$.}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{Other applications: net change, motion, probability}
+\label{sec:apps}
+
+\begin{cols}
+\begin{keyres}{Integrating a rate}
+\begin{itemize}
+  \item If $R(t)=\frac{dQ}{dt}$ is a rate, the \textbf{total change} in $Q$ from $t=a$ to $t=b$ is $\int_a^bR(t)\,dt=Q(b)-Q(a)$.
+  \item Motion: displacement $=\int_{t_1}^{t_2}v\,dt$; distance travelled $=\int_{t_1}^{t_2}|v|\,dt$ (split where $v=0$).
+  \item Probability: for a continuous random variable, $\Pr(a<X<b)=\int_a^bf(x)\dx$ (see \S\ref{sec:crv}).
+\end{itemize}
+\end{keyres}
+\nextcol
+\begin{example}{total change}
+Water flows into a tank at $R(t)=20-4t$ L/min for $0\le t\le5$. The volume added is
+$\int_0^5(20-4t)\,dt=\big[20t-2t^2\big]_0^5=100-50=50$ L.
+\end{example}
+\begin{cas}
+Use the integral template with exact bounds. To \emph{find a bound}, solve, e.g.\ \texttt{solve}$\left(\int_0^kf(x)\,dx=2,\,k\right)$ with a domain restriction. To check a total area, integrate $|f(x)|$. Graph first to see the sign changes.
+\end{cas}
+\end{cols}

@@ -1,0 +1,100 @@
+% =================================================================
+\section{Study design checklist: every dot point, where it is covered}
+\label{sec:checklist}
+% =================================================================
+
+Tick each item when you can do it \emph{without notes} (for \byhand\ items) or quickly with CAS. ``Where'' gives the section and page of this sheet. Every dot point and key skill in the study design for Units 3 and 4 Mathematical Methods is listed.
+
+\newcommand{\cl}[3]{\checkbox & #1 & \S\ref{#2} & p.\,\pageref{#2}#3\\}
+\newcommand{\clhead}[1]{\multicolumn{4}{@{}l}{\cellcolor{navy}\color{white}\sffamily\bfseries\small #1}\\}
+\newcommand{\cltablestart}{\small\renewcommand{\arraystretch}{1.25}\begin{tabularx}{\linewidth}{@{}c@{\hspace{6pt}}Lll@{}}}
+
+\cltablestart
+\clhead{Area of Study 1: Functions, relations and graphs}
+\cl{Graphs of polynomial functions and their key features}{sec:poly}{}
+\cl{Power functions $y=x^n$, $n\in\Q$: domains, ranges, asymptotes, symmetry}{sec:power}{}
+\cl{Exponential $y=a^x$ ($a\in\R^+$), especially $y=e^x$; logarithmic $y=\loge(x)$, $y=\log_{10}(x)$}{sec:explog}{}
+\cl{Circular functions $\sin$, $\cos$, $\tan$: amplitude, period, asymptotes, key features}{sec:circ}{}
+\cl{Transformation $y=f(x)\to y=Af(n(x+b))+c$ and the inverse transformation; the mapping of points}{sec:trans}{}
+\cl{Relation between original and transformed graphs; families with one parameter}{sec:families}{}
+\cl{Graphs of sums, differences, products and composites (not reciprocal/quotient composites)}{sec:combo}{}
+\cl{Hybrid (piecewise) functions: sketching, continuity at the joins}{sec:hybrid}{}
+\cl{Modelling with polynomial, power, circular, exponential and log functions; recognising models from graphs or tables}{sec:model}{}
+\cl{Domain (maximal/implied), co-domain, range, asymptotic behaviour, symmetry}{sec:domain}{}
+\cl{\byhand\ sketch polynomials (degree $\le4$), $x^n$ ($n\in\N$), $a^x$ (via $(-1,\frac1a)$, $(0,1)$, $(1,a)$), $\loge x$, $\log_{10}x$ and simple transformations}{sec:poly}{}
+\cl{Exponent (index) laws and logarithm laws; simplifying expressions}{sec:explog}{}
+\end{tabularx}
+
+\medskip
+\cltablestart
+\clhead{Area of Study 2: Algebra, number and structure}
+\cl{Polynomial equations of degree $n$ (up to $n$ real solutions), including numerical solutions}{sec:polyeq}{}
+\cl{Inverse functions: existence (one-to-one), rule, domain and range, graph (reflection in $y=x$)}{sec:inverse}{}
+\cl{Using inverse functions to solve exponential, logarithmic, circular and power equations}{sec:solve}{}
+\cl{Composite functions $f\circ g$ (exists iff $r_g\subseteq d_f$): rule, domain and range}{sec:composite}{}
+\cl{Solving $f(x)=g(x)$ over an interval: algebraic, graphical and numerical methods}{sec:solve}{}
+\cl{\byhand\ $\sin(ax+b)=c$, $\cos(ax+b)=c$, $\tan(ax+b)=c$ exactly over an interval; general solutions}{sec:circeq}{}
+\cl{Literal equations; general solutions of equations with a single parameter}{sec:literal}{}
+\cl{Simultaneous linear equations: unique, none or infinitely many solutions (2 lines geometrically)}{sec:simul}{}
+\cl{Numerical methods: Newton's method (algorithm), bisection; verifying solutions}{sec:newton}{}
+\cl{Properties of functions and functional equations}{sec:funceq}{}
+\end{tabularx}
+
+\medskip
+\cltablestart
+\clhead{Area of Study 3: Calculus}
+\cl{Graphical treatment of limits, continuity and differentiability}{sec:cont}{}
+\cl{Deducing the graph of the derivative from the graph of a function}{sec:gradgraph}{}
+\cl{Deducing the graph of an anti-derivative from the graph of a function}{sec:antigraph}{}
+\cl{Derivatives of $x^n$ ($n\in\Q$), $e^x$, $\loge(x)$, $\sin x$, $\cos x$, $\tan x$, and of $f(ax+b)$}{sec:rules}{}
+\cl{\byhand\ sum, difference, product, quotient and chain rules}{sec:rules}{}
+\cl{Tangents (and normals) to a curve at a given point}{sec:tangent}{}
+\cl{Graph sketching: stationary points, points of inflection, strictly increasing/decreasing intervals}{sec:sp}{}
+\cl{Curve sketching with calculus (all key features)}{sec:sketch}{}
+\cl{Local and absolute max/min over an interval (including endpoints); optimisation in context}{sec:opt}{}
+\cl{Rates of change in context}{sec:rates}{}
+\cl{\byhand\ anti-derivatives of polynomials, power functions and $f(ax+b)$ for $x^n$, $e^x$, $\sin$, $\cos$}{sec:antideriv}{}
+\cl{Anti-differentiation by recognition ($F'=f\Rightarrow\int f\dx=F+c$)}{sec:recog}{}
+\cl{Fundamental theorem of calculus $\int_a^bf(x)\dx=F(b)-F(a)$; properties of definite integrals}{sec:definite}{}
+\cl{Definite integral as a limit of sums; trapezium rule approximation}{sec:trap}{}
+\cl{Finding a function from its rate of change and a boundary condition}{sec:bc}{}
+\cl{Area under a curve and between curves}{sec:area}{}
+\cl{Average value of a function}{sec:avg}{}
+\cl{Other applications (net change, motion, probability)}{sec:apps}{}
+\end{tabularx}
+
+\medskip
+\cltablestart
+\clhead{Area of Study 4: Data analysis, probability and statistics}
+\cl{Random variable as a real function on a sample space; discrete vs continuous}{sec:rvdef}{}
+\cl{Discrete distributions via graphs, tables, pmfs; mean, variance, standard deviation}{sec:discrete}{}
+\cl{Bernoulli trials and $\Bi(n,p)$; conditions for using a binomial model}{sec:binomial}{}
+\cl{Effect of the parameters on the graph of a pmf}{sec:binomial}{}
+\cl{Probabilities of values and intervals, including conditional probability (discrete)}{sec:discrete}{}
+\cl{Constructing a pdf from a non-negative function (finding $k$)}{sec:crv}{}
+\cl{pdfs: probabilities, mean, variance, standard deviation, median, mode}{sec:crv}{}
+\cl{Effect of the parameters on the graph of a pdf}{sec:crv}{}
+\cl{Standard normal $\Nd(0,1)$ and $\Nd(\mu,\sigma^2)$: standardising, symmetry, inverse normal}{sec:normal}{}
+\cl{Probabilities of intervals, including conditional probability (continuous)}{sec:normal}{}
+\cl{Population parameter vs sample statistic; estimating $p$ with $\phat$}{sec:popsamp}{}
+\cl{$\Phat=\frac Xn$ as a random variable; exact distribution for small $n$}{sec:phat}{}
+\cl{Approximate normality of $\Phat$ for large $n$: mean $p$, standard deviation $\sqrt{p(1-p)/n}$}{sec:phat}{}
+\cl{Simulation of random sampling: distribution of $\Phat$, variation in confidence intervals}{sec:sim}{}
+\cl{Approximate confidence intervals (95\% with $z\approx1.96$), interpretation, margin of error, sample size}{sec:ci}{}
+\end{tabularx}
+
+\medskip
+\cltablestart
+\clhead{Outcomes 2 and 3: problem solving, algorithms and technology}
+\cl{Computational thinking: abstraction, decomposition, pattern, algorithm; the modelling cycle}{sec:ct}{}
+\cl{Algorithm design (sequencing, decision-making, repetition) and pseudocode; tracing}{sec:pseudo}{}
+\cl{Standard algorithms: Newton's method, bisection, trapezium rule, simulation}{sec:stdalg}{}
+\cl{Exact vs approximate results; technology notation vs formal notation; choosing CAS functions}{sec:cas}{}
+\cl{Examples, counter-examples and general cases; verifying results}{sec:ct}{}
+\cl{Exam conditions, the formula sheet and command terms}{sec:exam}{}
+\end{tabularx}
+
+\vfill
+\begin{tcolorbox}[basebox, colback=sdbg, colframe=sdcol, title={\faInfoCircle\enspace About this sheet}]
+\small Prepared from the VCAA \emph{VCE Mathematics Study Design 2023--2027} (Units 3 and 4: Mathematical Methods, version 1.1). Every worked example in this sheet was checked independently with a computer algebra system. Exam structures (marks, sections) are those of the 2023--2025 VCAA examinations. Always confirm the current examination specifications and formula sheet on the VCAA website.
+\end{tcolorbox}

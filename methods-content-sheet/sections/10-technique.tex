@@ -1,0 +1,108 @@
+% =================================================================
+\section{Exam technique and the errors that cost marks}
+\label{sec:technique}
+% =================================================================
+
+\begin{tip}[What examiners keep saying (themes from VCAA examination reports)]
+\begin{itemize}
+  \item \textbf{Show the key step.} In Exam 1, and in Exam 2 questions worth more than 1 mark, an answer alone often earns only part of the marks. Write the equation you are solving, the derivative or the integral with its bounds.
+  \item \textbf{Use correct notation.} $\dydx=\dots$ or $f'(x)=\dots$, not ``$=$'' chains joining unequal things; integrals need $dx$; indefinite integrals need $+c$; write $\loge$, not calculator syntax; use set and interval notation correctly.
+  \item \textbf{Answer the actual question.} Give coordinates when asked for a point, the \emph{value} when asked for the maximum value (not the $x$ where it occurs), all values of a parameter when asked for ``values'', units, and a sentence in context.
+  \item \textbf{Exact means exact.} When decimals are asked for, round only at the end and to the stated accuracy.
+  \item \textbf{``Hence''} means use the previous part. ``Show that'' means every step to the given answer, with no gaps.
+\end{itemize}
+\end{tip}
+
+\subsection{Topic-by-topic errors to avoid}
+
+\begin{warn}[Functions and graphs]
+\begin{multicols}{2}
+\begin{itemize}
+  \item Missing asymptote equations, open/closed endpoints, or coordinates on sketches.
+  \item Graphs that bend the wrong way near asymptotes or cross an asymptote they can't (e.g.\ $y=e^x$ crossing $y=0$).
+  \item Dilation factor: $f(2x)$ is a factor of $\frac12$ from the $y$-axis. Translation direction: $f(x+3)$ moves \emph{left}.
+  \item Doing transformations in the wrong order, or not factorising inside the brackets before reading off.
+  \item Writing $f^{-1}$ for $\frac1f$; forgetting the domain of $f^{-1}$ (it is the range of $f$).
+  \item Composite domain: $d_{f\circ g}=d_g$, not the implied domain of the simplified rule.
+  \item CAS in degree mode.
+\end{itemize}
+\end{multicols}
+\end{warn}
+\begin{warn}[Algebra and equations]
+\begin{multicols}{2}
+\begin{itemize}
+  \item Missing solutions in circular equations because the interval for $ax+b$ wasn't adjusted.
+  \item Dividing by an expression that might be zero (e.g.\ $\sin x$) and losing solutions. Factorise instead.
+  \item Not rejecting invalid solutions of log equations (check that every argument is $>0$).
+  \item $\loge(a+b)\ne\loge a+\loge b$; \ $e^{x+y}=e^xe^y$.
+  \item Simultaneous equations: when the determinant is $0$, you still have to check whether there are no solutions or infinitely many.
+  \item The $k=0$ case in ``$kx^2+\dots$'' (it is not a quadratic then).
+\end{itemize}
+\end{multicols}
+\end{warn}
+\begin{warn}[Calculus]
+\begin{multicols}{2}
+\begin{itemize}
+  \item Forgetting the inner derivative in the chain rule ($\ddx e^{3x}=3e^{3x}$).
+  \item Quotient rule in the wrong order: it is $\frac{vu'-uv'}{v^2}$.
+  \item $\int\frac{1}{ax+b}\dx=\frac1a\loge(ax+b)$: don't drop the $\frac1a$. Likewise $\int\sin(ax)\dx=-\frac1a\cos(ax)$: watch the sign.
+  \item Integrating across an $x$-intercept and calling the signed integral the ``area''.
+  \item Area between curves: use top minus bottom, and split where the curves cross.
+  \item Confusing the average value $\frac{1}{b-a}\int_a^bf$ with the average rate of change $\frac{f(b)-f(a)}{b-a}$.
+  \item Not justifying the nature of a stationary point; ignoring endpoints for absolute max/min.
+  \item Strictly increasing intervals that join across an asymptote or point of discontinuity.
+  \item Trapezium rule: wrong strip width $h$, or not doubling the interior values. Newton's method: rounding $x_n$ too early.
+\end{itemize}
+\end{multicols}
+\end{warn}
+\begin{warn}[Probability and statistics]
+\begin{multicols}{2}
+\begin{itemize}
+  \item $\Nd(\mu,\sigma^2)$: the second parameter is the \emph{variance}. Enter $\sigma$ (not $\sigma^2$) into CAS.
+  \item Discrete inequalities: $\Pr(X>2)=1-\Pr(X\le2)$, not $1-\Pr(X\le3)$.
+  \item Conditional probability: the denominator is the probability of the \emph{given} event.
+  \item Using the binomial distribution when the trials aren't independent (sampling without replacement), or not stating the binomial conditions when asked to justify.
+  \item pdf questions: checking only one condition; mixing up the median (area $0.5$) and the mean ($\int xf(x)\dx$).
+  \item Confidence intervals: incorrect interpretation; rounding $n$ \emph{down} (always round up); using the normal approximation when the question says to use the binomial (or vice versa).
+\end{itemize}
+\end{multicols}
+\end{warn}
+
+\subsection{Typical question types}
+
+\begin{cols}
+\begin{keyres}{Exam 1 (no technology): practise until automatic}
+\begin{itemize}
+  \item Differentiate (product, quotient, chain) and evaluate at a point.
+  \item ``Differentiate \dots\ hence find an anti-derivative of \dots''
+  \item Anti-derivatives of $f(ax+b)$; definite integrals with exact values; area between curves.
+  \item Solve a circular, exponential or log equation exactly over an interval.
+  \item Inverse and composite functions with domains and ranges.
+  \item Sketch a transformed exponential, log, power or polynomial graph with features labelled.
+  \item Tangent and normal lines; stationary points; a simple optimisation.
+  \item Discrete table with an unknown, mean and variance; binomial with small $n$; pdf: find $k$, a probability, a median; normal symmetry using given probabilities; small-sample $\Phat$; CI with $z\approx2$.
+  \item Simultaneous equations with a parameter; one or two steps of Newton's method; the trapezium rule; trace pseudocode.
+\end{itemize}
+\end{keyres}
+\nextcol
+\begin{keyres}{Exam 2 (CAS): what Section B usually looks like}
+\begin{itemize}
+  \item \textbf{Function and calculus modelling:} a curve, track, tank or population model. Find features, rates and optimal values; areas; join curves smoothly (hybrid functions).
+  \item \textbf{Circular modelling:} tides, temperature or a Ferris wheel. Find amplitude, period and translations; solve equations for times; average values.
+  \item \textbf{Probability:} discrete $\to$ binomial $\to$ continuous pdf $\to$ normal $\to$ sample proportions and CIs, often linked through one context, with conditional probability.
+  \item \textbf{Families and parameters:} a function with a parameter $a$ or $k$. Find the values for which there are $n$ solutions, a tangent, an inverse, etc.
+  \item \textbf{Transformations and inverses} combined with calculus (e.g.\ the area between $f$ and $f^{-1}$).
+\end{itemize}
+\textbf{Section A (MCQ):} quick checks by graphing, substituting the options, or testing special values. About 1.5 minutes each.
+\end{keyres}
+\end{cols}
+
+\begin{tip}[Final-week routine]
+\begin{enumerate}
+  \item Do full past exams under timed conditions. VCAA papers from 2023 onwards match this study design. Older papers (2016--2022) are still good practice for most topics: check any unfamiliar question against the checklist in Section~\ref{sec:checklist}.
+  \item Read the matching VCAA examination report for each paper. It lists exactly where marks were lost.
+  \item Re-do every question you got wrong 2--3 days later, without looking.
+  \item For Exam 2, finalise your bound reference: this sheet, CAS syntax notes and your own worked solutions. Tab it by topic so you can find things in seconds.
+  \item Use the checklist in the next section to find your last gaps.
+\end{enumerate}
+\end{tip}

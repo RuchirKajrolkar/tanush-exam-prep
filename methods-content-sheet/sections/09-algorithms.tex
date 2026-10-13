@@ -1,0 +1,207 @@
+% =================================================================
+\section{Algorithms, pseudocode and technology (Outcomes 2 \& 3)}
+\label{sec:algorithms}
+% =================================================================
+
+\begin{sdbox}
+\textbf{Outcome 2} (emphasised in Exam 2): apply mathematical processes in non-routine contexts, including open-ended investigative, modelling or problem-solving situations. Key knowledge includes \emph{``the role of examples, counter-examples and general cases''} and \emph{``key elements of algorithm design, including sequencing, decision-making and repetition, and representations of the ordered steps for an algorithm including through the use of pseudocode''}. Skills: identify variables, constraints and key features; formulate specific and general cases; use algorithms, patterns, models and simulation; verify results; draw valid conclusions; communicate in mathematical \emph{and} everyday language.\par
+\textbf{Outcome 3:} use computational thinking (abstraction, decomposition, pattern and algorithm) and the numerical, graphical, symbolic and statistical functions of technology. This covers exact vs approximate results; domain and range settings for graphs; parameters in general forms; the similarities and differences between formal mathematical expressions and their representation by technology (equivalent forms); sequencing, decision-making and repetition in algorithms and simulations; and choosing appropriate technology functions.
+\end{sdbox}
+
+\subsection{Computational thinking}
+\label{sec:ct}
+
+\begin{cols}
+\begin{defn}{The four components}
+\begin{itemize}
+  \item \textbf{Abstraction:} keep only the essential features (e.g.\ model a tank as a cylinder).
+  \item \textbf{Decomposition:} break a problem into smaller sub-problems (find the intersections, then the area, then optimise).
+  \item \textbf{Pattern recognition:} spot structure (e.g.\ every member of a family passes through $(1,2)$; the derivative pattern of $f(ax+b)$).
+  \item \textbf{Algorithm design:} an ordered, finite set of unambiguous steps that solves the problem (Newton's method, bisection, the trapezium rule, a simulation).
+\end{itemize}
+\end{defn}
+\nextcol
+\begin{keyres}{The modelling / problem-solving cycle}
+\begin{enumerate}
+  \item \textbf{Formulate:} define variables and assumptions; choose a model; set up equations.
+  \item \textbf{Solve:} by hand or with technology.
+  \item \textbf{Interpret:} translate results back to the context (units, sensible domain).
+  \item \textbf{Verify:} check with a specific case, a graph, a substitution or a counter-example.
+  \item \textbf{Communicate:} a clear conclusion in words.
+\end{enumerate}
+\textbf{Examples and counter-examples:} one counter-example disproves a general claim; examples (even many) do not prove one, though CAS results for general parameters can.
+\end{keyres}
+\end{cols}
+
+\subsection{Pseudocode conventions \newsd}
+\label{sec:pseudo}
+
+\begin{cols}[0.5]
+\begin{keyres}{Building blocks (VCAA style)}
+\begin{tabular}{@{}p{2.3cm}p{5.2cm}@{}}
+\textbf{Sequencing} & steps run in order, top to bottom \\
+Assignment & \texttt{x $\gets$ x + 1} (store the new value in \texttt{x}) \\
+\textbf{Decision} & \texttt{if} \dots\ \texttt{then} \dots\ \texttt{else} \dots\ \texttt{end if} \\
+\textbf{Repetition} & \texttt{for i from 1 to n} \dots\ \texttt{end for} (a fixed number of times)\\
+ & \texttt{while} condition \dots\ \texttt{end while} (until the condition is false) \\
+Functions & \texttt{define f(x)} \dots\ \texttt{return} \dots \\
+Output & \texttt{print x} \\
+\end{tabular}
+\par\smallskip
+{\small Exam pseudocode is always explained in the question. Read it line by line. Conventions may vary slightly, but the logic is what is tested.}
+\end{keyres}
+\nextcol[0.475]
+\begin{method}{Tracing pseudocode}
+Make a table with one column per variable and one row per pass through the loop. Update the values \emph{in the order the lines are written}. Check the loop condition at the right moment: a \texttt{while} loop checks \emph{before} each pass.
+\end{method}
+\begin{example}{trace these}
+\begin{minipage}[t]{0.47\linewidth}
+\begin{pseudo}
+a $\gets$ 1
+b $\gets$ 0
+for i from 1 to 4
+    b $\gets$ b + a
+    a $\gets$ 2 $\times$ a
+end for
+print b
+\end{pseudo}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.47\linewidth}
+\begin{pseudo}
+x $\gets$ 100
+n $\gets$ 0
+while x > 1
+    x $\gets$ x / 3
+    n $\gets$ n + 1
+end while
+print n
+\end{pseudo}
+\end{minipage}
+\par\smallskip
+Left: \texttt{b} takes the values $1,3,7,15$, so it prints \textbf{15}. Right: \texttt{x} goes $33.3,\,11.1,\,3.70,\,1.23,\,0.41$, so it prints \textbf{5}.
+\end{example}
+\end{cols}
+
+\subsection{Standard algorithms}
+\label{sec:stdalg}
+
+\begin{cols}
+\begin{keyres}{Newton's method (\S\ref*{sec:newton})}
+\begin{pseudo}
+define f(x) = x^3 - 2x - 5
+define df(x) = 3x^2 - 2
+x $\gets$ 2
+change $\gets$ 1
+while |change| > 0.0001
+    change $\gets$ f(x) / df(x)
+    x $\gets$ x - change
+end while
+print x                      // 2.0946
+\end{pseudo}
+\end{keyres}
+\nextcol
+\begin{keyres}{Trapezium rule (\S\ref*{sec:trap})}
+\begin{pseudo}
+define f(x) = x^2
+a $\gets$ 0,  b $\gets$ 2,  n $\gets$ 4
+h $\gets$ (b - a) / n
+sum $\gets$ f(a) + f(b)
+for i from 1 to n - 1
+    sum $\gets$ sum + 2 $\times$ f(a + i $\times$ h)
+end for
+print h / 2 $\times$ sum         // 2.75
+\end{pseudo}
+\end{keyres}
+\end{cols}
+
+\begin{cols}
+\begin{keyres}{Bisection method (a numerical solution)}
+If $f$ is continuous and $f(a)$, $f(b)$ have opposite signs, there is a root in $(a,b)$. Halve the interval repeatedly, keeping the half where the sign changes.
+\begin{pseudo}
+while (b - a) / 2 > tolerance
+    m $\gets$ (a + b) / 2
+    if f(a) $\times$ f(m) < 0 then
+        b $\gets$ m
+    else
+        a $\gets$ m
+    end if
+end while
+print (a + b) / 2
+\end{pseudo}
+\end{keyres}
+\nextcol
+\begin{example}{bisection for $x^2-2=0$ on $[1,2]$}
+\begin{tabular}{@{}ccccc@{}}
+$a$ & $b$ & $m$ & $f(m)$ & keep \\ \hline
+1 & 2 & 1.5 & $0.25$ & $[1,1.5]$ \\
+1 & 1.5 & 1.25 & $-0.4375$ & $[1.25,1.5]$ \\
+1.25 & 1.5 & 1.375 & $-0.1094$ & $[1.375,1.5]$ \\
+1.375 & 1.5 & 1.4375 & $0.0664$ & $[1.375,1.4375]$ \\
+\end{tabular}\par\smallskip
+The root ($\sqrt2\approx1.4142$) is trapped in an interval that halves each step. Bisection is slower than Newton's method, but it always converges.
+\end{example}
+\end{cols}
+
+\begin{keyres}{Simulation of sample proportions and confidence intervals}
+\label{sec:pseudo-sim}
+\begin{cols}[0.56]
+\begin{pseudo}
+p $\gets$ 0.4,  n $\gets$ 100,  count $\gets$ 0
+for trial from 1 to 1000
+    X $\gets$ randBin(n, p)        // successes in n trials
+    phat $\gets$ X / n
+    M $\gets$ 1.96 $\times$ sqrt(phat $\times$ (1 - phat) / n)
+    if phat - M < p and p < phat + M then
+        count $\gets$ count + 1
+    end if
+end for
+print count / 1000                 // close to 0.95
+\end{pseudo}
+\nextcol[0.415]
+This combines \textbf{repetition} (the \texttt{for} loop), \textbf{decision-making} (the \texttt{if}) and \textbf{sequencing}. Storing every \texttt{phat} instead would let you draw the histogram of $\Phat$ (centred at $p$, with spread $\approx\sqrt{p(1-p)/n}$). Changing \texttt{n} and \texttt{p} shows how the distribution and the interval widths change.
+\end{cols}
+\end{keyres}
+
+\needspace{0.42\textheight}
+\subsection{Using CAS well (Exam 2)}
+\label{sec:cas}
+
+\begin{cas}[Common tasks: check the exact syntax on your own calculator]
+\small
+\begin{tabularx}{\linewidth}{@{}p{3.6cm}LL@{}}
+\toprule
+Task & TI-Nspire CAS & Casio ClassPad \\
+\midrule
+Define and reuse & \texttt{Define f(x)=}\dots & \texttt{Define f(x)=}\dots \\
+Solve over an interval & \texttt{solve(eqn,x)|0$\le$x$\le$2$\pi$} & \texttt{solve(eqn,x)|0$\le$x$\le$2$\pi$} \\
+Numerical solution & \texttt{nSolve(eqn,x)} or graph \textsf{Intersection} & Solve in decimal mode or graph \textsf{Intersect} \\
+Derivative / value & $\frac{d}{dx}$ template; \texttt{|x=a} & \texttt{diff(f(x),x)}; \texttt{|x=a} \\
+Integral & $\int$ template (or \texttt{nInt}) & $\int$ template \\
+Max / min on $[a,b]$ & \texttt{fMax(f(x),x,a,b)} (returns $x$) & \texttt{fMax(f(x),x,a,b)} \\
+Tangent / normal & \texttt{tangentLine}, \texttt{normalLine} & \texttt{tanLine}, \texttt{normal} \\
+Binomial & \texttt{binomPdf(n,p,x)}, \texttt{binomCdf(n,p,lo,hi)} & \texttt{binomialPDf(x,n,p)}, \texttt{binomialCDf(lo,hi,n,p)} \\
+Normal & \texttt{normCdf(lo,hi,$\mu$,$\sigma$)}, \texttt{invNorm(area,$\mu$,$\sigma$)} & \texttt{normCDf(lo,hi,$\sigma$,$\mu$)} ($\sigma$ \emph{first}), \texttt{invNormCDf("L",area,$\sigma$,$\mu$)} \\
+Random samples & \texttt{randBin(n,p,k)} & \texttt{randBin(n,p,k)} \\
+\bottomrule
+\end{tabularx}
+\end{cas}
+
+\begin{cols}
+\begin{tip}[Exact vs approximate; CAS vs written notation]
+\begin{itemize}
+  \item Keep CAS in \textbf{radian} and \textbf{exact} (standard) mode unless you need decimals. Store intermediate results instead of retyping rounded values.
+  \item CAS writes $\ln$ for $\loge$, may write $\frac{1}{\cos^2x}$ as $\sec^2x$, and gives equivalent forms (e.g.\ $\frac12\loge\left(\frac{x+1}{3}\right)$ vs $\frac{\loge(x+1)-\loge3}{2}$). Both are fine. Write answers in \textbf{standard mathematical notation}, never calculator syntax (not \texttt{e\^{}(2x)} or \texttt{sqrt(}).
+  \item CAS general solutions use \texttt{n1}, \texttt{constn} etc. Write $k\in\Z$.
+  \item Choose a sensible viewing window (domain and range) so all key features show; check for hidden intersections or asymptotes.
+\end{itemize}
+\end{tip}
+\nextcol
+\begin{tip}[Getting the most from technology]
+\begin{itemize}
+  \item \textbf{Parameters:} define $f(x)$ with a parameter $k$, then solve for $k$ (e.g.\ ``the tangent at $x=1$ passes through the origin''). Graph several values of $k$ to see the family.
+  \item \textbf{Verify} by substitution, by graphing both sides, or by differentiating an anti-derivative.
+  \item \textbf{Constraints:} use \texttt{|} to restrict domains (e.g.\ $x>0$, $0\le t\le24$) and remove extraneous solutions.
+  \item In ``show that'' questions CAS output alone is not enough. Write the algebraic steps.
+\end{itemize}
+\end{tip}
+\end{cols}

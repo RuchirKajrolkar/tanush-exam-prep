@@ -1,0 +1,154 @@
+% =================================================================
+\section{Assumed knowledge from Units 1 \& 2}
+\label{sec:assumed}
+% =================================================================
+
+\begin{sdbox}
+\emph{``Assumed knowledge and skills for Mathematical Methods Units 3 and 4 are contained in Mathematical Methods Units 1 and 2, and will be drawn on, as applicable.''} Students should have \emph{``facility with relevant mental and by-hand approaches to estimation and computation''}. The tools in this section appear in almost every exam question, especially in Exam 1.
+\end{sdbox}
+
+\subsection{Algebra toolkit}
+
+\begin{cols}
+\begin{keyres}{Factorising \& expanding}
+\small
+\begin{itemize}
+  \item Common factor first: $6x^3-9x^2=3x^2(2x-3)$.
+  \item Difference of two squares: $a^2-b^2=(a-b)(a+b)$.
+  \item Perfect squares: $a^2\pm2ab+b^2=(a\pm b)^2$.
+  \item Sum/difference of cubes:\\ $a^3+b^3=(a+b)(a^2-ab+b^2)$,\\ $a^3-b^3=(a-b)(a^2+ab+b^2)$.
+  \item Grouping: $x^3-2x^2-9x+18=x^2(x-2)-9(x-2)$\\ $=(x-2)(x-3)(x+3)$.
+  \item Rationalise: $\dfrac{1}{\sqrt3-1}=\dfrac{\sqrt3+1}{(\sqrt3-1)(\sqrt3+1)}=\dfrac{\sqrt3+1}{2}$.
+\end{itemize}
+\end{keyres}
+\nextcol
+\begin{keyres}{Quadratics $ax^2+bx+c=0$}
+\small
+\begin{itemize}
+  \item Quadratic formula: $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$.
+  \item Discriminant $\Delta=b^2-4ac$:\\ $\Delta>0$: two real solutions (two $x$-intercepts);\\ $\Delta=0$: one (repeated) solution, so the graph touches the axis or the line is a \textbf{tangent};\\ $\Delta<0$: no real solutions.\\ $\Delta$ a perfect square (with rational $a,b,c$) gives rational solutions.
+  \item Completing the square:\\ $ax^2+bx+c=a\left(x+\frac{b}{2a}\right)^2+c-\frac{b^2}{4a}$; turning point $\left(-\frac{b}{2a},\ c-\frac{b^2}{4a}\right)$.
+  \item Axis of symmetry $x=-\frac{b}{2a}$ = the average of the roots.
+\end{itemize}
+\end{keyres}
+\end{cols}
+
+\begin{keyres}{Coordinate geometry}
+\small
+\begin{multicols}{2}
+\begin{itemize}
+  \item Gradient $m=\dfrac{y_2-y_1}{x_2-x_1}=\tan\theta$ ($\theta$ = angle with positive $x$-axis).
+  \item Line through $(x_1,y_1)$: $y-y_1=m(x-x_1)$.
+  \item Parallel: $m_1=m_2$. Perpendicular: $m_1m_2=-1$.
+  \item Midpoint $\left(\frac{x_1+x_2}{2},\frac{y_1+y_2}{2}\right)$; \ length $\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$.
+\end{itemize}
+\end{multicols}
+\end{keyres}
+
+\subsection{Circular functions: radians, the unit circle and exact values}
+
+\begin{minipage}[t]{0.47\linewidth}
+\vspace{0pt}
+\centering
+\begin{tikzpicture}[scale=1.75]
+  \draw[-{Stealth[length=4pt]}] (-1.35,0) -- (1.45,0) node[right,font=\small] {$x$};
+  \draw[-{Stealth[length=4pt]}] (0,-1.3) -- (0,1.38) node[above,font=\small] {$y$};
+  \draw[navy, line width=0.8pt] (0,0) circle (1);
+  \def\t{34}
+  \coordinate (P) at ({cos(\t)},{sin(\t)});
+  \coordinate (Q) at ({-cos(\t)},{sin(\t)});
+  \coordinate (Rr) at ({-cos(\t)},{-sin(\t)});
+  \coordinate (S) at ({cos(\t)},{-sin(\t)});
+  \foreach \c in {P,Q,Rr,S} {\draw[plotB, line width=0.6pt] (0,0) -- (\c); \fill (\c) circle (0.03);}
+  \draw[dashed, black!45] (Q) -- (P) (Rr) -- (S) (P) -- (S) (Q) -- (Rr);
+  \draw[plotB] (0.28,0) arc (0:\t:0.28); \node[font=\scriptsize, plotB] at (0.40,0.11) {$\theta$};
+  \node[font=\scriptsize, anchor=south west, inner sep=1pt] at (P) {$(\cos\theta,\sin\theta)$};
+  \node[font=\scriptsize, anchor=south east, inner sep=1pt] at (Q) {$\pi-\theta$};
+  \node[font=\scriptsize, anchor=north east, inner sep=1pt] at (Rr) {$\pi+\theta$};
+  \node[font=\scriptsize, anchor=north west, inner sep=1pt] at (S) {$2\pi-\theta$ or $-\theta$};
+  \node[font=\sffamily\bfseries\small, excol] at (0.62,0.98) {A};
+  \node[font=\sffamily\bfseries\small, excol] at (-0.62,0.98) {S};
+  \node[font=\sffamily\bfseries\small, excol] at (-0.62,-0.98) {T};
+  \node[font=\sffamily\bfseries\small, excol] at (0.62,-0.98) {C};
+  \node[font=\scriptsize] at (1.12,-0.09) {$1$};
+  \node[font=\scriptsize] at (-0.08,1.1) {$1$};
+\end{tikzpicture}
+
+{\scriptsize\textbf{A}ll positive in quadrant 1, \textbf{S}in in quadrant 2, \textbf{T}an in quadrant 3, \textbf{C}os in quadrant 4.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.5\linewidth}
+\vspace{0pt}
+\begin{keyres}{Definitions \& identities}
+\small
+\begin{itemize}
+  \item $\pi$ radians $=180^\circ$; \ degrees $\to$ radians: $\times\frac{\pi}{180}$.
+  \item Point at angle $\theta$ on the unit circle: $(\cos\theta,\sin\theta)$; \ $\tan\theta=\dfrac{\sin\theta}{\cos\theta}$.
+  \item $\sin^2\theta+\cos^2\theta=1$.
+  \item $\sin(\pi-\theta)=\sin\theta$, \ $\cos(\pi-\theta)=-\cos\theta$
+  \item $\sin(\pi+\theta)=-\sin\theta$, \ $\cos(\pi+\theta)=-\cos\theta$
+  \item $\sin(2\pi-\theta)=-\sin\theta$, \ $\cos(2\pi-\theta)=\cos\theta$
+  \item $\sin(-\theta)=-\sin\theta$ (odd), \ $\cos(-\theta)=\cos\theta$ (even), \ $\tan(-\theta)=-\tan\theta$
+  \item $\tan(\pi\pm\theta)=\pm\tan\theta$ (period $\pi$)
+  \item $\sin\!\left(\frac{\pi}{2}-\theta\right)=\cos\theta$, \ $\cos\!\left(\frac{\pi}{2}-\theta\right)=\sin\theta$
+\end{itemize}
+\end{keyres}
+\end{minipage}
+
+\begin{center}
+\small
+\begin{tabular}{>{\columncolor{keybg}}c|ccccc|cccc}
+\toprule
+$\theta$ & $0$ & $\frac{\pi}{6}$ ($30^\circ$) & $\frac{\pi}{4}$ ($45^\circ$) & $\frac{\pi}{3}$ ($60^\circ$) & $\frac{\pi}{2}$ ($90^\circ$) & $\pi$ & $\frac{3\pi}{2}$ & $2\pi$ \\
+\midrule
+$\sin\theta$ & $0$ & $\frac12$ & $\frac{\sqrt2}{2}$ & $\frac{\sqrt3}{2}$ & $1$ & $0$ & $-1$ & $0$\\[2pt]
+$\cos\theta$ & $1$ & $\frac{\sqrt3}{2}$ & $\frac{\sqrt2}{2}$ & $\frac12$ & $0$ & $-1$ & $0$ & $1$\\[2pt]
+$\tan\theta$ & $0$ & $\frac{1}{\sqrt3}=\frac{\sqrt3}{3}$ & $1$ & $\sqrt3$ & undefined & $0$ & undefined & $0$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{tip}[Getting the related angles fast]
+For $\frac{\pi}{6}$-type angles, the related angles in $[0,2\pi]$ are $\frac{\pi}{6},\ \frac{5\pi}{6},\ \frac{7\pi}{6},\ \frac{11\pi}{6}$. For $\frac{\pi}{4}$: $\frac{\pi}{4},\frac{3\pi}{4},\frac{5\pi}{4},\frac{7\pi}{4}$. For $\frac{\pi}{3}$: $\frac{\pi}{3},\frac{2\pi}{3},\frac{4\pi}{3},\frac{5\pi}{3}$. Pick the ones in the quadrants where the sign is right (ASTC). Example: $\cos\theta=-\frac{\sqrt3}{2}$ is negative in quadrants 2 and 3, so $\theta=\frac{5\pi}{6},\frac{7\pi}{6}$.
+\end{tip}
+
+\subsection{Probability toolkit}
+
+\begin{cols}
+\begin{keyres}{Rules}
+\small
+\begin{itemize}
+  \item $0\le\Pr(A)\le1$; \ $\Pr(A')=1-\Pr(A)$.
+  \item $\Pr(A\cup B)=\Pr(A)+\Pr(B)-\Pr(A\cap B)$.
+  \item Mutually exclusive: $\Pr(A\cap B)=0$.
+  \item Conditional: $\Pr(A|B)=\dfrac{\Pr(A\cap B)}{\Pr(B)}$, so $\Pr(A\cap B)=\Pr(A|B)\Pr(B)$.
+  \item \textbf{Independent} $\iff\Pr(A\cap B)=\Pr(A)\Pr(B)$ $\iff\Pr(A|B)=\Pr(A)$.
+  \item Total probability: $\Pr(A)=\Pr(A|B)\Pr(B)+\Pr(A|B')\Pr(B')$.
+  \item Combinations: $\binom{n}{r}={}^nC_r=\dfrac{n!}{r!\,(n-r)!}$; $\binom{n}{0}=\binom{n}{n}=1$, $\binom{n}{1}=n$, $\binom{n}{r}=\binom{n}{n-r}$.
+\end{itemize}
+\end{keyres}
+\nextcol
+\begin{keyres}{Karnaugh map (probability table)}
+\small
+\centering
+\begin{tabular}{c|cc|c}
+ & $B$ & $B'$ & \\ \hline
+$A$ & $\Pr(A\cap B)$ & $\Pr(A\cap B')$ & $\Pr(A)$\\
+$A'$ & $\Pr(A'\cap B)$ & $\Pr(A'\cap B')$ & $\Pr(A')$\\ \hline
+ & $\Pr(B)$ & $\Pr(B')$ & $1$
+\end{tabular}
+\par\smallskip\raggedright
+Rows and columns add up. Fill in what you know, then complete by subtraction.\par
+\textbf{Pascal's triangle} gives $\binom{n}{r}$: row 4 is $1\ 4\ 6\ 4\ 1$; row 5 is $1\ 5\ 10\ 10\ 5\ 1$; row 6 is $1\ 6\ 15\ 20\ 15\ 6\ 1$.
+\end{keyres}
+\end{cols}
+
+\begin{example}{tree diagram and conditional probability \byhand}
+The probability that it rains on a given day is $0.3$. If it rains, Sam is late with probability $0.4$; if it doesn't rain, Sam is late with probability $0.1$. Find $\Pr(\text{late})$ and $\Pr(\text{rain}\mid\text{late})$.
+
+\textbf{Solution.} $\Pr(L)=\Pr(L|R)\Pr(R)+\Pr(L|R')\Pr(R')=0.4(0.3)+0.1(0.7)=0.12+0.07=0.19$.\quad
+$\Pr(R|L)=\dfrac{\Pr(R\cap L)}{\Pr(L)}=\dfrac{0.12}{0.19}=\dfrac{12}{19}$.
+\end{example}
+
+\begin{example}{independence test \byhand}
+$\Pr(A)=0.5$, $\Pr(B)=0.4$, $\Pr(A\cap B)=0.2$. Since $\Pr(A)\Pr(B)=0.2=\Pr(A\cap B)$, $A$ and $B$ \textbf{are independent}. Also $\Pr(A\cup B)=0.5+0.4-0.2=0.7$ and $\Pr(A'\cap B')=1-0.7=0.3$.
+\end{example}

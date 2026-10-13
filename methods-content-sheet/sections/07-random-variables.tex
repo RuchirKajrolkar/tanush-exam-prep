@@ -1,0 +1,293 @@
+% =================================================================
+\section{Random variables and probability distributions (Area of Study 4)}
+\label{sec:rv}
+% =================================================================
+
+\begin{sdbox}
+\begin{itemize}
+  \item random variables, including the concept of a random variable as a real function defined on a sample space, and examples of discrete and continuous random variables
+  \item \textbf{discrete random variables:} specification of probability distributions using graphs, tables and probability mass functions; calculation and interpretation of mean $\mu$, variance $\sigma^2$ and standard deviation, and their use; \textbf{Bernoulli trials and the binomial distribution} $\Bi(n,p)$; effect of variation in the value(s) of defining parameters on the graph of a probability mass function; calculation of probabilities for specific values and intervals, \textbf{including conditional probability}
+  \item \textbf{continuous random variables:} construction of probability density functions from non-negative functions of a real variable; specification of probability distributions using pdfs; calculation and interpretation of $\mu$, $\sigma^2$ and $\sigma$, and their use; the \textbf{standard normal} $\Nd(0,1)$ and transformed normal distributions $\Nd(\mu,\sigma^2)$; effect of variation in the defining parameters on the graph of a pdf; calculation of probabilities for intervals, \textbf{including conditional probability} (the cumulative distribution function may be used but is not required)
+\end{itemize}
+\textbf{Key knowledge/skills:} the conditions under which a Bernoulli trial or a probability distribution may be selected to model a situation; analyse a pmf or pdf and its graph in terms of its parameters, mean and variance; calculate and interpret probabilities \byhand\ where the arithmetic is simple; apply distributions to modelling and problem solving.
+\end{sdbox}
+
+\subsection{Random variables}
+\label{sec:rvdef}
+
+\begin{cols}
+\begin{defn}{Random variables}
+A \textbf{random variable} $X$ is a function that assigns a real number to each outcome in the sample space of a random experiment. Upper case $X$ is the variable; lower case $x$ is a particular value.
+\begin{itemize}
+  \item \textbf{Discrete:} countable values, e.g.\ number of heads, number of faulty items, goals scored.
+  \item \textbf{Continuous:} any value in an interval, e.g.\ time, height, mass, temperature.
+\end{itemize}
+\end{defn}
+\nextcol
+\begin{example}{a random variable from a sample space}
+Toss two fair coins; $X$ = number of heads. Sample space $\{HH,HT,TH,TT\}$, so $X$ takes the values $2,1,1,0$.\par
+\begin{tabular}{@{}l|ccc@{}}
+$x$ & $0$ & $1$ & $2$\\ \hline
+$\Pr(X=x)$ & $\frac14$ & $\frac12$ & $\frac14$
+\end{tabular}\par
+$\E(X)=0+\frac12+\frac12=1$.
+\end{example}
+\end{cols}
+
+% -----------------------------------------------------------------
+\subsection{Discrete probability distributions}
+\label{sec:discrete}
+
+\begin{keyres}{Discrete random variables}
+\begin{cols}
+\begin{itemize}
+  \item \textbf{pmf:} $p(x)=\Pr(X=x)$, given by a table, a graph or a rule.
+  \item \textbf{Conditions:} $0\le p(x)\le1$ for every $x$, and $\sum p(x)=1$.
+  \item \textbf{Mean} (expected value, the long-run average):\\ $\mu=\E(X)=\sum x\,p(x)$; in general $\E(g(X))=\sum g(x)\,p(x)$.
+  \item \textbf{Variance:} $\sigma^2=\Var(X)=\E\big[(X-\mu)^2\big]=\E(X^2)-\mu^2$.
+  \item \textbf{Standard deviation:} $\sigma=\sd(X)=\sqrt{\Var(X)}$, in the same units as $X$.
+\end{itemize}
+\nextcol
+\begin{itemize}
+  \item \textbf{Linear change:} $\E(aX+b)=a\E(X)+b$; \ $\Var(aX+b)=a^2\Var(X)$; \ $\sd(aX+b)=|a|\sd(X)$. Adding a constant shifts the mean but not the spread.
+  \item \textbf{Mode:} the most probable value. \textbf{Median:} the value where the cumulative probability first reaches $0.5$.
+  \item For many distributions, about 95\% of values lie within $\mu\pm2\sigma$ (a rule of thumb).
+  \item \textbf{Conditional:} $\Pr(X\in A\mid X\in B)=\dfrac{\Pr(X\in A\cap B)}{\Pr(X\in B)}$.
+\end{itemize}
+\end{cols}
+\end{keyres}
+
+\begin{example}{a discrete distribution with an unknown \byhand}
+\begin{tabular}{@{}l|cccc@{}}
+$x$ & $0$ & $1$ & $2$ & $3$\\ \hline
+$\Pr(X=x)$ & $0.1$ & $k$ & $2k$ & $0.3$
+\end{tabular}\quad
+\textbf{(a)} $0.1+k+2k+0.3=1\Rightarrow k=0.2$.\par
+\textbf{(b)} $\E(X)=0(0.1)+1(0.2)+2(0.4)+3(0.3)=1.9$. \ $\E(X^2)=0+0.2+1.6+2.7=4.5$.\par
+\phantom{\textbf{(b)}} $\Var(X)=4.5-1.9^2=0.89$, so $\sd(X)=\sqrt{0.89}\approx0.943$.\par
+\textbf{(c)} $\Pr(X\ge2\mid X\ge1)=\dfrac{\Pr(X\ge2)}{\Pr(X\ge1)}=\dfrac{0.4+0.3}{0.9}=\dfrac79$.\par
+\textbf{(d)} $\E(3X-2)=3(1.9)-2=3.7$; \ $\Var(3X-2)=9(0.89)=8.01$.\par
+\textbf{(e)} Mode $=2$. Cumulative: $0.1,\,0.3,\,0.7,\dots$, so the median is $2$.\par
+\textbf{(f)} Two independent observations: $\Pr(\text{sum}=2)=\Pr(0,2)+\Pr(2,0)+\Pr(1,1)=2(0.1)(0.4)+(0.2)^2=0.12$.
+\end{example}
+
+\begin{tip}[\mcq{} Discrete inequalities]
+For integer-valued $X$: $\Pr(X<3)=\Pr(X\le2)$, \ $\Pr(X>3)=\Pr(X\ge4)=1-\Pr(X\le3)$. ``At least 3'' is $X\ge3$; ``more than 3'' is $X\ge4$; ``at most 3'' / ``no more than 3'' is $X\le3$; ``fewer than 3'' is $X\le2$. For a rule-based pmf, check the conditions (e.g.\ $\Pr(X=x)=\frac{x}{10}$, $x\in\{1,2,3,4\}$, sums to $1$; its mean is $\frac{1+4+9+16}{10}=3$).
+\end{tip}
+
+% -----------------------------------------------------------------
+\subsection{Bernoulli trials and the binomial distribution}
+\label{sec:binomial}
+
+\begin{keyres}{The binomial distribution $X\sim\Bi(n,p)$}
+\begin{cols}
+\textbf{Bernoulli trial:} one trial with two outcomes, success (probability $p$) or failure ($1-p$). A Bernoulli variable takes the values $1$ or $0$, with mean $p$ and variance $p(1-p)$.\par
+\textbf{Binomial conditions} (state these when asked to justify the model):
+\begin{enumerate}
+  \item a fixed number $n$ of trials;
+  \item each trial has two outcomes (success/failure);
+  \item the trials are independent;
+  \item $p$ is the same for every trial.
+\end{enumerate}
+$X$ = the number of successes in $n$ trials.
+\nextcol
+\[\Pr(X=x)=\binom{n}{x}p^x(1-p)^{n-x},\quad x=0,1,\dots,n\]
+\[\E(X)=np,\qquad\Var(X)=np(1-p)\]
+\[\sd(X)=\sqrt{np(1-p)}\]
+\textbf{Not binomial:} sampling \emph{without replacement} from a small population ($p$ changes and the trials are not independent); trials that affect each other; ``repeat until the first success'' (the number of trials isn't fixed).\par
+\textbf{Mode:} the most likely value, near $np$ (for $\Bi(20,0.3)$ it is $6$).
+\end{cols}
+\end{keyres}
+
+\begin{center}
+\pgfplotsset{binom/.style={smallgraph, width=5.3cm, height=3.6cm, ybar, bar width=4.5pt, xmin=-0.8, xmax=10.8, ymin=0, ymax=0.33,
+  xtick={0,2,4,6,8,10}, ytick={0.1,0.2,0.3}, axis lines=left, xlabel={$x$}, ylabel={},
+  every axis plot/.append style={line width=0.4pt}, title style={font=\scriptsize}}}
+\begin{tikzpicture}
+\begin{axis}[binom, title={$\Bi(10,0.2)$: positively skewed}]
+\addplot[fill=plotA!60, draw=plotA] coordinates {(0,0.1074) (1,0.2684) (2,0.3020) (3,0.2013) (4,0.0881) (5,0.0264) (6,0.0055) (7,0.0008) (8,0.0001) (9,0) (10,0)};
+\end{axis}
+\end{tikzpicture}\hfill
+\begin{tikzpicture}
+\begin{axis}[binom, title={$\Bi(10,0.5)$: symmetric}]
+\addplot[fill=plotC!60, draw=plotC] coordinates {(0,0.0010) (1,0.0098) (2,0.0439) (3,0.1172) (4,0.2051) (5,0.2461) (6,0.2051) (7,0.1172) (8,0.0439) (9,0.0098) (10,0.0010)};
+\end{axis}
+\end{tikzpicture}\hfill
+\begin{tikzpicture}
+\begin{axis}[binom, title={$\Bi(10,0.8)$: negatively skewed}]
+\addplot[fill=plotB!60, draw=plotB] coordinates {(0,0) (1,0) (2,0.0001) (3,0.0008) (4,0.0055) (5,0.0264) (6,0.0881) (7,0.2013) (8,0.3020) (9,0.2684) (10,0.1074)};
+\end{axis}
+\end{tikzpicture}
+
+{\scriptsize\textbf{Effect of the parameters:} $p<0.5$ positively skewed, $p=0.5$ symmetric, $p>0.5$ negatively skewed. Increasing $n$ moves the centre ($np$) right, spreads the distribution and makes it more symmetric (bell-shaped).}
+\end{center}
+
+\begin{cols}
+\begin{example}{binomial \byhand}
+$X\sim\Bi\!\left(4,\frac13\right)$.\par
+$\Pr(X=2)=\binom42\left(\frac13\right)^2\left(\frac23\right)^2=6\cdot\frac19\cdot\frac49=\frac{8}{27}$.\par
+$\Pr(X\ge1)=1-\Pr(X=0)=1-\left(\frac23\right)^4=\frac{65}{81}$.\par
+$\Pr(X=2\mid X\ge1)=\dfrac{8/27}{65/81}=\dfrac{24}{65}$.\par
+$\E(X)=\frac43$, \ $\Var(X)=4\cdot\frac13\cdot\frac23=\frac89$.
+\end{example}
+\nextcol
+\begin{example}{binomial with CAS \examtwo}
+$X\sim\Bi(20,0.3)$.\par
+$\Pr(X\ge5)=1-\Pr(X\le4)=1-0.2375=0.7625$ (CAS \texttt{binomCdf} from 5 to 20).\par
+\textbf{Find $p$:} if $n=4$ and $\Pr(X=0)=0.0256$, then $(1-p)^4=0.0256$, so $1-p=0.4$ and $p=0.6$.\par
+\textbf{From the mean and variance:} $np=6$ and $np(1-p)=4.2$ give $1-p=0.7$, so $p=0.3$ and $n=20$.
+\end{example}
+\end{cols}
+
+\begin{example}{``at least one'': finding $n$}
+Each item is faulty with probability $0.1$. How many items must be tested so that the probability of finding \emph{at least one} faulty item is more than $0.95$?\par
+$\Pr(X\ge1)=1-0.9^n>0.95\Rightarrow0.9^n<0.05\Rightarrow n\loge(0.9)<\loge(0.05)\Rightarrow n>\dfrac{\loge0.05}{\loge0.9}\approx28.4$.\par
+\textbf{The inequality flips} because $\loge0.9<0$. So $n=29$. Check: $0.9^{28}\approx0.052$ (too big) and $0.9^{29}\approx0.047$ \tick.
+\end{example}
+
+% -----------------------------------------------------------------
+\subsection{Continuous random variables and probability density functions}
+\label{sec:crv}
+
+\begin{keyres}{Probability density functions}
+\begin{cols}
+\begin{itemize}
+  \item $f$ is a \textbf{pdf} if (1) $f(x)\ge0$ for all $x$, and (2) $\displaystyle\int_{-\infty}^{\infty}f(x)\dx=1$ (total area $1$).
+  \item $\Pr(a<X<b)=\displaystyle\int_a^bf(x)\dx$, the area under the pdf.
+  \item $\Pr(X=a)=0$, so $\Pr(a<X<b)=\Pr(a\le X\le b)$: strict and non-strict inequalities give the same answer.
+  \item \textbf{Constructing a pdf:} for $g(x)\ge0$ on $[a,b]$, the function $f(x)=kg(x)$ there (and $0$ elsewhere) is a pdf when $k=\dfrac{1}{\int_a^bg(x)\dx}$.
+\end{itemize}
+\nextcol
+\begin{itemize}
+  \item \textbf{Mean:} $\mu=\E(X)=\displaystyle\int_{-\infty}^{\infty}x\,f(x)\dx$.
+  \item \textbf{Variance:} $\Var(X)=\displaystyle\int_{-\infty}^{\infty}(x-\mu)^2f(x)\dx=\E(X^2)-\mu^2$, with $\E(X^2)=\int x^2f(x)\dx$.
+  \item \textbf{Median} $m$: $\displaystyle\int_{-\infty}^{m}f(x)\dx=0.5$. A percentile $q$: $\int_{-\infty}^qf(x)\dx=$ the given proportion.
+  \item \textbf{Mode:} the $x$ where $f(x)$ is greatest (it can be at an endpoint).
+  \item \textbf{Symmetric pdf:} mean = median = the centre of symmetry.
+  \item CDF (optional): $F(x)=\Pr(X\le x)=\int_{-\infty}^xf(t)\,dt$, with $F'(x)=f(x)$.
+\end{itemize}
+\end{cols}
+\end{keyres}
+
+\begin{cols}[0.6]
+\begin{example}{a polynomial pdf \byhand}
+$f(x)=\begin{cases}kx(2-x), & 0\le x\le2\\0, & \text{elsewhere}\end{cases}$\par
+\textbf{$k$:} $k\int_0^2(2x-x^2)\dx=k\left[x^2-\frac{x^3}{3}\right]_0^2=\frac{4k}{3}=1\Rightarrow k=\frac34$.\par
+\textbf{Mean:} $1$ (by symmetry about $x=1$). \ $\E(X^2)=\frac34\int_0^2(2x^3-x^4)\dx=\frac34\left(8-\frac{32}{5}\right)=\frac65$.\par
+$\Var(X)=\frac65-1^2=\frac15$, so $\sd(X)=\frac{1}{\sqrt5}$. Median and mode are $1$.\par
+$\Pr(X<0.5)=\frac34\left[x^2-\frac{x^3}{3}\right]_0^{1/2}=\frac34\cdot\frac{5}{24}=\frac{5}{32}$.\par
+$\Pr(X<1\mid X>0.5)=\dfrac{\Pr(0.5<X<1)}{\Pr(X>0.5)}=\dfrac{\frac12-\frac{5}{32}}{1-\frac{5}{32}}=\dfrac{11}{27}$.
+\end{example}
+\nextcol[0.37]
+\centering
+\begin{tikzpicture}
+\begin{axis}[mygraph, width=5.6cm, height=4.6cm, xmin=-0.3, xmax=2.5, ymin=-0.1, ymax=0.95, xtick={0.5,1,2}, ytick={0.75}, yticklabels={$\frac34$}]
+  \addplot[name path=p, plotA, domain=0:2] {0.75*x*(2-x)};
+  \path[name path=ax] (axis cs:0,0) -- (axis cs:2,0);
+  \addplot[plotA!25] fill between[of=p and ax, soft clip={domain=0:0.5}];
+  \node[lab] at (axis cs:0.33,0.07) {$\frac{5}{32}$};
+\end{axis}
+\end{tikzpicture}
+
+{\scriptsize The shaded area is $\Pr(X<0.5)=\frac{5}{32}$.}
+\end{cols}
+
+\begin{cols}
+\begin{example}{median vs mean \byhand}
+$f(x)=\frac x2$ on $[0,2]$ (and $0$ elsewhere). It is a pdf since $\int_0^2\frac x2\dx=1$.\par
+Median: $\int_0^m\frac x2\dx=\frac{m^2}{4}=\frac12\Rightarrow m=\sqrt2$.\par
+Mean: $\int_0^2\frac{x^2}{2}\dx=\frac43$. \ $\E(X^2)=\int_0^2\frac{x^3}{2}\dx=2$, so $\Var(X)=2-\frac{16}{9}=\frac29$.\par
+The mean $\frac43\approx1.33$ is less than the median $\sqrt2\approx1.41$: the distribution is negatively skewed.
+\end{example}
+\nextcol
+\begin{example}{an exponential pdf and a parameter}
+$f(x)=ke^{-2x}$ for $x\ge0$: $\int_0^\infty ke^{-2x}\dx=\frac k2=1\Rightarrow k=2$.\par
+Median: $\int_0^m2e^{-2x}\dx=1-e^{-2m}=\frac12\Rightarrow m=\frac{\loge2}{2}$.\par
+CAS: $\E(X)=\frac12$, $\Var(X)=\frac14$.\par
+\textbf{Parameter effect:} for $f(x)=\lambda e^{-\lambda x}$, a larger $\lambda$ gives a higher starting value ($f(0)=\lambda$), a faster decay and a smaller mean $\frac1\lambda$. The area stays $1$.
+\end{example}
+\end{cols}
+
+\begin{tip}[Transformations and pdfs]
+If $Y=aX+b$, then $\E(Y)=a\E(X)+b$ and $\Var(Y)=a^2\Var(X)$ (same as discrete). Translating a pdf by $h$ adds $h$ to the mean and median and leaves the variance unchanged. Dilating a pdf by factor $a$ from the $y$-axis requires a dilation by factor $\frac1a$ from the $x$-axis to keep the total area $1$: the new pdf is $\frac1af\!\left(\frac xa\right)$, with mean $\times a$ and variance $\times a^2$. For a hybrid pdf, integrate each piece over its own interval and add.
+\end{tip}
+
+% -----------------------------------------------------------------
+\subsection{The normal distribution}
+\label{sec:normal}
+
+\begin{cols}[0.53]
+\begin{keyres}{$X\sim\Nd(\mu,\sigma^2)$}
+\begin{itemize}
+  \item Bell-shaped and symmetric about $x=\mu$; mean = median = mode $=\mu$; points of inflection at $\mu\pm\sigma$; total area $1$.
+  \item pdf: $f(x)=\dfrac{1}{\sigma\sqrt{2\pi}}\,e^{-\frac12\left(\frac{x-\mu}{\sigma}\right)^2}$ (rarely needed by hand).
+  \item \textbf{The second parameter is the variance:} $\Nd(10,4)$ has $\sigma=2$.
+  \item \textbf{Effect of parameters:} changing $\mu$ translates the curve; a larger $\sigma$ makes it wider and lower (peak height $\frac{1}{\sigma\sqrt{2\pi}}$).
+  \item \textbf{Standard normal:} $Z\sim\Nd(0,1)$. Standardise with $Z=\dfrac{X-\mu}{\sigma}$. The $z$-score is the number of standard deviations from the mean.
+  \item \textbf{68--95--99.7\% rule:} about 68\%, 95\% and 99.7\% of values lie within $1$, $2$ and $3$ standard deviations of $\mu$.
+\end{itemize}
+\end{keyres}
+\nextcol[0.445]
+\centering
+\begin{tikzpicture}[declare function={npdf(\x,\m,\s)=1/(\s*sqrt(2*pi))*exp(-((\x-\m)^2)/(2*\s^2));}]
+\begin{axis}[mygraph, width=7.0cm, height=4.8cm, xmin=-3.6, xmax=3.8, ymin=0, ymax=0.6,
+  xtick={-3,-2,-1,0,1,2,3}, xticklabels={$\mu{-}3\sigma$,,$\mu{-}\sigma$,$\mu$,$\mu{+}\sigma$,,$\mu{+}3\sigma$}, ytick=\empty, axis y line=none,
+  every tick label/.append style={font=\tiny}]
+  \addplot[name path=n, plotA, domain=-3.5:3.5] {npdf(x,0,1)};
+  \path[name path=ax] (axis cs:-3.5,0) -- (axis cs:3.5,0);
+  \addplot[plotA!35] fill between[of=n and ax, soft clip={domain=-1:1}];
+  \addplot[plotA!18] fill between[of=n and ax, soft clip={domain=-2:-1}];
+  \addplot[plotA!18] fill between[of=n and ax, soft clip={domain=1:2}];
+  \addplot[plotA!8] fill between[of=n and ax, soft clip={domain=-3:-2}];
+  \addplot[plotA!8] fill between[of=n and ax, soft clip={domain=2:3}];
+  \node[lab] at (axis cs:0,0.15) {$68\%$};
+  \draw[{Stealth[length=3pt]}-{Stealth[length=3pt]}, thin] (axis cs:-2,0.46) -- node[lab, fill=white] {$95\%$} (axis cs:2,0.46);
+  \draw[{Stealth[length=3pt]}-{Stealth[length=3pt]}, thin] (axis cs:-3,0.55) -- node[lab, fill=white] {$99.7\%$} (axis cs:3,0.55);
+  \draw[black!30, thin] (axis cs:-2,0) -- (axis cs:-2,0.46) (axis cs:2,0) -- (axis cs:2,0.46) (axis cs:-3,0) -- (axis cs:-3,0.55) (axis cs:3,0) -- (axis cs:3,0.55);
+\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}[declare function={npdf(\x,\m,\s)=1/(\s*sqrt(2*pi))*exp(-((\x-\m)^2)/(2*\s^2));}]
+\begin{axis}[mygraph, width=7.0cm, height=4.0cm, xmin=-5.5, xmax=6.5, ymin=0, ymax=0.45, xtick={0,2}, ytick=\empty, axis y line=none, every tick label/.append style={font=\scriptsize}]
+  \addplot[plotA, domain=-5:6] {npdf(x,0,1)};
+  \addplot[plotB, dashed, domain=-5:6] {npdf(x,2,1)};
+  \addplot[plotC, domain=-5.4:6.4] {npdf(x,0,2)};
+  \node[lab, plotA] at (axis cs:-1.65,0.36) {$\Nd(0,1)$};
+  \node[lab, plotB] at (axis cs:3.7,0.33) {$\Nd(2,1)$};
+  \node[lab, plotC] at (axis cs:-3.6,0.12) {$\Nd(0,4)$};
+\end{axis}
+\end{tikzpicture}
+\end{cols}
+
+\begin{keyres}{Symmetry results for $Z\sim\Nd(0,1)$ (essential for Exam 1)}
+$\Pr(Z<0)=0.5$ \textbullet\ $\Pr(Z<-a)=\Pr(Z>a)=1-\Pr(Z<a)$ \textbullet\ $\Pr(-a<Z<a)=1-2\Pr(Z>a)=2\Pr(Z<a)-1$ \textbullet\ $\Pr(X<\mu-k)=\Pr(X>\mu+k)$ for any normal $X$.\par
+Useful quantiles: $\Pr(-1.645<Z<1.645)\approx0.90$; \ $\Pr(-1.96<Z<1.96)\approx0.95$; \ $\Pr(-2.576<Z<2.576)\approx0.99$.
+\end{keyres}
+
+\begin{cols}
+\begin{example}{normal without technology \byhand}
+$X\sim\Nd(50,\sigma^2)$ and $\Pr(X<60)=0.8$.\par
+$\Pr(X>60)=0.2$, so by symmetry $\Pr(X<40)=0.2$.\par
+$\Pr(40<X<60)=1-0.2-0.2=0.6$.\par
+$\Pr(X>60\mid X>50)=\dfrac{\Pr(X>60)}{\Pr(X>50)}=\dfrac{0.2}{0.5}=0.4$.\par
+\textbf{Standardising:} if $\Pr(Z<1)\approx0.84$, then for $\Nd(100,15^2)$, $\Pr(X>115)=\Pr(Z>1)\approx0.16$ and $\Pr(85<X<115)\approx0.68$.
+\end{example}
+\nextcol
+\begin{example}{normal with CAS \examtwo}
+Heights $X\sim\Nd(170,8^2)$ cm.\par
+$\Pr(X>180)=\Pr(Z>1.25)\approx0.1056$.\par
+$\Pr(160<X<180)\approx0.7887$.\par
+\textbf{Inverse normal:} the height exceeded by only 10\% is $k$ with $\Pr(X<k)=0.9$: $k=170+1.2816\times8\approx180.25$ cm.\par
+\textbf{Combining with binomial:} in a group of 10 people, $Y$ = number taller than 180 cm. Then $Y\sim\Bi(10,0.1056)$ and $\Pr(Y\ge2)=1-\Pr(Y\le1)\approx0.2858$.
+\end{example}
+\end{cols}
+
+\begin{example}{finding $\mu$ and $\sigma$ \examtwo}
+$X$ is normal with $\Pr(X<30)=0.1$ and $\Pr(X>50)=0.05$. Find $\mu$ and $\sigma$.\par
+Use inverse normal on $Z$: $\frac{30-\mu}{\sigma}=-1.2816$ and $\frac{50-\mu}{\sigma}=1.6449$. Subtracting gives $\frac{20}{\sigma}=2.9264$, so $\sigma\approx6.834$ and $\mu=30+1.2816\sigma\approx38.76$.\par
+(If only $\mu$ or only $\sigma$ is unknown, one equation is enough.)
+\end{example}
+
+\begin{tip}[Choosing a probability model (key knowledge)]
+\textbf{Binomial} $\Bi(n,p)$: \emph{counting} successes in a fixed number of independent trials with constant $p$. \textbf{Normal} $\Nd(\mu,\sigma^2)$: a \emph{continuous measurement} that is symmetric and bell-shaped (heights, masses, errors), and the approximate model for $\Phat$ when $n$ is large. \textbf{A given pdf/pmf}: use it as stated, after checking it is valid. Models are often \emph{chained}: a normal probability becomes the $p$ of a binomial, or a binomial count becomes a sample proportion.
+\end{tip}

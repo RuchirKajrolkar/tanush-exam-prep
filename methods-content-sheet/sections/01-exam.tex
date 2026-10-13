@@ -1,0 +1,116 @@
+% =================================================================
+\section{The examinations, the formula sheet and the language of the exam}
+\label{sec:exam}
+% =================================================================
+
+\begin{sdbox}
+\textbf{External assessment (study design).} Units 3 and 4 are also assessed by two end-of-year examinations. \emph{``All of the content from the areas of study and the key knowledge and key skills that underpin the outcomes in Units 3 and 4 are examinable.''}
+\begin{itemize}
+  \item \textbf{Examination 1} (20\% of study score): short-answer and some extended-answer questions covering \emph{all areas of study} in relation to \textbf{Outcome 1}. It tests knowledge of concepts, \emph{skills in carrying out mathematical algorithms without the use of technology}, and ability to apply concepts and skills. 1 hour; no calculators, software or notes; a formula sheet is provided.
+  \item \textbf{Examination 2} (40\% of study score): multiple-choice and extended-answer questions covering \emph{all areas of study} in relation to \emph{all three outcomes}, \textbf{with an emphasis on Outcome 2} (non-routine problems). 2 hours; approved technology with numerical, graphical, symbolic and statistical functionality is assumed; one bound reference (may be annotated) or lecture pad is allowed.
+  \item School-assessed Coursework makes up the other 40\%: the Unit 3 application task (20\%) and two Unit 4 modelling or problem-solving tasks (20\%), one of which must be on probability and statistics.
+\end{itemize}
+\end{sdbox}
+
+\subsection{Exam 1 vs Exam 2 at a glance}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\leavevmode\color{navy}\bfseries\sffamily}p{2.7cm}LL@{}}
+\toprule
+ & \textbf{Examination 1} \examone & \textbf{Examination 2} \examtwo \\
+\midrule
+Weighting & 20\% of study score & 40\% of study score \\
+Time & 15 min reading + 1 hour writing & 15 min reading + 2 hours writing \\
+Technology & \textbf{None.} All working by hand & CAS assumed (graphing, solving, calculus, statistics) \\
+Notes & None. Formula sheet provided & One bound reference (annotated) or lecture pad + formula sheet \\
+Structure & Short-answer and some extended-answer questions; \textbf{40 marks} (about 8--10 questions with parts) & Section A: \textbf{20 multiple-choice} (1 mark each, 20 marks). Section B: \textbf{extended-answer} (4--5 multi-part questions, 60 marks). Total \textbf{80 marks} \\
+Outcomes & Outcome 1: concepts, routines, by-hand algorithms & All outcomes; emphasis on Outcome 2 (modelling, problem solving, non-routine) \\
+Pace & $\approx 1.5$ min per mark & $\approx 1.5$ min per mark: about 30 min for Section A, 90 min for Section B \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+
+
+\subsection{Notation used by VCAA}
+
+\begin{defn}{Sets, intervals and functions}
+\begin{multicols}{2}
+\small
+\begin{itemize}
+  \item $\N=\{1,2,3,\dots\}$, $\Z$ integers, $\Q$ rationals, $\R$ reals.
+  \item $\R^+=(0,\infty)$, $\R^-=(-\infty,0)$, $\R\setminus\{2\}$ = all reals except 2.
+  \item $(a,b)=\{x: a<x<b\}$ (open), $[a,b]=\{x:a\le x\le b\}$ (closed), $(a,b]$, $[a,\infty)$. Never write $\infty]$.
+  \item $\{x: f(x)>0\}$: ``the set of $x$ such that $f(x)>0$''. $\cup$ union, $\cap$ intersection, $\in$ ``is an element of'', $\subseteq$ subset.
+  \item $f:D\to\R,\ f(x)=\dots$: $D$ is the domain, $\R$ the co-domain, $f(x)=\dots$ the rule. $d_f$ or dom$(f)$ = domain, $r_f$ or ran$(f)$ = range.
+  \item $f^{-1}$ inverse function (\emph{not} $\frac{1}{f}$); $f\circ g$ composite; $f'(x)$, $\frac{dy}{dx}$, $f''(x)$, $\frac{d^2y}{dx^2}$.
+  \item $\loge(x)$ natural logarithm (CAS: $\ln$). Angles are in \textbf{radians} unless degrees are shown.
+  \item $\Pr(A)$, $\Pr(A|B)$, $A'$ complement. $X\sim\Bi(n,p)$ binomial; $X\sim\Nd(\mu,\sigma^2)$ normal: \textbf{the second parameter is the variance}.
+  \item $\E(X)=\mu$ mean, $\Var(X)=\sigma^2$ variance, $\sd(X)=\sigma$ standard deviation; $\Phat$ (random variable) vs $\phat$ (an observed value).
+\end{itemize}
+\end{multicols}
+\end{defn}
+
+\subsection{The formula sheet: what you are given vs what you must know}
+
+\begin{cols}
+\begin{keyres}{Typically on the VCAA formula sheet}
+{\small A formula sheet is provided with each exam (VCAA's current versions are dated August 2024; check the VCAA site):
+\begin{itemize}
+  \item \textbf{Mensuration:} trapezium $\tfrac12(a+b)h$; cylinder curved surface $2\pi rh$ and volume $\pi r^2h$; cone $\tfrac13\pi r^2h$; pyramid $\tfrac13Ah$; sphere $\tfrac43\pi r^3$; triangle $\tfrac12bc\sin(A)$.
+  \item \textbf{Calculus:} derivatives and antiderivatives of $x^n$, $(ax+b)^n$, $e^{ax}$, $\loge(x)$, $\sin(ax)$, $\cos(ax)$; the derivative of $\tan(ax)$; product, quotient and chain rules; \textbf{Newton's method} $x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}$; the \textbf{trapezium rule}.
+  \item \textbf{Probability:} $\Pr(A')=1-\Pr(A)$, addition rule, $\Pr(A|B)=\frac{\Pr(A\cap B)}{\Pr(B)}$; the binomial coefficient; a table of the mean and variance of discrete, \textbf{binomial} ($\binom nx p^x(1-p)^{n-x}$, $np$, $np(1-p)$) and continuous distributions.
+  \item \textbf{Sample proportions:} $\Phat=\frac{X}{n}$, $\E(\Phat)=p$, $\sd(\Phat)=\sqrt{\frac{p(1-p)}{n}}$, approximate confidence interval.
+\end{itemize}}
+\end{keyres}
+\nextcol
+\begin{warn}[NOT on the sheet: memorise these]
+{\small\begin{itemize}
+  \item Index and logarithm laws, change of base.
+  \item Exact values, unit-circle symmetry, $\sin^2x+\cos^2x=1$, period/amplitude rules, general solutions of circular equations.
+  \item Transformation rules and the mapping $(x,y)\to\left(\frac{x}{n}-b,\ Ay+c\right)$.
+  \item Inverse \& composite function conditions: $d_{f^{-1}}=r_f$; $f\circ g$ exists iff $r_g\subseteq d_f$.
+  \item Chain-rule patterns such as $\ddx \loge(f(x))=\frac{f'(x)}{f(x)}$; $\int\frac{1}{ax+b}\dx=\frac1a\loge(ax+b)+c$.
+  \item Stationary point tests, concavity \& points of inflection.
+  \item Area between curves, average value $\frac{1}{b-a}\int_a^b f(x)\dx$, properties of definite integrals.
+  \item \emph{When} the binomial model applies (its four conditions). The formulas are given; the conditions are not.
+  \item $\E(aX+b)=a\E(X)+b$, $\Var(aX+b)=a^2\Var(X)$.
+  \item pdf conditions, median $\int_{-\infty}^{m}f(x)\dx=0.5$.
+  \item Normal: $Z=\frac{X-\mu}{\sigma}$, the 68--95--99.7\% rule, symmetry tricks.
+  \item $z\approx1.96$ for 95\% confidence intervals, and how to interpret one.
+\end{itemize}}
+\end{warn}
+\end{cols}
+
+\subsection{Command terms: what the question is really asking}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{3.0cm}L@{}}
+\toprule
+Term & What is required \\
+\midrule
+Find / Determine / Calculate & Working + answer. Method marks are available. \\
+Show that & The answer is given: show \emph{every} step from the given information to that exact result. Substituting the answer back is not enough (unless asked to ``verify''). \\
+Hence & You \emph{must} use the previous result. A different method gets no marks. \\
+Hence, or otherwise & The previous result is the intended shortcut, but any valid method earns the marks. \\
+Sketch & Correct shape with key features \emph{labelled with coordinates}: intercepts, stationary points, endpoints ($\bullet$ / $\circ$), asymptotes with equations. Not to scale. \\
+State / Write down & Answer only; little or no working needed (usually 1 mark). \\
+Exact value & Fractions, surds, $\pi$, $e$, logs. No decimals. \\
+Correct to $n$ d.p. & Round the final answer only (``significant figures'' count from the first non-zero digit). \\
+Explain / Justify & A mathematical reason (calculation, property, comparison) \emph{and} a sentence linked to the context. \\
+Verify & Substitute the given value(s) and show both sides agree. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{tip}[Exam strategy in one box]
+\begin{itemize}
+  \item \textbf{Reading time:} plan the order. In Exam 2, read Section B first and note which parts need a sketch or a long CAS sequence.
+  \item \textbf{Exam 1 marks working.} A correct answer without the method rarely gets full marks on a 2--3 mark question. Write the key step (e.g.\ the derivative, the antiderivative, the equation you are solving).
+  \item \textbf{Exam 2 Section B parts depend on each other.} If you can't do part (b), use a sensible value or the given ``show that'' result so you can still do part (c) (``hence'' marks are still available).
+  \item \textbf{Exact vs decimal:} give exact values unless told otherwise. When rounding is asked for, round \emph{only at the end} and keep 4+ decimal places in intermediate working.
+  \item \textbf{MCQ:} eliminate options by testing values, checking units/domains, or sketching quickly on CAS. Never leave a multiple-choice question blank.
+\end{itemize}
+\end{tip}

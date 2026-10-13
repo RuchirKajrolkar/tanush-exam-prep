@@ -1,0 +1,178 @@
+% ---------------------------------------------------------------
+%  Preamble: VCE Mathematical Methods Units 3 & 4 content sheet
+% ---------------------------------------------------------------
+\usepackage[a4paper,margin=1.65cm,top=2.1cm,bottom=2.0cm,headsep=0.45cm,footskip=0.85cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% ---- Fonts: Palatino-style text + maths, Source Sans for headings
+\usepackage{amsmath,mathtools}
+\usepackage{newpxtext}
+\usepackage{newpxmath}
+\usepackage[scale=0.94]{sourcesanspro}
+\usepackage{fontawesome5}
+\usepackage{microtype}
+
+% ---- Colours
+\usepackage[dvipsnames,svgnames,table]{xcolor}
+\definecolor{navy}{HTML}{1F3A5F}
+\definecolor{defcol}{HTML}{1D4ED8}  \definecolor{defbg}{HTML}{F1F6FF}
+\definecolor{keycol}{HTML}{0F766E}  \definecolor{keybg}{HTML}{EFFAF7}
+\definecolor{excol}{HTML}{166534}   \definecolor{exbg}{HTML}{F7FBF8}
+\definecolor{tipcol}{HTML}{B45309}  \definecolor{tipbg}{HTML}{FFF8EC}
+\definecolor{errcol}{HTML}{B91C1C}  \definecolor{errbg}{HTML}{FEF3F3}
+\definecolor{cascol}{HTML}{6D28D9}  \definecolor{casbg}{HTML}{F7F4FF}
+\definecolor{sdcol}{HTML}{475569}   \definecolor{sdbg}{HTML}{F5F7FA}
+\definecolor{gridgrey}{HTML}{D7DCE3}
+\definecolor{plotA}{HTML}{1D4ED8}
+\definecolor{plotB}{HTML}{C2410C}
+\definecolor{plotC}{HTML}{15803D}
+\definecolor{plotD}{HTML}{7E22CE}
+\definecolor{plotE}{HTML}{0E7490}
+
+% ---- Layout helpers
+\usepackage{enumitem}
+\setlist{itemsep=1pt,parsep=0pt,topsep=2pt,partopsep=0pt}
+\setlist[itemize]{leftmargin=1.25em,label={\color{navy}\textbullet}}
+\setlist[enumerate]{leftmargin=1.6em}
+\usepackage{multicol}
+\setlength{\columnsep}{14pt}
+\usepackage{array,tabularx,booktabs,makecell,multirow}
+\renewcommand{\arraystretch}{1.18}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+% (amssymb not needed: newpxmath supplies the AMS symbols)
+\usepackage{cancel}
+\usepackage{pifont}
+\usepackage{xparse}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+
+% ---- Headings
+\usepackage{titlesec}
+\titleformat{\section}{\sffamily\bfseries\LARGE\color{navy}}{\thesection}{0.55em}{}[{\vspace{1pt}\color{navy}\titlerule[1pt]}]
+\titleformat{\subsection}{\sffamily\bfseries\large\color{navy}}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}[runin]{\sffamily\bfseries\normalsize\color{navy}}{}{0em}{}[.\ ]
+\titlespacing*{\section}{0pt}{4pt}{8pt}
+\titlespacing*{\subsection}{0pt}{9pt}{3pt}
+\titlespacing*{\subsubsection}{0pt}{5pt}{0pt}
+\newcommand{\sectionbreak}{\clearpage}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\pretocmd{\subsection}{\needspace{13\baselineskip}}{}{}
+
+% ---- Header / footer
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{navy!40}\leaders\hrule height \headrulewidth\hfill}}
+\fancyhead[L]{\sffamily\footnotesize\color{navy}\textbf{VCE Mathematical Methods Units 3\,\&\,4}\enspace\textbar\enspace Content sheet}
+\fancyhead[R]{\sffamily\footnotesize\color{navy}\nouppercase{\leftmark}}
+\fancyfoot[C]{\sffamily\footnotesize\color{sdcol}Page \thepage\ of \pageref*{LastPage}}
+\renewcommand{\sectionmark}[1]{\markboth{\thesection\enspace #1}{}}
+\fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\fancyfoot[C]{\sffamily\footnotesize\color{sdcol}Page \thepage\ of \pageref*{LastPage}}}
+
+% ---- Boxes
+\usepackage[most]{tcolorbox}
+\tcbset{
+  mybreak/.style={breakable},
+  basebox/.style={enhanced, mybreak, boxrule=0.55pt, arc=1.6pt, outer arc=1.6pt,
+    left=5pt, right=5pt, top=3pt, bottom=3pt, middle=2pt,
+    fonttitle=\sffamily\bfseries\small, coltitle=white,
+    toptitle=1.2pt, bottomtitle=1.2pt, lefttitle=5pt,
+    before skip=5pt, after skip=6pt, parbox=false,
+    before upper={\setlength{\parskip}{3pt}}},
+}
+\newtcolorbox{sdbox}[1][]{basebox, colback=sdbg, colframe=sdcol,
+  title={\faClipboardList\enspace Study design: what this section must cover}, fontupper=\small, #1}
+\newtcolorbox{defn}[1]{basebox, colback=defbg, colframe=defcol, title={\faBook\enspace #1}}
+\newtcolorbox{keyres}[1]{basebox, colback=keybg, colframe=keycol, title={\faKey\enspace #1}}
+\newtcolorbox{example}[1]{basebox, colback=exbg, colframe=excol, title={\faPencil*\enspace Worked example: #1}}
+\newtcolorbox{tip}[1][Exam tip]{basebox, colback=tipbg, colframe=tipcol, title={\faLightbulb\enspace #1}}
+\newtcolorbox{warn}[1][Common errors]{basebox, colback=errbg, colframe=errcol, title={\faExclamationTriangle\enspace #1}}
+\newtcolorbox{cas}[1][Technology (CAS) --- Exam 2]{basebox, colback=casbg, colframe=cascol, title={\faCalculator\enspace #1}}
+\newtcolorbox{method}[1]{basebox, colback=white, colframe=navy, title={\faListOl\enspace #1}}
+
+% side-by-side columns of (unbreakable) boxes
+\newlength{\colw}
+\NewDocumentEnvironment{cols}{O{0.487}}
+  {\par\smallskip\noindent\setlength{\colw}{#1\linewidth}\begin{minipage}[t]{\colw}\vspace{0pt}\tcbset{halign=left, mybreak/.style={unbreakable}}}
+  {\end{minipage}\par\smallskip}
+\NewDocumentCommand{\nextcol}{O{0.487}}{\end{minipage}\hfill\begin{minipage}[t]{#1\linewidth}\vspace{0pt}\tcbset{halign=left, mybreak/.style={unbreakable}}}
+
+% inline badges
+\newcommand{\badge}[3]{\tcbox[on line, colback=#1!8, colframe=#1, boxrule=0.45pt, arc=1.2pt,
+  left=2pt,right=2pt,top=0.3pt,bottom=0.3pt, boxsep=0.6pt, fontupper=\sffamily\scriptsize\bfseries\color{#1}]{#2\,#3}}
+\newcommand{\byhand}{\badge{excol}{\faPencil*}{BY HAND}}
+\newcommand{\examone}{\badge{excol}{\faPencil*}{EXAM 1}}
+\newcommand{\examtwo}{\badge{cascol}{\faCalculator}{EXAM 2 / CAS}}
+\newcommand{\newsd}{\badge{tipcol}{\faStar}{NEW IN 2023 SD}}
+\newcommand{\mcq}{\badge{defcol}{\faCheckSquare}{MCQ FAVOURITE}}
+
+% ---- Graphs
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{arrows.meta,calc,patterns,positioning,decorations.pathreplacing,intersections}
+\pgfplotsset{
+  mygraph/.style={
+    axis lines=middle,
+    axis line style={-{Stealth[length=4pt,width=3pt]}, line width=0.5pt, black!75},
+    tick label style={font=\scriptsize},
+    label style={font=\small},
+    xlabel={$x$}, ylabel={$y$},
+    xlabel style={at={(ticklabel* cs:1)}, anchor=west, inner sep=1pt},
+    ylabel style={at={(ticklabel* cs:1)}, anchor=south, inner sep=1pt},
+    every axis plot/.append style={line width=0.9pt},
+    samples=200, clip=true, clip mode=individual,
+    width=6.2cm, height=4.6cm,
+    legend style={font=\scriptsize, draw=gridgrey, fill=white, fill opacity=0.9, text opacity=1, row sep=-2pt},
+    legend cell align=left,
+  },
+  smallgraph/.style={mygraph, width=4.6cm, height=3.7cm},
+  cornertitle/.style={title style={at={(1,1)}, anchor=north east, font=\scriptsize, inner sep=1pt}},
+}
+\newcommand{\asym}{\draw[dashed, black!55, line width=0.5pt]}
+\tikzset{pt/.style={circle, fill=black, inner sep=0pt, minimum size=3.2pt},
+         opt/.style={circle, draw=black, fill=white, inner sep=0pt, minimum size=3.4pt},
+         lab/.style={font=\scriptsize, inner sep=1.5pt}}
+
+% ---- Pseudocode
+\usepackage{listings}
+\lstdefinestyle{pseudo}{basicstyle=\ttfamily\small, columns=fullflexible, keepspaces=true,
+  keywordstyle=\bfseries\color{cascol}, mathescape=true, aboveskip=2pt, belowskip=2pt,
+  morekeywords={define,return,if,then,else,end,for,from,to,while,do,print,and,or,not,step,input,function},
+  showstringspaces=false, xleftmargin=4pt}
+\lstnewenvironment{pseudo}{\lstset{style=pseudo}}{}
+
+% ---- Maths shortcuts
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\sd}{\mathrm{sd}}
+\newcommand{\Bi}{\mathrm{Bi}}
+\newcommand{\Nd}{\mathrm{N}}
+\newcommand{\Phat}{\hat{P}}
+\newcommand{\phat}{\hat{p}}
+\newcommand{\dx}{\,dx}
+\newcommand{\dt}{\,dt}
+\newcommand{\loge}{\log_e}
+\newcommand{\dydx}{\dfrac{dy}{dx}}
+\newcommand{\ddx}{\dfrac{d}{dx}}
+\newcommand{\tick}{\textcolor{excol}{\ding{51}}}
+\newcommand{\cross}{\textcolor{errcol}{\ding{55}}}
+\newcommand{\checkbox}{\raisebox{-0.5pt}{\scalebox{1.25}{$\square$}}}
+\newcommand{\then}{\;\Rightarrow\;}
+\newcommand{\so}{\quad\therefore\ }
+
+% ---- Links & bookmarks
+\usepackage[colorlinks=true,linkcolor=navy,urlcolor=defcol,citecolor=navy,bookmarksnumbered=true,pdfusetitle]{hyperref}
+\usepackage{bookmark}
+\hypersetup{pdftitle={VCE Mathematical Methods Units 3 and 4 - Exam Content Sheet},
+            pdfsubject={Mathematical Methods Units 3 and 4 (VCAA Study Design 2023-2027)},
+            pdfkeywords={VCE, Mathematical Methods, Units 3 and 4, study design, exam}}
