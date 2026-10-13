@@ -132,7 +132,7 @@ f(x)=x\sin(2x) & $f'(x)=\sin(2x)+2x\cos(2x)$, so $f'\!\left(\frac{\pi}{4}\right)
 \begin{tip}[Make differentiation easier]
 \begin{itemize}
   \item Rewrite roots and fractions as powers first: $\dfrac{3}{\sqrt x}=3x^{-1/2}$, \ $\dfrac{2}{(1-x)^3}=2(1-x)^{-3}$.
-  \item Simplify logs first: $\loge\!\left(\dfrac{x^2}{\sqrt{x+1}}\right)=2\loge x-\frac12\loge(x+1)$, so the derivative is $\dfrac2x-\dfrac{1}{2(x+1)}$.
+  \item Simplify logs first: $\loge\!\left(\dfrac{x^2}{\sqrt{x+1}}\right)=2\loge|x|-\frac12\loge(x+1)$, so the derivative is $\dfrac2x-\dfrac{1}{2(x+1)}$. (Write $\loge|x|$, or state $x>0$: $\loge(x^2)$ is defined for $x<0$ but $2\loge x$ is not.)
   \item Factorise the answer (e.g.\ $xe^{3x}(3x+2)$). You will usually need $f'(x)=0$ next, and the factor form makes that easy.
   \item ``Show that $f'(x)=\dots$'': show the rule you used and at least one intermediate line.
 \end{itemize}
@@ -327,7 +327,7 @@ $V'=0\Rightarrow x=2$ ($x=6$ is outside the domain). $V'$ changes from $+$ to $-
 \begin{example}{distance to a curve \examtwo}
 Find the minimum distance from the origin to $y=e^x$.\par
 $D(x)=\sqrt{x^2+e^{2x}}$. Minimise $D^2$ instead (same $x$): $\frac{d}{dx}(x^2+e^{2x})=2x+2e^{2x}=0$.\par
-This has no exact solution; CAS gives $x\approx-0.4263$, so $D_{\min}\approx0.7798$.\par
+This can't be solved exactly by hand; CAS gives $x\approx-0.4263$, so $D_{\min}\approx0.7798$.\par
 \textbf{Trick:} minimising $D^2$ avoids the square root.
 \end{example}
 \end{cols}
@@ -399,7 +399,7 @@ $x_1=2-\frac{4-5}{4}=\frac94=2.25$; \quad $x_2=\frac94-\frac{\frac{81}{16}-5}{\f
 $n$ & $x_n$ & $f(x_n)$ & $f'(x_n)$\\ \hline
 0 & 2 & $-1$ & 10\\
 1 & 2.1 & 0.061 & 11.23\\
-2 & 2.094568 & 0.000186 & 11.1616\\
+2 & 2.094568 & 0.00018 & 11.16\\
 3 & 2.094551 & & \\
 \end{tabular}\quad The root is $2.0946$ (4 d.p.); successive estimates now agree.
 \end{example}
